@@ -4,9 +4,12 @@ import com.smnas.backend.enums.GradeType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "grade")
@@ -33,35 +36,7 @@ public class Grade {
     @JoinColumn(name = "student_id")
     private Student students;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Float grade) {
-        this.grade = grade;
-    }
-
-    public LocalDate getGradeDate() {
-        return gradeDate;
-    }
-
-    public void setGradeDate(LocalDate gradeDate) {
-        this.gradeDate = gradeDate;
-    }
-
-    public GradeType getGradeType() {
-        return gradeType;
-    }
-
-    public void setGradeType(GradeType gradeType) {
-        this.gradeType = gradeType;
-    }
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }

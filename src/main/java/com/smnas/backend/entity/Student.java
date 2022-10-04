@@ -4,9 +4,12 @@ import com.smnas.backend.enums.StudentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "student")
@@ -46,67 +49,11 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getInfo() {
-        return info;
-    }
-
-    public void setInfo(User info) {
-        this.info = info;
-    }
-
-    public StudentStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(StudentStatus status) {
-        this.status = status;
-    }
-
-    public Integer getTerm() {
-        return term;
-    }
-
-    public void setTerm(Integer term) {
-        this.term = term;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public String getDegreeCourse() {
-        return degreeCourse;
-    }
-
-    public void setDegreeCourse(String degreeCourse) {
-        this.degreeCourse = degreeCourse;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }
