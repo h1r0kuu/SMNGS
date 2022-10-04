@@ -16,7 +16,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 public class LessonDate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

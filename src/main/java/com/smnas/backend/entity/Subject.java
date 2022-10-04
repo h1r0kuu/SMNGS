@@ -18,7 +18,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
