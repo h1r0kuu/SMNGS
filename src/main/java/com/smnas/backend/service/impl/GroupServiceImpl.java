@@ -27,7 +27,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group findById(Long id) {
-        return groupRepository.findById(id).orElseThrow();
+        return groupRepository.findById(id).orElseThrow(null);
     }
 
     @Override

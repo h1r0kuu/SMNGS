@@ -26,7 +26,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject findById(Long id) {
-        return subjectRepository.findById(id).orElseThrow();
+        return subjectRepository.findById(id).orElseThrow(null);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject changeById(Long id, Subject newInfo) {
-        Subject subject = subjectRepository.findById(id).orElseThrow();
+        Subject subject = subjectRepository.findById(id).orElseThrow(null);
         subject.setSubjectName(newInfo.getSubjectName());
         return subjectRepository.save(subject);
     }

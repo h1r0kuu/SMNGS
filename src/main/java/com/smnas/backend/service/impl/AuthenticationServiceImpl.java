@@ -28,7 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByUsername(username);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         String token = jwtProvider.createToken(user.getUsername(), user.getRole().name());
-        Map<String, Object> res = new HashMap<>(){{
+        Map<String, Object> res = new HashMap<String, Object>(){{
             put("user", user);
             put("token", token);
         }};

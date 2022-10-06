@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class GroupMapper {
     public List<GroupResponse> getAll() {
         return groupService.findAll().stream()
                 .map(g -> mapper.convertTo(g, GroupResponse.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public GroupResponse create(GroupRequest groupRequest) {

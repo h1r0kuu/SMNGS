@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -19,6 +20,6 @@ public class BasicMapper {
     public <T, S> List<S>  convertListTo(List<T> dataList, Class<S> type) {
         return dataList.stream()
                 .map(data -> mapper.map(data, type))
-                .toList();
+                .collect(Collectors.toList());
     }
 }
