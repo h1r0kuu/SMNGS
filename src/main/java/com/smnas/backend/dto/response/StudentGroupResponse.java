@@ -1,15 +1,15 @@
 package com.smnas.backend.dto.response;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Data
-public class SubjectResponse {
+@Getter
+@Setter
+public class StudentGroupResponse {
     private Long id;
-    private String subjectName;
-    private List<UserResponse> teachers;
+    private Integer groupTerm;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
