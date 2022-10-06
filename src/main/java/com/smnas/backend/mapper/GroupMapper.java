@@ -3,6 +3,7 @@ package com.smnas.backend.mapper;
 import com.smnas.backend.dto.request.GroupRequest;
 import com.smnas.backend.dto.request.StudentRequest;
 import com.smnas.backend.dto.response.GroupResponse;
+import com.smnas.backend.dto.response.StudentResponse;
 import com.smnas.backend.entity.Group;
 import com.smnas.backend.entity.Student;
 import com.smnas.backend.service.GroupService;
@@ -36,6 +37,10 @@ public class GroupMapper {
 
     public void deleteById(Long id) {
         groupService.deleteById(id);
+    }
+
+    public List<StudentResponse> getStudents(Long groupId) {
+        return mapper.convertListTo(groupService.findById(groupId).getStudents(), StudentResponse.class);
     }
 
     public GroupResponse addStudent(Long groupId, StudentRequest studentRequest) {

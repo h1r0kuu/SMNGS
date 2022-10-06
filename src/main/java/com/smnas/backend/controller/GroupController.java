@@ -3,6 +3,7 @@ package com.smnas.backend.controller;
 import com.smnas.backend.dto.request.GroupRequest;
 import com.smnas.backend.dto.request.StudentRequest;
 import com.smnas.backend.dto.response.GroupResponse;
+import com.smnas.backend.dto.response.StudentResponse;
 import com.smnas.backend.mapper.GroupMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,11 @@ public class GroupController {
         return ResponseEntity.ok("Dsadsa");
     }
 
+    @GetMapping("/{groupId}/students")
+    private ResponseEntity<List<StudentResponse>> getStudents(@PathVariable("groupId") Long groupId) {
+        List<StudentResponse> students = groupMapper.getStudents(groupId);
+        return ResponseEntity.ok(students);
+    }
 
     @PatchMapping("/{groupId}/addStudent")
     private ResponseEntity<GroupResponse> addStudent(@PathVariable("groupId") Long groupId, @RequestBody StudentRequest student) {
