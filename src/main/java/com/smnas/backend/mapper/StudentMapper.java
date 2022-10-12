@@ -1,8 +1,10 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.request.StudentRequest;
-import com.smnas.backend.dto.response.StudentResponse;
+import com.smnas.backend.dto.student.StudentRequest;
+import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.entity.Student;
+import com.smnas.backend.entity.User;
+import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,7 +22,7 @@ public class StudentMapper {
         return mapper.convertListTo(studentService.findAll(), StudentResponse.class);
     }
 
-    public StudentResponse create(StudentRequest studentRequest) {
+    public StudentResponse create(StudentRequest studentRequest) throws UserAlreadyExistException {
         Student student = mapper.convertTo(studentRequest, Student.class);
         return mapper.convertTo(studentService.create(student), StudentResponse.class);
     }

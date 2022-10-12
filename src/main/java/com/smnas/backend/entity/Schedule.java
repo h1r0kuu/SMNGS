@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "lesson_date")
+@Table(name = "schedule")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
-public class LessonDate {
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -30,6 +30,12 @@ public class LessonDate {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
+    @Column(name = "time_start")
+    private LocalDateTime timeStart;
+
+    @Column(name = "time_end")
+    private LocalDateTime timeEnd;
+
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -42,7 +48,7 @@ public class LessonDate {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        LessonDate that = (LessonDate) o;
+        Schedule that = (Schedule) o;
         return id != null && Objects.equals(id, that.id);
     }
 

@@ -1,20 +1,25 @@
-package com.smnas.backend.dto.request;
+package com.smnas.backend.dto.student;
 
+import com.smnas.backend.dto.user.UserResponse;
 import com.smnas.backend.enums.StudentStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class StudentRequest {
+public class StudentResponse {
     private Long id;
-//    private User info;
+    private UserResponse info;
     private StudentStatus status;
     private Integer term;
     private String specialization;
     private String degreeCourse;
     private LocalDate birthDate;
     private String address;
+    private StudentGroupResponse group;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

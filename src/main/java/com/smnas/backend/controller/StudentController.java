@@ -1,7 +1,8 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.request.StudentRequest;
-import com.smnas.backend.dto.response.StudentResponse;
+import com.smnas.backend.dto.student.StudentRequest;
+import com.smnas.backend.dto.student.StudentResponse;
+import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.StudentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class StudentController {
     }
 
     @PostMapping
-    private ResponseEntity<StudentResponse> create(@RequestBody StudentRequest studentRequest) {
+    private ResponseEntity<StudentResponse> create(@RequestBody StudentRequest studentRequest) throws UserAlreadyExistException {
         StudentResponse student = studentMapper.create(studentRequest);
         return ResponseEntity.ok(student);
     }

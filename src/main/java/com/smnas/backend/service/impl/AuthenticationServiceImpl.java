@@ -1,6 +1,6 @@
 package com.smnas.backend.service.impl;
 
-import com.smnas.backend.dto.request.RegistrationRequest;
+import com.smnas.backend.dto.auth.RegistrationRequest;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.provider.JwtProvider;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -28,17 +29,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByUsername(username);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         String token = jwtProvider.createToken(user.getUsername(), user.getRole().name());
-        Map<String, Object> res = new HashMap<String, Object>(){{
+        return new HashMap<String, Object>(){{
             put("user", user);
             put("token", token);
         }};
-        return res;
     }
 
     @Override
     public User registration(RegistrationRequest registrationRequest) {
         if(userRepository.findByUsername(registrationRequest.getUsername()) != null) {
-//            TODO: Exception
+            throw new NoSuchElementException("Cannot find user");
         }
         User user = new User();
         user.setUsername(registrationRequest.getUsername());

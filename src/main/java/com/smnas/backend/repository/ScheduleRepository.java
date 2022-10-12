@@ -1,10 +1,10 @@
 package com.smnas.backend.repository;
 
-import com.smnas.backend.entity.LessonDate;
+import com.smnas.backend.entity.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface LessonDateRepository extends JpaRepository<LessonDate, Long> {
+public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 }

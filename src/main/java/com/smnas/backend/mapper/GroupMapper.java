@@ -1,11 +1,13 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.request.GroupRequest;
-import com.smnas.backend.dto.request.StudentRequest;
-import com.smnas.backend.dto.response.GroupResponse;
-import com.smnas.backend.dto.response.StudentResponse;
+import com.smnas.backend.dto.group.GroupAddStudentRequest;
+import com.smnas.backend.dto.group.GroupRequest;
+import com.smnas.backend.dto.student.StudentRequest;
+import com.smnas.backend.dto.group.GroupResponse;
+import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.entity.Group;
 import com.smnas.backend.entity.Student;
+import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -43,9 +45,8 @@ public class GroupMapper {
         return mapper.convertListTo(groupService.findById(groupId).getStudents(), StudentResponse.class);
     }
 
-    public GroupResponse addStudent(Long groupId, StudentRequest studentRequest) {
-        Student student = mapper.convertTo(studentRequest, Student.class);
-        return mapper.convertTo(groupService.addStudent(groupId, student), GroupResponse.class);
+    public GroupResponse addStudent(Long groupId, GroupAddStudentRequest studentRequest) throws UserAlreadyExistException {
+        return mapper.convertTo(groupService.addStudent(groupId, studentRequest.getStudentId()), GroupResponse.class);
     }
 
     public GroupResponse removeStudent(Long groupId, StudentRequest studentRequest) {

@@ -2,6 +2,7 @@ package com.smnas.backend.service;
 
 import com.smnas.backend.entity.Group;
 import com.smnas.backend.entity.Student;
+import com.smnas.backend.exception.UserAlreadyExistException;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ public interface GroupService {
     List<Group> findAll();
     Group findById(Long id);
     void deleteById(Long id);
-    Group addStudent(Long groupId, Student student);
+    Group addStudent(Long groupId, Long studentId) throws UserAlreadyExistException;
     Group removeStudent(Long groupId, Student student);
 }

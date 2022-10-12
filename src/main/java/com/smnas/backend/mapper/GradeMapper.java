@@ -1,8 +1,9 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.request.GradeRequest;
-import com.smnas.backend.dto.response.GradeResponse;
+import com.smnas.backend.dto.grade.GradeRequest;
+import com.smnas.backend.dto.grade.GradeResponse;
 import com.smnas.backend.entity.Grade;
+import com.smnas.backend.entity.Student;
 import com.smnas.backend.service.GradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,5 +18,12 @@ public class GradeMapper {
     public GradeResponse create(GradeRequest gradeRequest) {
         Grade grade = gradeService.create(mapper.convertTo(gradeRequest, Grade.class));
         return mapper.convertTo(gradeService.create(grade), GradeResponse.class);
+    }
+
+    public GradeResponse update(Long gradeId, GradeRequest gradeRequest) {
+        Grade grade = gradeService.findById(gradeId);
+        grade.setGrade(gradeRequest.getGrade());
+        grade.setStudent( mapper.convertTo(gradeRequest.getStudent(), Student.class));
+        return mapper.convertTo(grade, GradeResponse.class);
     }
 }

@@ -1,8 +1,10 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.request.SubjectRequest;
-import com.smnas.backend.dto.response.SubjectResponse;
+import com.smnas.backend.dto.subject.SubjectRequest;
+import com.smnas.backend.dto.user.UserRequest;
+import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.entity.Subject;
+import com.smnas.backend.entity.User;
 import com.smnas.backend.service.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -36,5 +38,15 @@ public class SubjectMapper {
     public SubjectResponse changeById(Long id,  SubjectRequest subjectRequest) {
         Subject subject = mapper.convertTo(subjectRequest, Subject.class);
         return mapper.convertTo(subjectService.changeById(id, subject), SubjectResponse.class);
+    }
+
+    public SubjectResponse addTeacher(Long subjectId, UserRequest userRequest) {
+        User user = mapper.convertTo(userRequest, User.class);
+        return mapper.convertTo(subjectService.addStudent(subjectId, user), SubjectResponse.class);
+    }
+
+    public SubjectResponse removeTeacher(Long subjectId, UserRequest userRequest) {
+        User user = mapper.convertTo(userRequest, User.class);
+        return mapper.convertTo(subjectService.removeStudent(subjectId, user), SubjectResponse.class);
     }
 }

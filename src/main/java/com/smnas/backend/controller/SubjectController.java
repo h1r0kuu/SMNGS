@@ -1,7 +1,8 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.request.SubjectRequest;
-import com.smnas.backend.dto.response.SubjectResponse;
+import com.smnas.backend.dto.subject.SubjectRequest;
+import com.smnas.backend.dto.user.UserRequest;
+import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.mapper.SubjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,18 @@ public class SubjectController {
     @PatchMapping("/{subjectId}")
     private ResponseEntity<SubjectResponse> changeById(@PathVariable("subjectId") Long subjectId, @RequestBody SubjectRequest newSubject) {
         SubjectResponse subject = subjectMapper.changeById(subjectId, newSubject);
+        return ResponseEntity.ok(subject);
+    }
+
+    @PatchMapping("/{subjectId}/addTeacher")
+    private ResponseEntity<SubjectResponse> addTeacher(@PathVariable("subjectId") Long subjectId, @RequestBody UserRequest userRequest) {
+        SubjectResponse subject = subjectMapper.addTeacher(subjectId, userRequest);
+        return ResponseEntity.ok(subject);
+    }
+
+    @PatchMapping("/{subjectId}/removeTeacher")
+    private ResponseEntity<SubjectResponse> removeTeacher(@PathVariable("subjectId") Long subjectId, @RequestBody UserRequest userRequest) {
+        SubjectResponse subject = subjectMapper.removeTeacher(subjectId, userRequest);
         return ResponseEntity.ok(subject);
     }
 }

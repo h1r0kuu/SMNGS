@@ -35,7 +35,7 @@ public class Grade {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private Student students;
+    private Student student;
 
     @Column(name = "updated_at")
     @UpdateTimestamp

@@ -1,14 +1,19 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.request.GroupRequest;
-import com.smnas.backend.dto.request.StudentRequest;
-import com.smnas.backend.dto.response.GroupResponse;
-import com.smnas.backend.dto.response.StudentResponse;
+import com.smnas.backend.dto.group.GroupAddStudentRequest;
+import com.smnas.backend.dto.group.GroupRequest;
+import com.smnas.backend.dto.student.StudentRequest;
+import com.smnas.backend.dto.group.GroupResponse;
+import com.smnas.backend.dto.student.StudentResponse;
+import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.GroupMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +30,7 @@ public class GroupController {
     }
 
     @PostMapping
-    private ResponseEntity<GroupResponse> create(@RequestBody GroupRequest groupRequest) {
+    private ResponseEntity<GroupResponse> create(@Valid @RequestBody GroupRequest groupRequest) {
         GroupResponse group = groupMapper.create(groupRequest);
         return ResponseEntity.ok(group);
     }
@@ -48,11 +53,11 @@ public class GroupController {
     }
 
     @PatchMapping("/{groupId}/addStudent")
-    private ResponseEntity<GroupResponse> addStudent(@PathVariable("groupId") Long groupId, @RequestBody StudentRequest student) {
+    private ResponseEntity<GroupResponse> addStudent(@PathVariable("groupId") Long groupId, @RequestBody GroupAddStudentRequest student) throws UserAlreadyExistException {
         return ResponseEntity.ok(groupMapper.addStudent(groupId, student));
     }
 
-    @DeleteMapping("/{groupId}/removeStudent")
+    @PatchMapping("/{groupId}/removeStudent")
     private ResponseEntity<GroupResponse> removeStudent(@PathVariable("groupId") Long groupId, @RequestBody StudentRequest student) {
         return ResponseEntity.ok(groupMapper.removeStudent(groupId, student));
     }

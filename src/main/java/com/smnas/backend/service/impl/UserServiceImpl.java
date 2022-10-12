@@ -1,6 +1,7 @@
 package com.smnas.backend.service.impl;
 
 import com.smnas.backend.entity.User;
+import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.UserRepository;
 import com.smnas.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @Service
@@ -18,6 +21,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
+    public User create(User user) throws UserAlreadyExistException {
+        try {
+            if (findUserByUsername(user.getUsername()) != null) {
+                throw new UserAlreadyExistException("User already exist");
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+        return userRepository.save(user);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return findUserByUsername(username);
     }
@@ -25,9 +40,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User findUserByUsername(String username) {
         User user = userRepository.findByUsername(username);
-        if(Objects.isNull(user)) {
-//            TODO: exception
+        if(user == null) {
+            throw new NoSuchElementException("Cannot find user");
         }
         return user;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

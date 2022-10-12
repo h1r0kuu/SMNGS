@@ -1,8 +1,8 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.request.AuthenticationRequest;
-import com.smnas.backend.dto.request.RegistrationRequest;
-import com.smnas.backend.dto.response.AuthenticationResponse;
+import com.smnas.backend.dto.auth.AuthenticationRequest;
+import com.smnas.backend.dto.auth.RegistrationRequest;
+import com.smnas.backend.dto.auth.AuthenticationResponse;
 import com.smnas.backend.mapper.AuthenticationMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

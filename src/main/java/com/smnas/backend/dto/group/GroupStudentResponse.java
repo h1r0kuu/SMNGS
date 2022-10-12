@@ -1,5 +1,6 @@
-package com.smnas.backend.dto.response;
+package com.smnas.backend.dto.group;
 
+import com.smnas.backend.dto.user.UserResponse;
 import com.smnas.backend.enums.StudentStatus;
 import lombok.Getter;
 import lombok.Setter;

@@ -56,6 +56,12 @@ public class User implements UserDetails {
     @Column(name = "phone_code")
     private Integer phoneCode;
 
+    @Column(name = "last_login_datetime")
+    private LocalDateTime lastLogin;
+
+    @Column(name = "last_login_ip")
+    private String lastLoginIp;
+
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;

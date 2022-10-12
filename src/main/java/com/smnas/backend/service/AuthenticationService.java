@@ -1,6 +1,6 @@
 package com.smnas.backend.service;
 
-import com.smnas.backend.dto.request.RegistrationRequest;
+import com.smnas.backend.dto.auth.RegistrationRequest;
 import com.smnas.backend.entity.User;
 
 import java.util.Map;

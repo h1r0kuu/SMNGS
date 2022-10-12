@@ -51,14 +51,6 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @Column(name = "created_at")
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

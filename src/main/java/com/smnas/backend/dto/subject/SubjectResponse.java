@@ -1,5 +1,6 @@
-package com.smnas.backend.dto.response;
+package com.smnas.backend.dto.subject;
 
+import com.smnas.backend.dto.user.UserResponse;
 import lombok.Data;
 
 import java.time.LocalDateTime;

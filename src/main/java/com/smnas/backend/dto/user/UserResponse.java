@@ -1,4 +1,4 @@
-package com.smnas.backend.dto.response;
+package com.smnas.backend.dto.user;
 
 import com.smnas.backend.enums.UserRole;
 import lombok.Getter;
@@ -19,6 +19,8 @@ public class UserResponse {
     private String profilePicture;
     private Integer phoneNumber;
     private Integer phoneCode;
+    private LocalDateTime lastLogin;
+    private String lastLoginIp;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

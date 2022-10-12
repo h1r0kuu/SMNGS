@@ -1,4 +1,4 @@
-package com.smnas.backend.dto.request;
+package com.smnas.backend.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,8 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.request.AuthenticationRequest;
-import com.smnas.backend.dto.request.RegistrationRequest;
-import com.smnas.backend.dto.response.AuthenticationResponse;
+import com.smnas.backend.dto.auth.AuthenticationRequest;
+import com.smnas.backend.dto.auth.RegistrationRequest;
+import com.smnas.backend.dto.auth.AuthenticationResponse;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
