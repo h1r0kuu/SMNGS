@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -19,12 +21,12 @@ public class AuthController {
     private final AuthenticationMapper authenticationMapper;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
         return ResponseEntity.ok(authenticationMapper.login(authenticationRequest));
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<AuthenticationResponse> registration(@RequestBody RegistrationRequest registrationRequest) {
+    public ResponseEntity<AuthenticationResponse> registration(@Valid @RequestBody RegistrationRequest registrationRequest) {
         return ResponseEntity.ok(authenticationMapper.registration(registrationRequest));
     }
 }

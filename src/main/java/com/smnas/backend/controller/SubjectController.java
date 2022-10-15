@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class SubjectController {
     }
 
     @PostMapping
-    private ResponseEntity<SubjectResponse> create(@RequestBody SubjectRequest subjectRequest) {
+    private ResponseEntity<SubjectResponse> create(@Valid @RequestBody SubjectRequest subjectRequest) {
         SubjectResponse newSubject = subjectMapper.create(subjectRequest);
         return ResponseEntity.ok(newSubject);
     }
@@ -42,19 +43,19 @@ public class SubjectController {
     }
 
     @PatchMapping("/{subjectId}")
-    private ResponseEntity<SubjectResponse> changeById(@PathVariable("subjectId") Long subjectId, @RequestBody SubjectRequest newSubject) {
+    private ResponseEntity<SubjectResponse> changeById(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody SubjectRequest newSubject) {
         SubjectResponse subject = subjectMapper.changeById(subjectId, newSubject);
         return ResponseEntity.ok(subject);
     }
 
-    @PatchMapping("/{subjectId}/addTeacher")
-    private ResponseEntity<SubjectResponse> addTeacher(@PathVariable("subjectId") Long subjectId, @RequestBody UserRequest userRequest) {
+    @PatchMapping("/{subjectId}/add-teacher")
+    private ResponseEntity<SubjectResponse> addTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody UserRequest userRequest) {
         SubjectResponse subject = subjectMapper.addTeacher(subjectId, userRequest);
         return ResponseEntity.ok(subject);
     }
 
-    @PatchMapping("/{subjectId}/removeTeacher")
-    private ResponseEntity<SubjectResponse> removeTeacher(@PathVariable("subjectId") Long subjectId, @RequestBody UserRequest userRequest) {
+    @PatchMapping("/{subjectId}/remove-teacher")
+    private ResponseEntity<SubjectResponse> removeTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody UserRequest userRequest) {
         SubjectResponse subject = subjectMapper.removeTeacher(subjectId, userRequest);
         return ResponseEntity.ok(subject);
     }

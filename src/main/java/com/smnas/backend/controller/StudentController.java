@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class StudentController {
     }
 
     @PostMapping
-    private ResponseEntity<StudentResponse> create(@RequestBody StudentRequest studentRequest) throws UserAlreadyExistException {
+    private ResponseEntity<StudentResponse> create(@Valid @RequestBody StudentRequest studentRequest) throws UserAlreadyExistException {
         StudentResponse student = studentMapper.create(studentRequest);
         return ResponseEntity.ok(student);
     }

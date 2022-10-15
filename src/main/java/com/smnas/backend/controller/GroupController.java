@@ -9,8 +9,6 @@ import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.GroupMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -52,13 +50,13 @@ public class GroupController {
         return ResponseEntity.ok(students);
     }
 
-    @PatchMapping("/{groupId}/addStudent")
+    @PatchMapping("/{groupId}/add-student")
     private ResponseEntity<GroupResponse> addStudent(@PathVariable("groupId") Long groupId, @RequestBody GroupAddStudentRequest student) throws UserAlreadyExistException {
         return ResponseEntity.ok(groupMapper.addStudent(groupId, student));
     }
 
-    @PatchMapping("/{groupId}/removeStudent")
-    private ResponseEntity<GroupResponse> removeStudent(@PathVariable("groupId") Long groupId, @RequestBody StudentRequest student) {
+    @PatchMapping("/{groupId}/remove-student")
+    private ResponseEntity<GroupResponse> removeStudent(@PathVariable("groupId") Long groupId, @Valid @RequestBody StudentRequest student) {
         return ResponseEntity.ok(groupMapper.removeStudent(groupId, student));
     }
 
