@@ -1,6 +1,7 @@
 package com.smnas.backend.service.impl;
 
 import com.smnas.backend.entity.User;
+import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.UserRepository;
 import com.smnas.backend.service.UserService;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -49,5 +49,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> findByRole(UserRole role) {
+        return userRepository.findByRole(role);
     }
 }

@@ -1,11 +1,9 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.student.StudentRequest;
-import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.user.UserResponse;
-import com.smnas.backend.entity.Student;
 import com.smnas.backend.entity.User;
+import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +20,10 @@ public class UserMapper {
 
     public List<UserResponse> getAll() {
         return mapper.convertListTo(userService.findAll(), UserResponse.class);
+    }
+
+    public List<UserResponse> getAllByRole(UserRole role) {
+        return mapper.convertListTo(userService.findByRole(role), UserResponse.class);
     }
 
     public UserResponse create(UserRequest userRequest) throws UserAlreadyExistException {

@@ -1,9 +1,8 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.student.StudentRequest;
-import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.user.UserResponse;
+import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +22,12 @@ public class UserController {
     @GetMapping
     private ResponseEntity<List<UserResponse>> getAll() {
         List<UserResponse> users = userMapper.getAll();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/role/{role}")
+    private ResponseEntity<List<UserResponse>> getAllByRole(@PathVariable("role") UserRole role) {
+        List<UserResponse> users = userMapper.getAllByRole(role);
         return ResponseEntity.ok(users);
     }
 

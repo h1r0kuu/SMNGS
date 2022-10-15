@@ -1,7 +1,10 @@
+import {UserRole} from "../enums/userRole";
+
 export const HOST = "http://localhost:8080";
 export const API_URL = HOST + "/api/v1/";
 
 export const API_USERS = API_URL + "users"
+export const API_USERS_ROLE = (role: UserRole) => API_USERS + `/role/${role}`
 
 export const API_SUBJECTS = API_URL + "subjects"
 export const API_SUBJECTS_ONE = (subjectId: number) => API_SUBJECTS + `/${subjectId}`
