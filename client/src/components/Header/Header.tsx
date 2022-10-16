@@ -1,13 +1,15 @@
-import React, {ReactElement, useState} from "react";
+import React, {FC, ReactElement, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAlignLeft, faBell, faBus, faSearch} from "@fortawesome/free-solid-svg-icons";
-// import logo from "../../assets/img/logo.png";
-// import logoSmall from "../../assets/img/logo-small.png";
+import {faAlignLeft, faBars, faBell, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {MY_PROFILE} from "../../constants/pathConstants";
 import { Scrollbars } from 'react-custom-scrollbars';
 
-const Header = () : ReactElement => {
+interface HeaderProps {
+    openMobileNav: () => void,
+}
+
+const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
     const [dropdownShow, setDropdownShow] = useState(false)
     const [notificationsShow, setNotificationsShow] = useState(false)
 
@@ -40,8 +42,8 @@ const Header = () : ReactElement => {
                     <button className="btn" type="submit"><FontAwesomeIcon icon={faSearch} /></button>
                 </form>
             </div>
-            <a className="mobile_btn" id="mobile_btn">
-                <FontAwesomeIcon icon={faBus} />
+            <a className="mobile_btn" onClick={() => openMobileNav()}>
+                <FontAwesomeIcon icon={faBars} />
             </a>
             <ul className="nav user-menu">
                 <li className="nav-item dropdown noti-dropdown">

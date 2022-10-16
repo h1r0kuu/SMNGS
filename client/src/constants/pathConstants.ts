@@ -4,6 +4,8 @@ export const FORGOT_PASSWORD = "/password-reset"
 
 export const MY_PROFILE = "/profile"
 
+export const HOME = "/"
+
 export const ADMIN_DASHBOARD = "/admin/dashboard"
 export const TEACHER_DASHBOARD = "/teacher/dashboard"
 export const STUDENT_DASHBOARD = "/student/dashboard"
@@ -23,8 +25,8 @@ export const DEPARTMENTS_VIEW = "/admin/departments/view"
 export const DEPARTMENTS_ADD = "/admin/departments/add"
 
 export const SUBJECTS_LIST = "/admin/subjects/list"
-export const SUBJECTS_VIEW = "/admin/subjects/view"
 export const SUBJECTS_ADD = "/admin/subjects/add"
+export const SUBJECTS_EDIT = "/admin/subjects/edit"
 
 export const FEES_COLLECTION = "/fees-collection"
 export const EXPENSES = "/expenses"

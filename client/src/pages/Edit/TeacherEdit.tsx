@@ -1,39 +1,34 @@
-import React, {ReactElement} from "react";
+import {ReactElement} from "react";
 import {BreadcrumbItem, Button, Col, Form, FormGroup, FormLabel} from "react-bootstrap";
 import Page from "../../components/Page/Page";
 import AddOrEdit from "../../components/AddOrEdit/AddOrEdit";
 
-const StudentAdd = (): ReactElement => {
+const TeacherEdit = (): ReactElement => {
     const breadCrumbs = () => {
         return (
             <>
-                <BreadcrumbItem>Students</BreadcrumbItem>
-                <BreadcrumbItem active>Add Students</BreadcrumbItem>
+                <BreadcrumbItem>Teachers</BreadcrumbItem>
+                <BreadcrumbItem active>Edit Teachers</BreadcrumbItem>
             </>
         )
     }
+
     return (
-        <Page title={"Add Students"} breadcrumbs={breadCrumbs()}>
+        <Page title={"Edit Teachers"} breadcrumbs={breadCrumbs()}>
             <AddOrEdit>
                 <Col xs={12}>
-                    <h5 className="form-title"><span>Student Information</span></h5>
+                    <h5 className="form-title"><span>Basic Details</span></h5>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>First Name</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Teacher ID</FormLabel>
+                        <Form.Control type="text" value="PRE1234"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Last Name</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Student Id</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Name</FormLabel>
+                        <Form.Control type="text" value="Vincent"/>
                     </FormGroup>
                 </Col>
                 <div className="col-12 col-sm-6">
@@ -51,115 +46,94 @@ const StudentAdd = (): ReactElement => {
                     <FormGroup className="form-group">
                         <FormLabel>Date of Birth</FormLabel>
                         <div>
-                            <Form.Control type="date"/>
+                            <Form.Control type="date" value="23 Jun 1985"/>
                         </div>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Class</FormLabel>
-                        <Form.Control type="text" />
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Religion</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Mobile</FormLabel>
+                        <Form.Control type="text" value="077 3499 9959"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
                         <FormLabel>Joining Date</FormLabel>
                         <div>
-                            <Form.Control type="date"/>
+                            <Form.Control type="date" value="16 Jul 2015"/>
                         </div>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Mobile Number</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Qualification</FormLabel>
+                        <Form.Control type="text" value="Bachelor of Engineering"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Admission Number</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Section</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Student Image</FormLabel>
-                        <Form.Control type="file" />
+                        <FormLabel>Experience</FormLabel>
+                        <Form.Control type="text" value="5"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12}>
-                    <h5 className="form-title"><span>Parent Information</span></h5>
+                    <h5 className="form-title"><span>Login Details</span></h5>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Father's Name</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Username</FormLabel>
+                        <Form.Control type="text" value="Vincent"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Father's Occupation</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Email ID</FormLabel>
+                        <Form.Control type="text" value="vincent20@gmail.com"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Father's Mobile</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Password</FormLabel>
+                        <Form.Control type="password" value="111111"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Father's Email</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Repeat Password</FormLabel>
+                        <Form.Control type="password" value="111111"/>
+                    </FormGroup>
+                </Col>
+                <Col xs={12}>
+                    <h5 className="form-title"><span>Address</span></h5>
+                </Col>
+                <Col xs={12}>
+                    <FormGroup className="form-group">
+                        <FormLabel>Address</FormLabel>
+                        <Form.Control type="text" value="3979 Ashwood Drive"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Mother's Name</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>City</FormLabel>
+                        <Form.Control type="xtext" value="Omaha"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Mother's Occupation</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>State</FormLabel>
+                        <Form.Control type="text" value="Omaha"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Mother's Mobile</FormLabel>
-                        <Form.Control type="text"/>
+                        <FormLabel>Zip Code</FormLabel>
+                        <Form.Control type="text" value="3979"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Mother's Email</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Present Address</FormLabel>
-                        <Form.Control as={"textarea"} type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Permanent Address</FormLabel>
-                        <Form.Control as={"textarea"} type="text"/>
+                        <FormLabel>Country</FormLabel>
+                        <Form.Control type="text" value="USA"/>
                     </FormGroup>
                 </Col>
                 <Col xs={12}>
@@ -170,4 +144,4 @@ const StudentAdd = (): ReactElement => {
     )
 }
 
-export default StudentAdd;
+export default TeacherEdit

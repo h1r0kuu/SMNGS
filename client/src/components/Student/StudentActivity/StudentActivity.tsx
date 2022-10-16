@@ -1,4 +1,5 @@
 import React, {ReactElement} from "react";
+import StudentActivityElem from "./StudentActivityElem/StudentActivityElem";
 
 const StudentActivity = (): ReactElement => {
     return (
@@ -9,29 +10,34 @@ const StudentActivity = (): ReactElement => {
                 </div>
                 <div className="card-body">
                     <ul className="activity-feed">
-                        <li className="feed-item">
-                            <div className="feed-date">Apr 13</div>
-                            <span className="feed-text"><a>John Doe</a> won 1st place in <a>"Chess"</a></span>
-                        </li>
-                        <li className="feed-item">
-                            <div className="feed-date">Mar 21</div>
-                            <span className="feed-text"><a>Justin Lee</a> participated in <a
-                                href="invoice.html">"Carrom"</a></span>
-                        </li>
-                        <li className="feed-item">
-                            <div className="feed-date">Feb 2</div>
-                            <span className="feed-text"><a>Justin Lee</a>attended internation conference in <a
-                                href="profile.html">"St.John School"</a></span>
-                        </li>
-                        <li className="feed-item">
-                            <div className="feed-date">Apr 13</div>
-                            <span className="feed-text"><a>John Doe</a> won 1st place in <a>"Chess"</a></span>
-                        </li>
-                        <li className="feed-item">
-                            <div className="feed-date">Mar 21</div>
-                            <span className="feed-text"><a>Justin Lee</a> participated in <a
-                                href="invoice.html">"Carrom"</a></span>
-                        </li>
+                        <StudentActivityElem date={"Apr 13"}>
+                            <>
+                            <a>John Doe</a> won 1st place in <a>"Chess"</a>
+                            </>
+                        </StudentActivityElem>
+                        <StudentActivityElem date={"Mar 21"}>
+                            <>
+                                <a>Justin Lee</a> participated in <a
+                                href="invoice.html">"Carrom"</a>
+                            </>
+                        </StudentActivityElem>
+                        <StudentActivityElem date={"Feb 2"}>
+                            <>
+                                <a>Justin Lee</a>attended internation conference in <a
+                                href="profile.html">"St.John School"</a>
+                            </>
+                        </StudentActivityElem>
+                        <StudentActivityElem date={"Apr 13"}>
+                            <>
+                                <a>John Doe</a> won 1st place in <a>"Chess"</a>
+                            </>
+                        </StudentActivityElem>
+                        <StudentActivityElem date={"Mar 21"}>
+                            <>
+                                <a>Justin Lee</a> participated in <a
+                                href="invoice.html">"Carrom"</a>
+                            </>
+                        </StudentActivityElem>
                     </ul>
                 </div>
             </div>

@@ -10,9 +10,9 @@ const UpcomingLessons = (): ReactElement => {
                             <h5 className="card-title">Upcoming Lesson</h5>
                         </div>
                         <div className="col-6">
-                          <span className="float-right view-link">
-                            <a href="#">View All Courses</a>
-                          </span>
+          <span className="float-right view-link">
+            <a href="#">View All Courses</a>
+          </span>
                         </div>
                     </div>
                 </div>

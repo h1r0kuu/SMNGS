@@ -1,8 +1,8 @@
-import React, {FC, ReactElement, useEffect, useRef, useState} from "react";
+import React, {FC, ReactElement, useEffect} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleRight, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
+import {faAngleRight} from "@fortawesome/free-solid-svg-icons";
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
-import {CSSTransition, Transition, TransitionGroup} from "react-transition-group";
+import {CSSTransition} from "react-transition-group";
 
 interface SubmenuProps {
     title: string,
@@ -38,7 +38,7 @@ const Submenu: FC<SubmenuProps> = ({title, icon, children, selectedDropdown, set
 
     return (
         <li className={`submenu ${active() ? "active" : ""}`} onClick={openDropdown} id={id.toString()}>
-            <a className={`${active() && "subdrop"}`} href="#">{icon && <FontAwesomeIcon icon={icon} />}
+            <a className={`${active() && "subdrop"}`}>{icon && <FontAwesomeIcon icon={icon} />}
                 <span> {title}</span>
                 <span className="menu-arrow"><FontAwesomeIcon icon={faAngleRight} /></span>
             </a>

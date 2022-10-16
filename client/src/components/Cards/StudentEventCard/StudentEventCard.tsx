@@ -1,15 +1,17 @@
 import React, {FC, ReactElement} from "react";
-import {Col} from "react-bootstrap";
+import {Button, Card, Col} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBookOpen, faClipboardCheck, faClock, faHourglassEnd} from "@fortawesome/free-solid-svg-icons";
 
 interface LessonProps {
     lg: number,
     xl: number
 }
 
-const StudentLesson: FC<LessonProps> = ({lg, xl}): ReactElement => {
+const StudentEventCard: FC<LessonProps> = ({lg, xl}): ReactElement => {
     return (
         <Col xs={12} lg={lg} xl={xl}>
-            <div className="card-body dash-widget1">
+            <Card.Body className="dash-widget1">
                 <div className="circle-bar circle-bar2">
                     <div className="circle-graph2" data-percent="20">
                         <b>20%</b>
@@ -22,26 +24,26 @@ const StudentLesson: FC<LessonProps> = ({lg, xl}): ReactElement => {
                     <h4>Facilisi etiam</h4>
                     <ul>
                         <li>
-                            <i className="fas fa-clock"></i> 2.30pm - 3.30pm
+                            <FontAwesomeIcon icon={faClock} /> 2.30pm - 3.30pm
                         </li>
                         <li>
-                            <i className="fas fa-book-open"></i> 5 Lessons
+                            <FontAwesomeIcon icon={faBookOpen} /> 5 Lessons
                         </li>
                         <li>
-                            <i className="fas fa-hourglass-end"></i> 60 Minutes
+                            <FontAwesomeIcon icon={faHourglassEnd} /> 60 Minutes
                         </li>
                         <li>
-                            <i className="fas fa-clipboard-check"></i> 5 Asignment
+                            <FontAwesomeIcon icon={faClipboardCheck} /> 5 Asignment
                         </li>
                     </ul>
                     <div className="dash-btn">
-                        <button type="submit" className="btn btn-info btn-border">Skip</button>
-                        <button type="submit" className="btn btn-info">Continue</button>
+                        <Button variant={"info btn-border"}>Skip</Button>
+                        <Button variant={"info"}>Continue</Button>
                     </div>
                 </div>
-            </div>
+            </Card.Body>
         </Col>
     )
 }
 
-export default StudentLesson;
+export default StudentEventCard;

@@ -1,5 +1,5 @@
-import React, {FC, ReactElement, useState} from "react";
-import {Link, NavLink} from "react-router-dom";
+import React, {FC, ReactElement} from "react";
+import {NavLink} from "react-router-dom";
 
 interface SubmenuElemProps {
     title: string,

@@ -1,16 +1,18 @@
 import {ReactElement} from "react";
+import {Card, Col, Row} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
-const TeacherLesson = (): ReactElement => {
+const SemesterProgress = (): ReactElement => {
     return (
-        <div className="col-12 col-lg-4 col-xl-4 d-flex">
-            <div className="card flex-fill">
-                <div className="card-header">
-                    <div className="row align-items-center">
-                        <div className="col-12">
-                            <h5 className="card-title">Semester Progress</h5>
-                        </div>
-                    </div>
-                </div>
+        <Col xs={12} lg={4} xl={4} className="d-flex">
+            <Card className="flex-fill">
+                <CardHeader>
+                    <Row className="row align-items-center">
+                        <Col xl={12} className="col-12">
+                            <Card.Title as={"h5"} className="card-title">Semester Progress</Card.Title>
+                        </Col>
+                    </Row>
+                </CardHeader>
                 <div className="dash-widget">
                     <div className="circle-bar circle-bar1">
                         <div className="circle-graph1" data-percent="50">
@@ -24,9 +26,9 @@ const TeacherLesson = (): ReactElement => {
                         </h4>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Card>
+        </Col>
     )
 }
 
-export default TeacherLesson;
+export default SemesterProgress;

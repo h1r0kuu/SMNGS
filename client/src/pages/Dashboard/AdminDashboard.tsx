@@ -1,18 +1,12 @@
 import React, {ReactElement} from "react";
-import Header from "../../components/Header/Header";
-import SidebarMenu from "../../components/SidebarMenu/SidebarMenu";
-import {Breadcrumb, BreadcrumbItem, Row} from "react-bootstrap";
-import DataCard from "../../components/DataCard/DataCard";
+import {BreadcrumbItem, Row} from "react-bootstrap";
+import InfoCard from "../../components/Cards/InfoCard/InfoCard";
 import {faBuilding, faCrown, faFileInvoiceDollar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
 
-import Chart from "react-apexcharts";
-import { ApexOptions  } from "apexcharts"
-import PageHeader from "../../components/PageHeader/PageHeader";
 import RevenueDiagram from "../../components/Diagrams/RevenueDiagram/RevenueDiagram";
 import NumOfStudents from "../../components/Diagrams/NumOfStudents/NumOfStudents";
 import StudentActivity from "../../components/Student/StudentActivity/StudentActivity";
 import StarStudents from "../../components/Student/StarStudents/StarStudents";
-import Footer from "../../components/Footer/Footer";
 import Page from "../../components/Page/Page";
 
 const AdminDashboard = (): ReactElement => {
@@ -26,10 +20,10 @@ const AdminDashboard = (): ReactElement => {
     return (
         <Page title={"Welcome Admin!"} breadcrumbs={breadCrumbs()}>
             <Row>
-                <DataCard title={"Students"} value={"50000"} icon={faUserGraduate} bg={"one"}/>
-                <DataCard title={"Awards"} value={"50+"} icon={faCrown} bg={"two"}/>
-                <DataCard title={"Department"} value={"30+"} icon={faBuilding} bg={"three"}/>
-                <DataCard title={"Revenue"} value={"$505"} icon={faFileInvoiceDollar} bg={"four"}/>
+                <InfoCard title={"Students"} value={"50000"} icon={faUserGraduate} bg={"one"}/>
+                <InfoCard title={"Awards"} value={"50+"} icon={faCrown} bg={"two"}/>
+                <InfoCard title={"Department"} value={"30+"} icon={faBuilding} bg={"three"}/>
+                <InfoCard title={"Revenue"} value={"$505"} icon={faFileInvoiceDollar} bg={"four"}/>
             </Row>
             <Row>
                 <RevenueDiagram/>

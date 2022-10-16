@@ -1,20 +1,19 @@
 import {Children, FC, ReactElement} from "react";
 import {Card, Col, Row, Table} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPen} from "@fortawesome/free-solid-svg-icons";
-import {faTrash} from "@fortawesome/free-solid-svg-icons/faTrash";
 
 const List = ({ children }): ReactElement => {
 
     let headers: ReactElement[] = [], trs: ReactElement[] = [];
 
     Children.forEach(children, child => {
-        if (child.type === List.Header) {
-            return headers.push(child)
-        }
+        if(child !== null) {
+            if (child.type === List.Header) {
+                return headers.push(child)
+            }
 
-        if (child.type === List.BodyTr) {
-            return trs.push(child)
+            if (child.type === List.BodyTr) {
+                return trs.push(child)
+            }
         }
     })
 
@@ -110,7 +109,7 @@ const List = ({ children }): ReactElement => {
                                                 </li>
                                                 <li className="paginate_button page-item ">
                                                     <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2"
-                                                       tabIndex={0}className="page-link">2</a>
+                                                       tabIndex={0} className="page-link">2</a>
                                                 </li>
                                                 <li className="paginate_button page-item next"
                                                     id="DataTables_Table_0_next">
@@ -134,7 +133,7 @@ List.Header = ({ title }) => <th className={"sorting"}>{title}</th>
 List.BodyTr = ({ children }) => <tr>{children}</tr>
 
 interface BodyElemProps {
-    children: ReactElement | ReactElement[] | string,
+    children: ReactElement | ReactElement[] | any,
     className?: string
 }
 const BodyElem: FC<BodyElemProps> = ({ children, className }) => <td className={className}>{children}</td>

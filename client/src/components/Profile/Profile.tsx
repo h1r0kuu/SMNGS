@@ -4,14 +4,12 @@ import {
     Card,
     Col,
     Form,
-    FormControl,
     FormGroup,
     FormLabel, Nav, NavItem,
     NavLink,
     Row,
     TabContainer, TabContent,
-    TabPane,
-    Tabs
+    TabPane
 } from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faEdit} from "@fortawesome/free-solid-svg-icons";
@@ -137,17 +135,17 @@ const Profile = (): ReactElement => {
                                     <Row>
                                         <Col md={10} lg={6}>
                                             <Form>
-                                                <FormGroup>
+                                                <FormGroup className={"form-group"}>
                                                     <FormLabel>Old Password</FormLabel>
-                                                    <FormControl type={"password"}></FormControl>
+                                                    <Form.Control type={"password"}></Form.Control>
                                                 </FormGroup>
-                                                <FormGroup>
+                                                <FormGroup className={"form-group"}>
                                                     <FormLabel>New Password</FormLabel>
-                                                    <FormControl type={"password"}></FormControl>
+                                                    <Form.Control type={"password"}></Form.Control>
                                                 </FormGroup>
-                                                <FormGroup>
+                                                <FormGroup className={"form-group"}>
                                                     <FormLabel>Confirm Password</FormLabel>
-                                                    <FormControl type={"password"}></FormControl>
+                                                    <Form.Control type={"password"}></Form.Control>
                                                 </FormGroup>
                                                 <Button type={"submit"}>Save Changes</Button>
                                             </Form>

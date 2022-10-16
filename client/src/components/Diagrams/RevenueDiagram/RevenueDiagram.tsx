@@ -1,6 +1,4 @@
 import React, {ReactElement} from "react";
-import {Row} from "react-bootstrap";
-import Chart from "react-apexcharts";
 import {ApexOptions} from "apexcharts";
 import Diagram from "../Diagram";
 

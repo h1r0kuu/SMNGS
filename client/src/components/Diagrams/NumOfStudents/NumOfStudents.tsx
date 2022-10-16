@@ -1,8 +1,5 @@
 import React, {ReactElement} from "react";
-import Chart from "react-apexcharts";
 import {ApexOptions} from "apexcharts";
-import {Card, Col, Form, FormControl, FormGroup, ListGroup} from "react-bootstrap";
-import List from "../../List/List";
 import Diagram from "../Diagram";
 
 const NumOfStudents = (): ReactElement => {

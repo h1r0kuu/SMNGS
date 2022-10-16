@@ -1,6 +1,6 @@
 import React, {ReactElement, useState} from "react";
 import {
-    faAngleRight, faBaseballBall, faBook,
+    faBaseballBall, faBook,
     faBookReader,
     faBuilding, faBus, faCalendarDay,
     faChalkboardTeacher, faClipboardList, faCommentDollar, faFileInvoiceDollar, faHollyBerry, faHotel, faTable,
@@ -28,9 +28,8 @@ import {
     STUDENTS_EDIT,
     STUDENTS_LIST,
     STUDENTS_VIEW,
-    SUBJECTS_ADD,
+    SUBJECTS_ADD, SUBJECTS_EDIT,
     SUBJECTS_LIST,
-    SUBJECTS_VIEW,
     TEACHER_DASHBOARD,
     TEACHERS_ADD,
     TEACHERS_EDIT,
@@ -48,7 +47,6 @@ const SidebarMenu = (): ReactElement => {
                 <Scrollbars autoHide
                             autoHideTimeout={1000}
                             autoHideDuration={500}
-                            thumbMinSize={1}
                             renderTrackVertical={props => <div {...props} className="track-vertical"/>} >
                     <div id="sidebar-menu" className="sidebar-menu">
                         <ul>
@@ -97,8 +95,8 @@ const SidebarMenu = (): ReactElement => {
                                      selectedDropdown={selectedDropdown}
                                      id={5}>
                                 <SubmenuElem title={"Subject List"} href={SUBJECTS_LIST} />
-                                <SubmenuElem title={"Subject View"} href={SUBJECTS_VIEW} />
                                 <SubmenuElem title={"Subject Add"} href={SUBJECTS_ADD} />
+                                <SubmenuElem title={"Subject Edit"} href={SUBJECTS_EDIT} />
                             </Submenu>
 
                             <SidebarMenuTitle title={"Management"}/>

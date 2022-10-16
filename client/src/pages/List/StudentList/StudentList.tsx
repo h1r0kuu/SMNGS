@@ -26,30 +26,12 @@ const StudentList = (): ReactElement => {
                 <List.Header title={"Mobile Number"}/>
                 <List.Header title={"Address"}/>
                 <List.Header title={"Action"}/>
+
                 <List.BodyTr>
-                    <List.BodyElem>PRE1234</List.BodyElem>
-                    <List.BodyElem>Nathan Humphries</List.BodyElem>
-                    <List.BodyElem>10b</List.BodyElem>
-                    <List.BodyElem>26 Apr 1994</List.BodyElem>
-                    <List.BodyElem>Stephen Marley</List.BodyElem>
-                    <List.BodyElem>077 3499 9959</List.BodyElem>
-                    <List.BodyElem>86 Lamphey Road, Thelnetham</List.BodyElem>
-                    <List.BodyElem className={"text-right"}>
-                        <div className="actions">
-                            <a href="edit-student.html" className="btn btn-sm bg-success-light mr-2">
-                                <FontAwesomeIcon icon={faPen}/>
-                            </a>
-                            <a href="#" className="btn btn-sm bg-danger-light">
-                                <FontAwesomeIcon icon={faTrash}/>
-                            </a>
-                        </div>
-                    </List.BodyElem>
-                </List.BodyTr>
-                <List.BodyTr>
-                    <List.BodyElem>PRE1234</List.BodyElem>
-                    <List.BodyElem>Nathan Humphries</List.BodyElem>
-                    <List.BodyElem>10b</List.BodyElem>
-                    <List.BodyElem>26 Apr 1994</List.BodyElem>
+                    <List.BodyElem>1</List.BodyElem>
+                    <List.BodyElem>Dasdsad</List.BodyElem>
+                    <List.BodyElem>DASdsa</List.BodyElem>
+                    <List.BodyElem>Mvmcxzk</List.BodyElem>
                     <List.BodyElem>Stephen Marley</List.BodyElem>
                     <List.BodyElem>077 3499 9959</List.BodyElem>
                     <List.BodyElem>86 Lamphey Road, Thelnetham</List.BodyElem>

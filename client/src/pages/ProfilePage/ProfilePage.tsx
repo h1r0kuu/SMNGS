@@ -1,6 +1,5 @@
 import React, {ReactElement} from "react";
 import {BreadcrumbItem} from "react-bootstrap";
-import User from "../../components/View/User/User";
 import Page from "../../components/Page/Page";
 import Profile from "../../components/Profile/Profile";
 

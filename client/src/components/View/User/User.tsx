@@ -1,12 +1,13 @@
 import React, {ReactElement} from "react";
+import {Button, Card, Col, Form, FormGroup, FormLabel, Row} from "react-bootstrap";
 
 const User = (): ReactElement => {
 
     return (
-        <div className="card">
-            <div className="card-body">
-                <div className="row">
-                    <div className="col-md-12">
+        <Card>
+            <Card.Body>
+                <Row>
+                    <Col md={12}>
                         <div className="about-info">
                             <h4>About Me</h4>
                             <div className="media mt-3">
@@ -40,50 +41,50 @@ const User = (): ReactElement => {
                                         </ul>
                                     </div>
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-md-12">
+                            <Row className="mt-3">
+                                <Col md={12}>
                                     <p>Hello I am Daisy Parks. Lorem Ipsum is simply dummy text of the printing and
                                         typesetting industry, simply dummy text of the printing and typesetting
                                         industry.</p>
-                                </div>
-                            </div>
-                            <div className="row follow-sec">
-                                <div className="col-md-4 mb-3">
+                                </Col>
+                            </Row>
+                            <Row className="follow-sec">
+                                <Col md={4} className="mb-3">
                                     <div className="blue-box">
                                         <h3>2850</h3>
                                         <p>Followers</p>
                                     </div>
-                                </div>
-                                <div className="col-md-4 mb-3">
+                                </Col>
+                                <Col md={4} className="mb-3">
                                     <div className="blue-box">
                                         <h3>2050</h3>
                                         <p>Following</p>
                                     </div>
-                                </div>
-                                <div className="col-md-4 mb-3">
+                                </Col>
+                                <Col md={4} className="mb-3">
                                     <div className="blue-box">
                                         <h3>2950</h3>
                                         <p>Friends</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="row mt-2">
-                                <div className="col-md-12">
+                                </Col>
+                            </Row>
+                            <Row className="mt-2">
+                                <Col md={12}>
                                     <h5>Permanent Address</h5>
                                     <p>480, Estern Avenue, Courtage area, New York</p>
-                                </div>
-                            </div>
-                            <div className="row mt-2">
-                                <div className="col-md-12">
+                                </Col>
+                            </Row>
+                            <Row className="mt-2">
+                                <Col md={12}>
                                     <h5>Present Address</h5>
                                     <p>480, Estern Avenue, Courtage area, New York</p>
-                                </div>
-                            </div>
+                                </Col>
+                            </Row>
                         </div>
-                    </div>
-                </div>
-                <div className="row mt-2">
-                    <div className="col-md-12">
+                    </Col>
+                </Row>
+                <Row className="mt-2">
+                    <Col md={12}>
                         <div className="skill-info">
                             <h4>Skills</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry, simply dummy
@@ -122,8 +123,8 @@ const User = (): ReactElement => {
                                     </div>
                                 </li>
                             </ul>
-                            <div className="row mt-3">
-                                <div className="col-md-12">
+                            <Row className="mt-3">
+                                <Col md={12}>
                                     <h5>Education</h5>
                                     <p className="mt-3">Secondary Schooling at xyz school of secondary education,
                                         Mumbai.</p>
@@ -131,54 +132,54 @@ const User = (): ReactElement => {
                                         Mumbai.</p>
                                     <p>Bachelor of Science at Abc College of Art and Science, Chennai.</p>
                                     <p>Master of Science at Cdm College of Engineering and Technology, Pune.</p>
-                                </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-md-12">
+                                </Col>
+                            </Row>
+                            <Row className="mt-3">
+                                <Col md={12}>
                                     <h5>Certificates</h5>
                                     <p className="mt-3">1st Prise in Running Competition.</p>
                                     <p>Lorem Ipsum is simply dummy text.</p>
                                     <p>Won overall star student in higher secondary education.</p>
                                     <p>Lorem Ipsum is simply dummy text.</p>
-                                </div>
-                            </div>
+                                </Col>
+                            </Row>
                         </div>
-                    </div>
-                </div>
-                <div className="row mt-2">
-                    <div className="col-md-12">
+                    </Col>
+                </Row>
+                <Row className="mt-2">
+                    <Col md={12}>
                         <div className="skill-info">
                             <h4>Settings</h4>
                             <form>
-                                <div className="row mt-3">
-                                    <div className="col-12 col-sm-6">
-                                        <div className="form-group">
-                                            <label>Username</label>
-                                            <input type="text" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-sm-6">
-                                        <div className="form-group">
-                                            <label>Current Password</label>
-                                            <input type="password" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-sm-6">
-                                        <div className="form-group">
-                                            <label>New Password</label>
-                                            <input type="password" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
+                                <Row className="mt-3">
+                                    <Col xs={12} sm={6}>
+                                        <FormGroup className={"form-group"}>
+                                            <FormLabel>Username</FormLabel>
+                                            <Form.Control type={"text"}/>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col xs={12} sm={6}>
+                                        <FormGroup className={"form-group"}>
+                                            <FormLabel>Current Password</FormLabel>
+                                            <Form.Control type={"password"}/>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col xs={12} sm={6}>
+                                        <FormGroup className={"form-group"}>
+                                            <FormLabel>New Password</FormLabel>
+                                            <Form.Control type={"password"}/>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col xs={12}>
+                                        <Button type={"submit"}>Submit</Button>
+                                    </Col>
+                                </Row>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Col>
+                </Row>
+            </Card.Body>
+        </Card>
     )
 }
 

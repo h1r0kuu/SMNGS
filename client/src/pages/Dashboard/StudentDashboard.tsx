@@ -1,23 +1,18 @@
 import React, {ReactElement} from "react";
 import Page from "../../components/Page/Page";
-import {BreadcrumbItem, Row} from "react-bootstrap";
-import DataCard from "../../components/DataCard/DataCard";
+import {BreadcrumbItem, Card, Col, Row} from "react-bootstrap";
+import InfoCard from "../../components/Cards/InfoCard/InfoCard";
 import {
     faBookOpen,
-    faBuilding, faClipboardCheck, faClipboardList,
-    faCrown,
-    faFileAlt,
-    faFileInvoiceDollar,
-    faUserGraduate
+    faClipboardCheck, faClipboardList,
+    faFileAlt
 } from "@fortawesome/free-solid-svg-icons";
-import StudentLesson from "../../components/Lesson/StudentLesson";
-import SimpleReactCalendar from 'simple-react-calendar';
-import Calendar from 'react-calendar';
-import SimpleCalendar from "simple-react-calendar"
-import Chart from "react-apexcharts";
+import StudentEventCard from "../../components/Cards/StudentEventCard/StudentEventCard";
 import {ApexOptions} from "apexcharts";
-import LessonHistory from "../../components/Lesson/LessonHistory";
+import LessonHistory from "../../components/LessonHistory/LessonHistory";
 import Diagram from "../../components/Diagrams/Diagram";
+import SimpleCalendar from "../../components/Calendar/SimpleCalendar/SimpleCalendar";
+import CardHeader from "react-bootstrap/CardHeader";
 
 const StudentDashboard = (): ReactElement => {
     const seriesTS = [
@@ -62,81 +57,40 @@ const StudentDashboard = (): ReactElement => {
     return (
         <Page title={"Welcome daun!"} breadcrumbs={breadCrumbs()}>
             <Row>
-                <DataCard title={"All Courses"} value={"04/06"} icon={faBookOpen} bg={"three"}/>
-                <DataCard title={"All Projects"} value={"40/60"} icon={faFileAlt} bg={"four"}/>
-                <DataCard title={"Test Attended"} value={"30/50"} icon={faClipboardList} bg={"one"}/>
-                <DataCard title={"Test Passed"} value={"15/20"} icon={faClipboardCheck} bg={"two"}/>
+                <InfoCard title={"All Courses"} value={"04/06"} icon={faBookOpen} bg={"three"}/>
+                <InfoCard title={"All Projects"} value={"40/60"} icon={faFileAlt} bg={"four"}/>
+                <InfoCard title={"Test Attended"} value={"30/50"} icon={faClipboardList} bg={"one"}/>
+                <InfoCard title={"Test Passed"} value={"15/20"} icon={faClipboardCheck} bg={"two"}/>
             </Row>
-            <div className="row">
-                <div className="col-12 col-lg-12 col-xl-9">
-                    <div className="card flex-fill">
-                        <div className="card-header">
-                            <div className="row align-items-center">
-                                <div className="col-6">
+            <Row>
+                <Col xs={12} lg={12} xl={9}>
+                    <Card className="flex-fill">
+                        <CardHeader>
+                            <Row className="align-items-center">
+                                <Col xs={6}>
                                     <h5 className="card-title">Today’s Lesson</h5>
-                                </div>
-                                <div className="col-6">
-                      <span className="float-right view-link">
-                        <a href="src/pages/Dashboard/StudentDashboard#">View All Courses</a>
-                      </span>
-                                </div>
-                            </div>
-                        </div>
+                                </Col>
+                                <Col xs={6}>
+                                  <span className="float-right view-link">
+                                    <a href="src/pages/Dashboard/StudentDashboard#">View All Courses</a>
+                                  </span>
+                                </Col>
+                            </Row>
+                        </CardHeader>
                         <div className="dash-circle">
-                            <div className="row">
-                                <StudentLesson xl={6} lg={6}/>
-                                <StudentLesson xl={6} lg={6}/>
-                            </div>
+                            <Row>
+                                <StudentEventCard xl={6} lg={6}/>
+                                <StudentEventCard xl={6} lg={6}/>
+                            </Row>
                         </div>
-                    </div>
-                    <div className="row">
+                    </Card>
+                    <Row>
                         <Diagram title={"Learning Activity"} type={"area"} series={seriesTS} options={optionTS} md={12} lg={8}/>
                         <LessonHistory title={"Learning History"}/>
-                    </div>
-                </div>
-                <div className="col-12 col-lg-12 col-xl-3 d-flex">
-                    <div className="card flex-fill">
-                        <div className="card-header">
-                            <div className="row align-items-center">
-                                <div className="col-12">
-                                    <h5 className="card-title">Calendar</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card-body">
-                            <SimpleCalendar  />
-                            <div id="calendar-doctor" className="calendar-container"></div>
-                            <div className="calendar-info calendar-info1">
-                                <div className="calendar-details">
-                                    <p>09 am</p>
-                                    <h6 className="calendar-blue d-flex justify-content-between align-items-center">Fermentum <span>09am - 10pm</span>
-                                    </h6>
-                                </div>
-                                <div className="calendar-details">
-                                    <p>10 am</p>
-                                    <h6 className="calendar-violet d-flex justify-content-between align-items-center">Pharetra et <span>10am - 11am</span>
-                                    </h6>
-                                </div>
-                                <div className="calendar-details">
-                                    <p>11 am</p>
-                                    <h6 className="calendar-red d-flex justify-content-between align-items-center">Break <span>11am - 11.30am</span>
-                                    </h6>
-                                </div>
-                                <div className="calendar-details">
-                                    <p>12 pm</p>
-                                    <h6 className="calendar-orange d-flex justify-content-between align-items-center">Massa <span>11.30am - 12.00pm</span>
-                                    </h6>
-                                </div>
-                                <div className="calendar-details">
-                                    <p>09 am</p>
-                                    <h6 className="calendar-blue d-flex justify-content-between align-items-center">Fermentum <span>09am - 10pm</span>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </Row>
+                </Col>
+                <SimpleCalendar />
+            </Row>
         </Page>
     )
 }

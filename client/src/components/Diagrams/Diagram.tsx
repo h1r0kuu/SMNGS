@@ -1,7 +1,7 @@
 import React, {FC, ReactElement} from "react";
-import {Card, Col, Form, FormGroup} from "react-bootstrap";
+import {Card, Col, Form, FormGroup, Row} from "react-bootstrap";
 import Chart from "react-apexcharts";
-import ReactApexChart, {Props} from "react-apexcharts";
+import {Props} from "react-apexcharts";
 import {ApexOptions} from "apexcharts";
 
 interface DiagramProps {
@@ -19,9 +19,9 @@ const Diagram: FC<DiagramProps> = ({title, type, series, options, md, lg}): Reac
         <Col md={md} lg={lg}>
             <Card className={"card-chart"}>
                 <Card.Header>
-                    <div className="row align-items-center">
+                    <Row className="align-items-center">
                         <Col xs={6}>
-                            <h5 className="card-title">{title}</h5>
+                            <Card.Title as={"h5"}>{title}</Card.Title>
                         </Col>
                         <Col xs={6}>
                             <FormGroup className={"mb-0 amount-spent-select text-right"}>
@@ -32,7 +32,7 @@ const Diagram: FC<DiagramProps> = ({title, type, series, options, md, lg}): Reac
                                 </Form.Select>
                             </FormGroup>
                         </Col>
-                    </div>
+                    </Row>
                 </Card.Header>
                 <Card.Body>
                     <Chart

@@ -10,7 +10,7 @@ interface DataCardProps {
     bg: string
 }
 
-const DataCard: FC<DataCardProps> = ({title, value, icon, bg}): ReactElement => {
+const InfoCard: FC<DataCardProps> = ({title, value, icon, bg}): ReactElement => {
     return (
         <Col xl={3} sm={6}>
             <Card className={`bg-${bg} w-100`}>
@@ -32,4 +32,4 @@ const DataCard: FC<DataCardProps> = ({title, value, icon, bg}): ReactElement => 
     )
 }
 
-export default DataCard;
+export default InfoCard;

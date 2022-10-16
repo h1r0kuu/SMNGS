@@ -1,8 +1,7 @@
-import React, {FC, ReactElement} from "react";
+import React, {FC, ReactElement, useState} from "react";
 import Header from "../Header/Header";
 import SidebarMenu from "../SidebarMenu/SidebarMenu";
 import PageHeader from "../PageHeader/PageHeader";
-import {BreadcrumbItem} from "react-bootstrap";
 import Footer from "../Footer/Footer";
 
 interface PageProps {
@@ -12,9 +11,15 @@ interface PageProps {
 }
 
 const Page: FC<PageProps> = ({title, breadcrumbs, children}): ReactElement => {
+    const [mobileNav, setMobileNav] = useState(false)
+
+    const toggleMobileNav = () => {
+        setMobileNav(!mobileNav)
+    }
+
     return (
-        <div className="main-wrapper">
-            <Header/>
+        <div className={`main-wrapper ${mobileNav ? "slide-nav" : ""}`}>
+            <Header openMobileNav={toggleMobileNav}/>
             <SidebarMenu/>
             <div className="page-wrapper">
                 <div className="content container-fluid">
@@ -25,6 +30,9 @@ const Page: FC<PageProps> = ({title, breadcrumbs, children}): ReactElement => {
                 </div>
                 <Footer/>
             </div>
+            {mobileNav &&
+                <div className="sidebar-overlay opened" onClick={() => toggleMobileNav()}></div>
+            }
         </div>
     )
 }
