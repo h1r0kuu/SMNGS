@@ -1,14 +1,16 @@
 package com.smnas.backend.service.impl;
 
 import com.smnas.backend.entity.Student;
-import com.smnas.backend.entity.User;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.StudentRepository;
 import com.smnas.backend.service.StudentService;
-import com.smnas.backend.service.UserService;
+import com.smnas.backend.utils.FileUpload;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -17,17 +19,32 @@ import java.util.NoSuchElementException;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-    private final UserService userService;
+
+    @Value("${user.image.upload.path}")
+    private String fileUploadPath;
 
     @Override
     public Student create(Student student) throws UserAlreadyExistException {
-        userService.create(student.getInfo());;
+        return studentRepository.save(student);
+    }
+
+    @Override
+    public Student create(Student student, MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
+        if(profilePicture != null) {
+            String imgPath = FileUpload.upload(fileUploadPath, profilePicture.getOriginalFilename(), profilePicture);
+            student.setProfilePicture(imgPath);
+        }
         return studentRepository.save(student);
     }
 
     @Override
     public Student update(Student student) throws UserAlreadyExistException {
-        return studentRepository.save(student);
+        return create(student);
+    }
+
+    @Override
+    public Student update(Student student, MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
+        return create(student, profilePicture);
     }
 
     @Override

@@ -12,6 +12,7 @@ const SubjectAdd = (): ReactElement => {
             </>
         )
     }
+
     return (
         <Page title={"Add Subject"} breadcrumbs={breadCrumbs()}>
             <AddOrEdit>

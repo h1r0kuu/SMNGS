@@ -13,7 +13,7 @@ export const STUDENT_DASHBOARD = "/student/dashboard"
 export const STUDENTS_LIST = "/admin/students/list"
 export const STUDENTS_VIEW = "/admin/students/view"
 export const STUDENTS_ADD = "/admin/students/add"
-export const STUDENTS_EDIT = "/admin/students/edit"
+export const STUDENTS_EDIT = "/admin/students/:id/edit"
 
 export const TEACHERS_LIST = "/admin/teachers/list"
 export const TEACHERS_VIEW = "/admin/teachers/view"

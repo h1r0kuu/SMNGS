@@ -15,6 +15,7 @@ public class ApplicationConfiguration {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
                 .setAmbiguityIgnored(true)
+                .setSkipNullEnabled(true)
                 .setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
     }

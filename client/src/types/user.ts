@@ -8,11 +8,23 @@ export interface UserResponse {
     lastName: string,
     role: UserRole,
     email: string,
-    profilePicture: string,
-    phoneNumber: number,
-    phoneCode: number,
+    profilePicture: File,
+    phoneNumber: string,
+    phoneCode: string,
     lastLogin: Date,
     lastLoginIp: string,
     createdAt: Date,
     updatedAt: Date
+}
+
+export interface UserRequest {
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    role: UserRole,
+    email: string,
+    profilePicture: File,
+    phoneNumber: string,
+    phoneCode: string
 }

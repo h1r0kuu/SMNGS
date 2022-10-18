@@ -6,20 +6,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class StudentResponse {
-    private Long id;
-    private UserResponse info;
+public class StudentResponse extends UserResponse {
     private StudentStatus status;
     private Integer term;
     private String specialization;
     private String degreeCourse;
     private LocalDate birthDate;
-    private String address;
+    private String fatherName;
+    private String fatherMobile;
+    private String fatherEmail;
+    private String motherName;
+    private String motherMobile;
+    private String motherEmail;
+    private String presentAddress;
+    private String permanentAddress;
     private StudentGroupResponse group;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

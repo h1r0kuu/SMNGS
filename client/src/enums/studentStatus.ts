@@ -1,1 +1,3 @@
-export enum StudentStatus {}
+export enum StudentStatus {
+    ACCEPTED = "ACCEPTED"
+}

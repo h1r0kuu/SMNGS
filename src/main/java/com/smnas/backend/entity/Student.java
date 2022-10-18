@@ -18,15 +18,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User info;
+@PrimaryKeyJoinColumn(name="user_id")
+public class Student extends User {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -41,11 +34,32 @@ public class Student {
     @Column(name = "degree_course")
     private String degreeCourse;
 
-    @Column(name = "birh_date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "father_name")
+    private String fatherName;
+
+    @Column(name = "father_mobile")
+    private String fatherMobile;
+
+    @Column(name = "father_email")
+    private String fatherEmail;
+
+    @Column(name = "mother_name")
+    private String motherName;
+
+    @Column(name = "mother_mobile")
+    private String motherMobile;
+
+    @Column(name = "mother_email")
+    private String motherEmail;
+
+    @Column(name = "present_address")
+    private String presentAddress;
+
+    @Column(name = "permanent_address")
+    private String permanentAddress;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -56,7 +70,7 @@ public class Student {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Student student = (Student) o;
-        return id != null && Objects.equals(id, student.id);
+        return getId() != null && Objects.equals(getId(), student.getId());
     }
 
     @Override

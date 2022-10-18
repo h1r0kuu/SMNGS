@@ -2,20 +2,15 @@ package com.smnas.backend.dto.student;
 
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.enums.StudentStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-public class StudentRequest {
-    private UserRequest info;
+@Data
+public class StudentRequest extends UserRequest {
     private StudentStatus status;
-    @Size(max = 12)
+    @Max(12)
     private Integer term;
     @NotBlank
     @NotNull
@@ -24,5 +19,20 @@ public class StudentRequest {
     @NotNull
     private String degreeCourse;
     private LocalDate birthDate;
-    private String address;
+    @NotBlank
+    private String fatherName;
+    @NotBlank
+    private String fatherMobile;
+    @NotBlank
+    private String fatherEmail;
+    @NotBlank
+    private String motherName;
+    @NotBlank
+    private String motherMobile;
+    @NotBlank
+    private String motherEmail;
+    @NotBlank
+    private String presentAddress;
+    @NotBlank
+    private String permanentAddress;
 }

@@ -1,5 +1,7 @@
 package com.smnas.backend.exception;
 
+import com.smnas.backend.dto.error.ErrorModel;
+import com.smnas.backend.dto.error.ErrorResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 @ResponseStatus
 public class RestException extends ResponseEntityExceptionHandler {
-
     private Map<String, Object> buildResponse(HttpStatus status, String errorMessage) {
         Map<String, Object> error = new HashMap<>();
         error.put("status_code", status.value());
@@ -48,13 +49,11 @@ public class RestException extends ResponseEntityExceptionHandler {
         body.put("timestamp", new Date());
         body.put("status", status.value());
 
-        List<String> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+        List<ErrorModel> errorMessages = ex.getBindingResult().getFieldErrors().stream()
+                .map(err -> new ErrorModel(err.getField(), err.getRejectedValue(), err.getDefaultMessage()))
+                .distinct()
                 .collect(Collectors.toList());
-
-        body.put("errors", errors);
+        body.put("errors", errorMessages);
 
         return new ResponseEntity<>(body, headers, status);
     }

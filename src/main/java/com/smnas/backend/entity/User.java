@@ -17,6 +17,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "\"user\"")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -51,10 +52,10 @@ public class User implements UserDetails {
     private String profilePicture;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "phone_code")
-    private Integer phoneCode;
+    private String phoneCode;
 
     @Column(name = "last_login_datetime")
     private LocalDateTime lastLogin;
