@@ -8,6 +8,7 @@ import com.smnas.backend.entity.User;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,16 +27,32 @@ public class StudentMapper {
     }
 
     public StudentResponse create(StudentRequest studentRequest, MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
+        PropertyMap<StudentUpdateRequest, Student> clientPropertyMap = new PropertyMap<StudentUpdateRequest, Student>() {
+            @Override
+            protected void configure() {
+                skip(destination.getProfilePicture());
+            }
+        };
         Student student = mapper.convertTo(studentRequest, Student.class);
         return mapper.convertTo(studentService.create(student, profilePicture), StudentResponse.class);
     }
 
     public StudentResponse update(StudentUpdateRequest studentRequest, MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
+//        PropertyMap<StudentUpdateRequest, Student> clientPropertyMap = new PropertyMap<StudentUpdateRequest, Student>() {
+//            @Override
+//            protected void configure() {
+//                skip(destination.getProfilePicture());
+//            }
+//        };
         Student student = mapper.convertTo(studentRequest, Student.class);
-        return mapper.convertTo(studentService.update(student), StudentResponse.class);
+        return mapper.convertTo(studentService.update(student, profilePicture), StudentResponse.class);
     }
 
     public StudentResponse getOne(Long id) {
         return mapper.convertTo(studentService.findById(id), StudentResponse.class);
+    }
+
+    public void delete(Long id) {
+        studentService.delete(id);
     }
 }

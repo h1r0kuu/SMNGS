@@ -26,6 +26,10 @@ public class UserMapper {
         return mapper.convertListTo(userService.findByRole(role), UserResponse.class);
     }
 
+    public UserResponse getByUsername(String username) {
+        return mapper.convertTo(userService.findUserByUsername(username), UserResponse.class);
+    }
+
     public UserResponse create(UserRequest userRequest) throws UserAlreadyExistException {
         User user = mapper.convertTo(userRequest, User.class);
         return mapper.convertTo(userService.create(user), UserResponse.class);

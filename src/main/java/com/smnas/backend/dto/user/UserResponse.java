@@ -1,5 +1,6 @@
 package com.smnas.backend.dto.user;
 
+import com.smnas.backend.enums.UserGender;
 import com.smnas.backend.enums.UserRole;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class UserResponse {
     private String firstName;
     private String lastName;
     private UserRole role;
+    private UserGender gender;
     private String email;
     private String profilePicture;
     private String phoneNumber;

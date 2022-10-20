@@ -20,10 +20,8 @@ public class GradeMapper {
         return mapper.convertTo(gradeService.create(grade), GradeResponse.class);
     }
 
-    public GradeResponse update(Long gradeId, GradeRequest gradeRequest) {
-        Grade grade = gradeService.findById(gradeId);
-        grade.setGrade(gradeRequest.getGrade());
-        grade.setStudent( mapper.convertTo(gradeRequest.getStudent(), Student.class));
+    public GradeResponse update(GradeRequest gradeRequest) {
+        Grade grade = gradeService.update(mapper.convertTo(gradeRequest, Grade.class));
         return mapper.convertTo(grade, GradeResponse.class);
     }
 }

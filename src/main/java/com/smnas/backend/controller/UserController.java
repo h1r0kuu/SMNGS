@@ -25,6 +25,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/{username}")
+    private ResponseEntity<UserResponse> getByUsername(@PathVariable("username") String username) {
+        UserResponse user = userMapper.getByUsername(username);
+        return ResponseEntity.ok(user);
+    }
+
     @GetMapping("/role/{role}")
     private ResponseEntity<List<UserResponse>> getAllByRole(@PathVariable("role") UserRole role) {
         List<UserResponse> users = userMapper.getAllByRole(role);

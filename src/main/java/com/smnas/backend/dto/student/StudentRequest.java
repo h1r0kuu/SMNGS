@@ -3,6 +3,7 @@ package com.smnas.backend.dto.student;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.enums.StudentStatus;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class StudentRequest extends UserRequest {
     @NotBlank
     @NotNull
     private String degreeCourse;
+    @DateTimeFormat(pattern= "yyyy-MM-dd")
     private LocalDate birthDate;
     @NotBlank
     private String fatherName;

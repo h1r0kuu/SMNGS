@@ -6,6 +6,7 @@ import com.smnas.backend.dto.student.StudentUpdateRequest;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.StudentMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,17 +28,16 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
-    @PostMapping
-    private ResponseEntity<StudentResponse> create(@Valid @RequestBody StudentRequest studentRequest,
-                                                   @RequestParam(value = "profilePicture", required = false) MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
-        StudentResponse student = studentMapper.create(studentRequest, profilePicture);
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    private ResponseEntity<StudentResponse> create(@Valid @ModelAttribute StudentRequest studentRequest) throws UserAlreadyExistException, IOException {
+        StudentResponse student = studentMapper.create(studentRequest, studentRequest.getProfilePicture());
         return ResponseEntity.ok(student);
     }
 
-    @PutMapping
-    private ResponseEntity<StudentResponse> update(@Valid @RequestBody StudentUpdateRequest studentRequest,
-                                                   @RequestParam(value = "profilePicture", required = false) MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
-        StudentResponse student = studentMapper.update(studentRequest, profilePicture);
+    @PutMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    private ResponseEntity<StudentResponse> update(@Valid @ModelAttribute StudentUpdateRequest studentRequest) throws UserAlreadyExistException, IOException {
+        System.out.println(studentRequest);
+        StudentResponse student = studentMapper.update(studentRequest, studentRequest.getProfilePicture());
         return ResponseEntity.ok(student);
     }
 
@@ -45,5 +45,11 @@ public class StudentController {
     private ResponseEntity<StudentResponse> getOne(@PathVariable("id") Long id) {
         StudentResponse student = studentMapper.getOne(id);
         return ResponseEntity.ok(student);
+    }
+
+    @DeleteMapping("/{id}")
+    private ResponseEntity<String> deleteOne(@PathVariable("id") Long id) {
+        studentMapper.delete(id);
+        return ResponseEntity.ok("deleted");
     }
 }

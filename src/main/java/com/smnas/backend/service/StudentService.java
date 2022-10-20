@@ -14,4 +14,5 @@ public interface StudentService {
     Student update(Student student) throws UserAlreadyExistException;
     List<Student> findAll();
     Student findById(Long id);
+    void delete(Long id);
 }

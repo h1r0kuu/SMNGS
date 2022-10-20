@@ -1,6 +1,7 @@
 package com.smnas.backend.controller;
 
 import com.smnas.backend.dto.subject.SubjectRequest;
+import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.mapper.SubjectMapper;
@@ -49,14 +50,14 @@ public class SubjectController {
     }
 
     @PatchMapping("/{subjectId}/add-teacher")
-    private ResponseEntity<SubjectResponse> addTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody UserRequest userRequest) {
-        SubjectResponse subject = subjectMapper.addTeacher(subjectId, userRequest);
+    private ResponseEntity<SubjectResponse> addTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody TeacherRequest teacherRequest) {
+        SubjectResponse subject = subjectMapper.addTeacher(subjectId, teacherRequest);
         return ResponseEntity.ok(subject);
     }
 
     @PatchMapping("/{subjectId}/remove-teacher")
-    private ResponseEntity<SubjectResponse> removeTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody UserRequest userRequest) {
-        SubjectResponse subject = subjectMapper.removeTeacher(subjectId, userRequest);
+    private ResponseEntity<SubjectResponse> removeTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody TeacherRequest teacherRequest) {
+        SubjectResponse subject = subjectMapper.removeTeacher(subjectId, teacherRequest);
         return ResponseEntity.ok(subject);
     }
 }

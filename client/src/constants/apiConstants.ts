@@ -4,6 +4,7 @@ export const HOST = "http://localhost:8080";
 export const API_URL = HOST + "/api/v1/";
 
 export const API_USERS = API_URL + "users"
+export const API_USER = (username: string | undefined) => API_USERS + `/${username}`
 export const API_USERS_ROLE = (role: UserRole) => API_USERS + `/role/${role}`
 
 export const API_SUBJECTS = API_URL + "subjects"

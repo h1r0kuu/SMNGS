@@ -1,6 +1,7 @@
 package com.smnas.backend.service.impl;
 
 import com.smnas.backend.entity.Subject;
+import com.smnas.backend.entity.Teacher;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.BadRoleException;
@@ -19,13 +20,13 @@ public class SubjectServiceImpl implements SubjectService {
     private final SubjectRepository subjectRepository;
 
     @Override
-    public List<Subject> getAll() {
-        return subjectRepository.findAll();
+    public Subject create(Subject subject) {
+        return subjectRepository.save(subject);
     }
 
     @Override
-    public Subject create(Subject subject) {
-        return subjectRepository.save(subject);
+    public List<Subject> findAll() {
+        return subjectRepository.findAll();
     }
 
     @Override
@@ -39,26 +40,29 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject changeById(Long id, Subject newInfo) {
-        Subject subject = findById(id);
-        subject.setSubjectName(newInfo.getSubjectName());
-        return subjectRepository.save(subject);
+    public void deleteAllById(List<Long> ids) {
+        subjectRepository.deleteAllById(ids);
     }
 
     @Override
-    public Subject addStudent(Long subjectId, User user) {
-        if(!user.getRole().equals(UserRole.TEACHER)) {
+    public Subject update(Subject subject) {
+        return create(subject);
+    }
+
+    @Override
+    public Subject addTeacher(Long subjectId, Teacher teacher) {
+        if(!teacher.getRole().equals(UserRole.TEACHER)) {
             throw new BadRoleException("Bad user role");
         }
         Subject subject = findById(subjectId);
-        subject.getTeachers().add(user);
-        return subjectRepository.save(subject);
+        subject.getTeachers().add(teacher);
+        return update(subject);
     }
 
     @Override
-    public Subject removeStudent(Long subjectId, User user) {
+    public Subject removeTeacher(Long subjectId, Teacher teacher) {
         Subject subject = findById(subjectId);
-        subject.getTeachers().add(user);
-        return subjectRepository.save(subject);
+        subject.getTeachers().add(teacher);
+        return update(subject);
     }
 }

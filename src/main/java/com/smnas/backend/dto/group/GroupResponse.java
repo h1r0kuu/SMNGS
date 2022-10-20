@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 public class GroupResponse {
     private Long id;
+    private String groupName;
     private Integer groupTerm;
     private List<GroupStudentResponse> students;
     private LocalDateTime createdAt;

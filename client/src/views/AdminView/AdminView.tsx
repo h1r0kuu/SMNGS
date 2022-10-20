@@ -3,10 +3,8 @@ import {
     ADD_EXPENSE,
     ADD_FEES, ADD_SALARY,
     ADMIN_DASHBOARD, CALENDAR,
-    DEPARTMENTS_ADD,
-    DEPARTMENTS_LIST,
-    DEPARTMENTS_VIEW, EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
-    FORGOT_PASSWORD, HOLIDAY,
+    EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
+    FORGOT_PASSWORD, GROUP_ADD, GROUP_LIST, GROUP_VIEW, HOLIDAY,
     HOME, HOSTEL, LIBRARY,
     LOGIN,
     MY_PROFILE,
@@ -31,7 +29,7 @@ import ForgotPassword from "../../pages/Authentication/ForgotPassword";
 import ProfilePage from "../../pages/ProfilePage/ProfilePage";
 import AdminDashboard from "../../pages/Dashboard/AdminDashboard";
 import TeacherDashboard from "../../pages/Dashboard/TeacherDashboard";
-import StudentList from "../../pages/List/StudentList/StudentList";
+import StudentList from "../../pages/List/StudentList";
 import UserView from "../../pages/View/UserView";
 import Calendar from "../../pages/Calendar/Calendar";
 import React from "react";
@@ -41,6 +39,11 @@ import SubjectAdd from "../../pages/Add/SubjectAdd";
 import TeacherEdit from "../../pages/Edit/TeacherEdit";
 import TeacherAdd from "../../pages/Add/TeacherAdd";
 import StudentAdd from "../../pages/Add/StudentAdd";
+import GroupAdd from "../../pages/Add/GroupAdd";
+import TeacherList from "../../pages/List/TeacherList";
+import TeacherView from "../../pages/View/TeacherView";
+import GroupList from "../../pages/List/GroupList";
+import GroupView from "../../pages/View/GroupView";
 
 const AdminView = () => {
     return (
@@ -62,14 +65,14 @@ const AdminView = () => {
             <Route path={STUDENTS_ADD} element={<StudentAdd />} />
             <Route path={STUDENTS_EDIT} element={<StudentEdit />} />
 
-            <Route path={TEACHERS_LIST} element={<StudentList />} />
-            <Route path={TEACHERS_VIEW} element={<UserView />} />
+            <Route path={TEACHERS_LIST} element={<TeacherList />} />
+            <Route path={TEACHERS_VIEW} element={<TeacherView />} />
             <Route path={TEACHERS_ADD} element={<TeacherAdd />} />
             <Route path={TEACHERS_EDIT} element={<TeacherEdit />} />
 
-            <Route path={DEPARTMENTS_LIST} element={<StudentList />} />
-            <Route path={DEPARTMENTS_VIEW} element={<UserView />} />
-            <Route path={DEPARTMENTS_ADD} element={<StudentEdit />} />
+            <Route path={GROUP_LIST} element={<GroupList />} />
+            <Route path={GROUP_VIEW} element={<GroupView />} />
+            <Route path={GROUP_ADD} element={<GroupAdd />} />
 
             <Route path={SUBJECTS_LIST} element={<StudentList />} />
             <Route path={SUBJECTS_ADD} element={<SubjectAdd />} />

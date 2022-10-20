@@ -12,6 +12,7 @@ import {StudentStatus} from "../../enums/studentStatus";
 import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup";
 import FormGroupController from "../../components/Form/FormGroup/FormGroup";
+import {UserGender} from "../../enums/useGender";
 
 const StudentAdd = (): ReactElement => {
     const RegistrationFormSchema = yup.object().shape({
@@ -25,7 +26,9 @@ const StudentAdd = (): ReactElement => {
 
     const onSubmit = (data: StudentRequest) => {
         data.role = UserRole.STUDENT
-        data.status = StudentStatus.ACCEPTED
+
+        if(data.profilePicture !== undefined)
+            data.profilePicture = data.profilePicture[0]
         StudentService.create(data).then(a => {
             console.log(a)
         }).catch(e => {
@@ -81,14 +84,12 @@ const StudentAdd = (): ReactElement => {
                     />
                 </Col>
                 <Col xs={12} sm={6}>
-                    <FormGroupController
-                        type={"text"}
-                        register={register}
-                        control={control}
-                        error={errors.status}
-                        name={"status"}
-                        title={"Status"}
-                    />
+                    <FormGroup className="form-group">
+                        <FormLabel>Status</FormLabel>
+                        <Form.Select className="form-control" {...register("status")}>
+                            <option value={StudentStatus.ACCEPTED}>Accepted</option>
+                        </Form.Select>
+                    </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroupController
@@ -142,18 +143,12 @@ const StudentAdd = (): ReactElement => {
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Student Id</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
                         <FormLabel>Gender</FormLabel>
-                        <Form.Select className="form-control">
+                        <Form.Select className="form-control" {...register("gender")}>
                             <option>Select Gender</option>
-                            <option>Female</option>
-                            <option>Male</option>
-                            <option>Others</option>
+                            <option value={UserGender.MALE}>Male</option>
+                            <option value={UserGender.FEMALE}>Female</option>
+                            <option value={UserGender.OTHER}>Other</option>
                         </Form.Select>
                     </FormGroup>
                 </Col>
@@ -166,12 +161,6 @@ const StudentAdd = (): ReactElement => {
                         name={"birthDate"}
                         title={"Date of Birth"}
                     />
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Class</FormLabel>
-                        <Form.Control type="text" />
-                    </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
@@ -190,12 +179,6 @@ const StudentAdd = (): ReactElement => {
                         name={"phoneNumber"}
                         title={"Mobile Number"}
                     />
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Section</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroupController

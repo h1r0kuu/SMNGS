@@ -22,9 +22,9 @@ public class GradeController {
         return ResponseEntity.ok(grade);
     }
 
-    @PatchMapping("/{gradeId}")
-    private ResponseEntity<GradeResponse> update(@PathVariable("gradeId") Long gradeId, @Valid @RequestBody GradeRequest gradeRequest) {
-        GradeResponse grade = gradeMapper.update(gradeId, gradeRequest);
+    @PutMapping
+    private ResponseEntity<GradeResponse> update(@Valid @RequestBody GradeRequest gradeRequest) {
+        GradeResponse grade = gradeMapper.update(gradeRequest);
         return ResponseEntity.ok(grade);
     }
 }

@@ -1,9 +1,11 @@
 package com.smnas.backend.mapper;
 
 import com.smnas.backend.dto.subject.SubjectRequest;
+import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.entity.Subject;
+import com.smnas.backend.entity.Teacher;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.service.SubjectService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,7 @@ public class SubjectMapper {
     private final BasicMapper mapper;
 
     public List<SubjectResponse> getAll() {
-        return mapper.convertListTo(subjectService.getAll(), SubjectResponse.class);
+        return mapper.convertListTo(subjectService.findAll(), SubjectResponse.class);
     }
 
     public SubjectResponse create(SubjectRequest subjectRequest) {
@@ -37,16 +39,16 @@ public class SubjectMapper {
 
     public SubjectResponse changeById(Long id,  SubjectRequest subjectRequest) {
         Subject subject = mapper.convertTo(subjectRequest, Subject.class);
-        return mapper.convertTo(subjectService.changeById(id, subject), SubjectResponse.class);
+        return mapper.convertTo(subjectService.update(subject), SubjectResponse.class);
     }
 
-    public SubjectResponse addTeacher(Long subjectId, UserRequest userRequest) {
-        User user = mapper.convertTo(userRequest, User.class);
-        return mapper.convertTo(subjectService.addStudent(subjectId, user), SubjectResponse.class);
+    public SubjectResponse addTeacher(Long subjectId, TeacherRequest teacherRequest) {
+        Teacher teacher = mapper.convertTo(teacherRequest, Teacher.class);
+        return mapper.convertTo(subjectService.addTeacher(subjectId, teacher), SubjectResponse.class);
     }
 
-    public SubjectResponse removeTeacher(Long subjectId, UserRequest userRequest) {
-        User user = mapper.convertTo(userRequest, User.class);
-        return mapper.convertTo(subjectService.removeStudent(subjectId, user), SubjectResponse.class);
+    public SubjectResponse removeTeacher(Long subjectId, TeacherRequest teacherRequest) {
+        Teacher teacher = mapper.convertTo(teacherRequest, Teacher.class);
+        return mapper.convertTo(subjectService.removeTeacher(subjectId, teacher), SubjectResponse.class);
     }
 }

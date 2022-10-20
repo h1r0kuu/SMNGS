@@ -6,6 +6,7 @@ import com.smnas.backend.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -20,17 +21,27 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public Schedule findById(Long scheduleId) {
-        return scheduleRepository.findById(scheduleId).orElseThrow(() -> new NoSuchElementException("Cannot find schedule with that id"));
+    public List<Schedule> findAll() {
+        return scheduleRepository.findAll();
     }
 
     @Override
-    public Schedule update(Long scheduleId, Schedule schedule) {
-        Schedule oldSchedule = findById(scheduleId);
-        oldSchedule.setSubject(schedule.getSubject());
-        schedule.setGroup(schedule.getGroup());
-        schedule.setTimeStart(schedule.getTimeStart());
-        schedule.setTimeEnd(schedule.getTimeEnd());
-        return scheduleRepository.save(oldSchedule);
+    public Schedule findById(Long id) {
+        return scheduleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Cannot find schedule with that id"));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        scheduleRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllById(List<Long> ids) {
+        scheduleRepository.deleteAllById(ids);
+    }
+
+    @Override
+    public Schedule update(Schedule schedule) {
+        return create(schedule);
     }
 }

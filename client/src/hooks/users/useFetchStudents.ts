@@ -5,7 +5,7 @@ import {StudentService} from "../../services/studentService"
 
 
 export const useFetchStudents = () => {
-    const [students, setStudents] = useState<StudentResponse[]>()
+    const [students, setStudents] = useState<StudentResponse[]>([])
     const [isLoading, setLoading] = useState(false)
 
     const fetchAllStudents = useCallback(
@@ -25,5 +25,5 @@ export const useFetchStudents = () => {
         fetchAllStudents().catch()
     }, [fetchAllStudents])
 
-    return {students, fetchAllStudents, isLoading}
+    return {students, fetchAllStudents, setStudents, isLoading}
 }

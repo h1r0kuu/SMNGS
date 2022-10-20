@@ -14,7 +14,8 @@ interface FormGroupControllerProps {
     error: FieldError | undefined,
     name: string,
     title: string,
-    defaultValue?: string | Date | number
+    defaultValue?: string | Date | number,
+    img?: string
 }
 
 const FormGroupController: FC<FormGroupControllerProps> = ({type,
@@ -24,13 +25,23 @@ const FormGroupController: FC<FormGroupControllerProps> = ({type,
                                                      register,
                                                      name,
                                                      title,
-                                                     defaultValue}): ReactElement => {
+                                                     defaultValue,
+                                                     img}): ReactElement => {
     return (
         <Controller name={name} control={control}
                     render={({field}) => (
                         <FormGroup className="form-group">
                             <FormLabel>{title}</FormLabel>
                             <Error error={error}/>
+                            {img &&
+                                <>
+                                <br/>
+                                <div className="avatar avatar-xxl">
+                                    <img className="avatar-img rounded-circle" alt="User Image"
+                                         src={img} />
+                                </div>
+                                </>
+                            }
                             <Form.Control type={type} {...register(name)} placeholder={placeholder} defaultValue={defaultValue?.toString()}/>
                         </FormGroup>
                     )}

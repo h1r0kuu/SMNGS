@@ -1,5 +1,6 @@
 package com.smnas.backend.entity;
 
+import com.smnas.backend.enums.UserGender;
 import com.smnas.backend.enums.UserRole;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -25,7 +26,7 @@ import java.util.Objects;
 @ToString
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -44,6 +45,10 @@ public class User implements UserDetails {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    private UserGender gender;
 
     @Column(name = "email")
     private String email;

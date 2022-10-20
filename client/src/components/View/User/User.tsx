@@ -1,7 +1,12 @@
 import React, {ReactElement} from "react";
 import {Button, Card, Col, Form, FormGroup, FormLabel, Row} from "react-bootstrap";
+import {useParams} from "react-router-dom";
+import {useFetchUserByUsername} from "../../../hooks/users/useFetchUserByUsername";
 
 const User = (): ReactElement => {
+    const { username } = useParams<string>()
+    const { user } = useFetchUserByUsername(username)
+
 
     return (
         <Card>
@@ -11,12 +16,12 @@ const User = (): ReactElement => {
                         <div className="about-info">
                             <h4>About Me</h4>
                             <div className="media mt-3">
-                                <img src="assets/img/user.jpg" className="mr-3" alt="..." />
+                                <img src={user?.profilePicture} className="mr-3" alt="..." />
                                     <div className="media-body">
                                         <ul>
                                             <li>
                                                 <span className="title-span">Full Name : </span>
-                                                <span className="info-span">Daisy Parks</span>
+                                                <span className="info-span">`{user?.firstName} ${user?.lastName}`</span>
                                             </li>
                                             <li>
                                                 <span className="title-span">Department : </span>
@@ -28,7 +33,7 @@ const User = (): ReactElement => {
                                             </li>
                                             <li>
                                                 <span className="title-span">Email : </span>
-                                                <span className="info-span">daisy@gmail.com</span>
+                                                <span className="info-span">`${user?.email}`</span>
                                             </li>
                                             <li>
                                                 <span className="title-span">Gender : </span>
@@ -36,7 +41,7 @@ const User = (): ReactElement => {
                                             </li>
                                             <li>
                                                 <span className="title-span">DOB : </span>
-                                                <span className="info-span">22 Apr 1995</span>
+                                                <span className="info-span"></span>
                                             </li>
                                         </ul>
                                     </div>

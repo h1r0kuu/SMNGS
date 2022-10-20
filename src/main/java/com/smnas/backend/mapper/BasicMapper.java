@@ -2,6 +2,7 @@ package com.smnas.backend.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.DestinationSetter;
 import org.modelmapper.spi.SourceGetter;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,10 @@ public class BasicMapper {
     private final ModelMapper mapper;
 
     public <T, S> S  convertTo(T data, Class<S> type) {
+        return mapper.map(data, type);
+    }
+    public <T, S> S  convertTo(T data, Class<S> type, PropertyMap<T, S> clientPropertyMap) {
+        mapper.addMappings(clientPropertyMap);
         return mapper.map(data, type);
     }
 

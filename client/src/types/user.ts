@@ -1,4 +1,5 @@
 import {UserRole} from "../enums/userRole";
+import {UserGender} from "../enums/useGender";
 
 export interface UserResponse {
     id: number,
@@ -7,8 +8,9 @@ export interface UserResponse {
     firstName: string,
     lastName: string,
     role: UserRole,
+    gender: UserGender,
     email: string,
-    profilePicture: File,
+    profilePicture: string,
     phoneNumber: string,
     phoneCode: string,
     lastLogin: Date,
@@ -23,8 +25,9 @@ export interface UserRequest {
     firstName: string,
     lastName: string,
     role: UserRole,
+    gender: UserGender,
     email: string,
-    profilePicture: File,
+    profilePicture?: File | string,
     phoneNumber: string,
     phoneCode: string
 }

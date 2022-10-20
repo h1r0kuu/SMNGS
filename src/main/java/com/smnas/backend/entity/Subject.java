@@ -20,7 +20,7 @@ import java.util.Objects;
 @ToString
 public class Subject {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -33,7 +33,7 @@ public class Subject {
             joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     @ToString.Exclude
-    private List<User> teachers;
+    private List<Teacher> teachers;
 
     @Column(name = "created_at")
     @CreationTimestamp

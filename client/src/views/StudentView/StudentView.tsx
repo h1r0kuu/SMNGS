@@ -3,9 +3,7 @@ import {
     ADD_EXPENSE,
     ADD_FEES, ADD_SALARY,
     ADMIN_DASHBOARD, CALENDAR,
-    DEPARTMENTS_ADD,
-    DEPARTMENTS_LIST,
-    DEPARTMENTS_VIEW, EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
+    EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
     FORGOT_PASSWORD, HOLIDAY,
     HOME, HOSTEL, LIBRARY,
     LOGIN,
@@ -31,7 +29,7 @@ import ForgotPassword from "../../pages/Authentication/ForgotPassword";
 import ProfilePage from "../../pages/ProfilePage/ProfilePage";
 import AdminDashboard from "../../pages/Dashboard/AdminDashboard";
 import TeacherDashboard from "../../pages/Dashboard/TeacherDashboard";
-import StudentList from "../../pages/List/StudentList/StudentList";
+import StudentList from "../../pages/List/StudentList";
 import UserView from "../../pages/View/UserView";
 import Calendar from "../../pages/Calendar/Calendar";
 import React from "react";
@@ -54,8 +52,6 @@ const StudentView = () => {
             <Route path={STUDENTS_LIST} element={<StudentList />} />
 
             <Route path={TEACHERS_VIEW} element={<UserView />} />
-
-            <Route path={DEPARTMENTS_LIST} element={<StudentList />} />
 
             <Route path={SUBJECTS_LIST} element={<StudentList />} />
 

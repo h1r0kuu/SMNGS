@@ -10,9 +10,7 @@ import {
     ADD_SALARY,
     ADMIN_DASHBOARD,
     CALENDAR,
-    DEPARTMENTS_ADD,
-    DEPARTMENTS_LIST,
-    DEPARTMENTS_VIEW, EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
+    EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
     FORGOT_PASSWORD, HOLIDAY, HOME, HOSTEL, LIBRARY,
     LOGIN, MY_PROFILE,
     REGISTRATION, SALARY, SPORT,
@@ -30,7 +28,7 @@ import {
 import AdminDashboard from "./pages/Dashboard/AdminDashboard";
 import TeacherDashboard from "./pages/Dashboard/TeacherDashboard";
 import StudentDashboard from "./pages/Dashboard/StudentDashboard";
-import StudentList from "./pages/List/StudentList/StudentList";
+import StudentList from "./pages/List/StudentList";
 import UserView from "./pages/View/UserView";
 import Login from "./pages/Authentication/Login";
 import Register from "./pages/Authentication/Register";

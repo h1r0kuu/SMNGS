@@ -6,6 +6,7 @@ import com.smnas.backend.service.GradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -20,7 +21,27 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public Grade findById(Long gradeId) {
-        return gradeRepository.findById(gradeId).orElseThrow(() -> new NoSuchElementException("Cannot find grade with that id"));
+    public List<Grade> findAll() {
+        return gradeRepository.findAll();
+    }
+
+    @Override
+    public Grade findById(Long id) {
+        return gradeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Cannot find grade with that id"));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        gradeRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllById(List<Long> ids) {
+        gradeRepository.deleteAllById(ids);
+    }
+
+    @Override
+    public Grade update(Grade grade) {
+        return create(grade);
     }
 }

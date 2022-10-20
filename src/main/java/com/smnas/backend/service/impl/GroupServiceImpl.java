@@ -40,6 +40,16 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public void deleteAllById(List<Long> ids) {
+        groupRepository.deleteAllById(ids);
+    }
+
+    @Override
+    public Group update(Group group) {
+        return create(group);
+    }
+
+    @Override
     public Group addStudent(Long groupId, Long studentId) throws UserAlreadyExistException {
         Group group = findById(groupId);
         Student student = studentService.findById(studentId);

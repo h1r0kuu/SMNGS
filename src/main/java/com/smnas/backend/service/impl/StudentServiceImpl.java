@@ -23,6 +23,9 @@ public class StudentServiceImpl implements StudentService {
     @Value("${user.image.upload.path}")
     private String fileUploadPath;
 
+    @Value("${host}")
+    private String host;
+
     @Override
     public Student create(Student student) throws UserAlreadyExistException {
         return studentRepository.save(student);
@@ -30,9 +33,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student create(Student student, MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
+        System.out.println(student.getId());
         if(profilePicture != null) {
-            String imgPath = FileUpload.upload(fileUploadPath, profilePicture.getOriginalFilename(), profilePicture);
-            student.setProfilePicture(imgPath);
+            FileUpload.upload(fileUploadPath, profilePicture.getOriginalFilename(), profilePicture);
+            student.setProfilePicture(host + "img/" + profilePicture.getOriginalFilename());
         }
         return studentRepository.save(student);
     }
@@ -55,5 +59,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findById(Long id) {
         return studentRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Cannot find student with that id"));
+    }
+
+    @Override
+    public void delete(Long id) {
+        studentRepository.deleteById(id);
     }
 }

@@ -15,12 +15,10 @@ import {
     ADD_FEES,
     ADD_SALARY,
     ADMIN_DASHBOARD,
-    DEPARTMENTS_ADD,
-    DEPARTMENTS_LIST,
-    DEPARTMENTS_VIEW, EVENTS, EXAM_LIST,
+    EVENTS, EXAM_LIST,
     EXPENSES,
     FEES,
-    FEES_COLLECTION,
+    FEES_COLLECTION, GROUP_ADD, GROUP_LIST, GROUP_VIEW,
     HOLIDAY, HOSTEL, LIBRARY,
     SALARY, SPORT,
     STUDENT_DASHBOARD,
@@ -80,14 +78,14 @@ const SidebarMenu = (): ReactElement => {
                                 <SubmenuElem title={"Teacher Add"} href={TEACHERS_ADD} />
                                 <SubmenuElem title={"Teacher Edit"} href={TEACHERS_EDIT} />
                             </Submenu>
-                            <Submenu title={"Departments"}
+                            <Submenu title={"Groups"}
                                      icon={faBuilding}
                                      setSelectedDropdown={setSelectedDropdown}
                                      selectedDropdown={selectedDropdown}
                                      id={4}>
-                                <SubmenuElem title={"Department List"} href={DEPARTMENTS_LIST} />
-                                <SubmenuElem title={"Department View"} href={DEPARTMENTS_VIEW} />
-                                <SubmenuElem title={"Department Add"} href={DEPARTMENTS_ADD} />
+                                <SubmenuElem title={"Group List"} href={GROUP_LIST} />
+                                <SubmenuElem title={"Group View"} href={GROUP_VIEW} />
+                                <SubmenuElem title={"Group Add"} href={GROUP_ADD} />
                             </Submenu>
                             <Submenu title={"Subjects"}
                                      icon={faBookReader}

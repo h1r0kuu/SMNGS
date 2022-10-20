@@ -17,6 +17,8 @@ import {useForm} from "react-hook-form";
 import {StudentEditRequest, StudentRequest, StudentResponse} from "../../types/student";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {StudentService} from "../../services/studentService"
+import {UserGender} from "../../enums/useGender";
+import {StudentStatus} from "../../enums/studentStatus";
 
 const StudentEdit = (): ReactElement => {
     const { id } = useParams<string>()
@@ -34,7 +36,8 @@ const StudentEdit = (): ReactElement => {
 
     const onSubmit = (data: StudentEditRequest) => {
         data.id = Number(id)
-        data.profilePicture = data.profilePicture[0]
+        if(data.profilePicture !== undefined)
+            data.profilePicture = data.profilePicture[0]
         console.log(data)
         StudentService.update(data).then(a => {
             console.log(a)
@@ -94,15 +97,12 @@ const StudentEdit = (): ReactElement => {
                     />
                 </Col>
                 <Col xs={12} sm={6}>
-                    <FormGroupController
-                        type={"text"}
-                        register={register}
-                        control={control}
-                        error={errors.status}
-                        name={"status"}
-                        title={"Status"}
-                        defaultValue={student?.status}
-                    />
+                    <FormGroup className="form-group">
+                        <FormLabel>Status</FormLabel>
+                        <Form.Select className="form-control" {...register("status")}>
+                            <option value={StudentStatus.ACCEPTED}>Accepted</option>
+                        </Form.Select>
+                    </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroupController
@@ -161,18 +161,12 @@ const StudentEdit = (): ReactElement => {
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
-                        <FormLabel>Student Id</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
                         <FormLabel>Gender</FormLabel>
-                        <Form.Select className="form-control">
+                        <Form.Select className="form-control" {...register("gender")}>
                             <option>Select Gender</option>
-                            <option>Female</option>
-                            <option>Male</option>
-                            <option>Others</option>
+                            <option value={UserGender.MALE}>Male</option>
+                            <option value={UserGender.FEMALE}>Female</option>
+                            <option value={UserGender.OTHER}>Other</option>
                         </Form.Select>
                     </FormGroup>
                 </Col>
@@ -186,12 +180,6 @@ const StudentEdit = (): ReactElement => {
                         title={"Date of Birth"}
                         defaultValue={student?.birthDate}
                     />
-                </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Class</FormLabel>
-                        <Form.Control type="text" />
-                    </FormGroup>
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroup className="form-group">
@@ -212,12 +200,7 @@ const StudentEdit = (): ReactElement => {
                         defaultValue={student?.phoneNumber}
                     />
                 </Col>
-                <Col xs={12} sm={6}>
-                    <FormGroup className="form-group">
-                        <FormLabel>Section</FormLabel>
-                        <Form.Control type="text"/>
-                    </FormGroup>
-                </Col>
+                <Col xs={12} sm={6}/>
                 <Col xs={12} sm={6}>
                     <FormGroupController
                         type={"file"}
@@ -226,6 +209,7 @@ const StudentEdit = (): ReactElement => {
                         error={errors.profilePicture}
                         name={"profilePicture"}
                         title={"Student Image"}
+                        img={student?.profilePicture}
                     />
                 </Col>
                 <Col xs={12}>
