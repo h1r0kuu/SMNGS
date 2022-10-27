@@ -8,6 +8,8 @@ import com.smnas.backend.exception.BadRoleException;
 import com.smnas.backend.repository.SubjectRepository;
 import com.smnas.backend.service.SubjectService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,11 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public List<Subject> findAll() {
         return subjectRepository.findAll();
+    }
+
+    @Override
+    public Page<Subject> findAll(Pageable pageable) {
+        return subjectRepository.findAll(pageable);
     }
 
     @Override

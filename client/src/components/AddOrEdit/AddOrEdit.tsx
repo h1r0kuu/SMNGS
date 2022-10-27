@@ -1,4 +1,4 @@
-import {FC, ReactElement} from "react";
+import {FC, ReactElement, useState} from "react";
 import {Card, Col, Form, Row} from "react-bootstrap";
 
 interface AddOrEditProps {
@@ -7,12 +7,23 @@ interface AddOrEditProps {
 }
 
 const AddOrEdit: FC<AddOrEditProps> = ({children, handleSubmit}): ReactElement => {
+
+    const [submitted, setSubmitted] = useState(false)
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        if(handleSubmit) {
+            handleSubmit(e.target)
+            setSubmitted(true)
+        }
+    }
+
     return (
         <Row>
             <Col sm={12}>
                 <Card>
                     <Card.Body>
-                        <Form onSubmit={handleSubmit}>
+                        <Form noValidate={true} onSubmit={onSubmit} className={submitted ? "was-validated" : ""}>
                             <Row>
                                 {children}
                             </Row>

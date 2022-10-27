@@ -2,10 +2,11 @@ import {axios} from "../config/axios";
 import {AxiosResponse} from "axios";
 import {StudentEditRequest, StudentRequest, StudentResponse} from "../types/student";
 import {API_STUDENTS, API_STUDENTS_ONE} from "../constants/apiConstants";
+import {ResponseWithPagination} from "../types/pagination";
 
 export const StudentService = {
-    async getAll(): Promise<AxiosResponse<StudentResponse[]>> {
-        return await axios.get<StudentResponse[]>(API_STUDENTS);
+    async getAll(): Promise<AxiosResponse<ResponseWithPagination<StudentResponse>>> {
+        return await axios.get<ResponseWithPagination<StudentResponse>>(API_STUDENTS);
     },
 
     async create(student: StudentRequest): Promise<AxiosResponse<StudentResponse>> {

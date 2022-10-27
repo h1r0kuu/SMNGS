@@ -8,6 +8,9 @@ import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.GroupMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +25,8 @@ public class GroupController {
     private final GroupMapper groupMapper;
 
     @GetMapping
-    private ResponseEntity<List<GroupResponse>> getAll() {
-        List<GroupResponse> groups = groupMapper.getAll();
+    private ResponseEntity<Page<GroupResponse>> getAll(@PageableDefault Pageable pageable) {
+        Page<GroupResponse> groups = groupMapper.findAll(pageable);
         return ResponseEntity.ok(groups);
     }
 
@@ -35,7 +38,7 @@ public class GroupController {
 
     @GetMapping("/{groupId}")
     private ResponseEntity<GroupResponse> getById(@PathVariable("groupId") Long groupId) {
-        return ResponseEntity.ok(groupMapper.getById(groupId));
+        return ResponseEntity.ok(groupMapper.findById(groupId));
     }
 
     @DeleteMapping("/{groupId}")

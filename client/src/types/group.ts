@@ -7,6 +7,7 @@ export interface GroupRequest {
 export interface GroupResponse {
     id: number,
     groupTerm: number,
+    groupName: string,
     // private List<GroupStudentResponse> students;
     createdAt: Date,
     updatedAt: Date,

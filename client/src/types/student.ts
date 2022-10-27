@@ -1,6 +1,7 @@
 import {UserRequest, UserResponse} from "./user";
 import {StudentStatus} from "../enums/studentStatus";
 import {UserRole} from "../enums/userRole";
+import {GroupRequest, GroupResponse} from "./group";
 
 export interface StudentResponse extends UserResponse {
     status: StudentStatus,
@@ -16,6 +17,7 @@ export interface StudentResponse extends UserResponse {
     motherEmail: string,
     presentAddress: string,
     permanentAddress: string
+    group: GroupResponse
     // private StudentGroupResponse group;
 }
 
@@ -32,9 +34,11 @@ export interface StudentRequest extends UserRequest {
     motherMobile: string,
     motherEmail: string,
     presentAddress: string,
-    permanentAddress: string
+    permanentAddress: string,
+    groupId: number | undefined
 }
 
 export interface StudentEditRequest extends StudentRequest {
+//    data: {};
     id: number,
 }

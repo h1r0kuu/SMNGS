@@ -13,8 +13,12 @@ import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup";
 import FormGroupController from "../../components/Form/FormGroup/FormGroup";
 import {UserGender} from "../../enums/useGender";
+import {useFetchGroups} from "../../hooks/groups/useFetchGroups";
 
 const StudentAdd = (): ReactElement => {
+
+    const {groups} = useFetchGroups()
+
     const RegistrationFormSchema = yup.object().shape({
         username: yup.string().min(1, "What is your name?").required(),
         email: yup.string().email("Invalid mail").required("Please enter a valid email address."),
@@ -26,7 +30,7 @@ const StudentAdd = (): ReactElement => {
 
     const onSubmit = (data: StudentRequest) => {
         data.role = UserRole.STUDENT
-
+        // data.group.id = groups?.filter(g => g.groupName === data.group).id
         if(data.profilePicture !== undefined)
             data.profilePicture = data.profilePicture[0]
         StudentService.create(data).then(a => {
@@ -88,6 +92,16 @@ const StudentAdd = (): ReactElement => {
                         <FormLabel>Status</FormLabel>
                         <Form.Select className="form-control" {...register("status")}>
                             <option value={StudentStatus.ACCEPTED}>Accepted</option>
+                        </Form.Select>
+                    </FormGroup>
+                </Col>
+                <Col xs={12} sm={6}>
+                    <FormGroup className="form-group">
+                        <FormLabel>Groups</FormLabel>
+                        <Form.Select className="form-control" {...register("groupId")}>
+                            {groups?.map(group => (
+                                <option value={group.id}>{group.groupName}</option>
+                            ))}
                         </Form.Select>
                     </FormGroup>
                 </Col>
@@ -157,7 +171,7 @@ const StudentAdd = (): ReactElement => {
                         type={"date"}
                         register={register}
                         control={control}
-                        error={errors.lastName}
+                        error={errors.birthDate}
                         name={"birthDate"}
                         title={"Date of Birth"}
                     />

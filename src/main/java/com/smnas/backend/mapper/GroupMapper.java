@@ -10,6 +10,8 @@ import com.smnas.backend.entity.Student;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.service.GroupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,30 +19,47 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class GroupMapper {
+public class GroupMapper implements MapperInterface<GroupRequest, GroupResponse> {
 
     private final GroupService groupService;
     private final BasicMapper mapper;
 
-    public List<GroupResponse> getAll() {
-        return groupService.findAll().stream()
-                .map(g -> mapper.convertTo(g, GroupResponse.class))
-                .collect(Collectors.toList());
-    }
-
+    @Override
     public GroupResponse create(GroupRequest groupRequest) {
         Group group = groupService.create(mapper.convertTo(groupRequest, Group.class));
-        return mapper.convertTo(groupService.create(group), GroupResponse.class);
+        return mapper.convertTo(group, GroupResponse.class);
     }
 
-    public GroupResponse getById(Long id) {
+    @Override
+    public List<GroupResponse> findAll() {
+        return mapper.convertListTo(groupService.findAll(), GroupResponse.class);
+    }
+
+    @Override
+    public Page<GroupResponse> findAll(Pageable pageable) {
+        return groupService.findAll(pageable).map(g -> mapper.convertTo(g, GroupResponse.class));
+    }
+
+    @Override
+    public GroupResponse findById(Long id) {
         return mapper.convertTo(groupService.findById(id), GroupResponse.class);
     }
 
+    @Override
     public void deleteById(Long id) {
         groupService.deleteById(id);
     }
 
+    @Override
+    public void deleteAllById(List<Long> ids) {
+        groupService.deleteAllById(ids);
+    }
+
+    @Override
+    public GroupResponse update(GroupRequest groupRequest) {
+        Group group = groupService.update(mapper.convertTo(groupRequest, Group.class));
+        return mapper.convertTo(group, GroupResponse.class);
+    }
     public List<StudentResponse> getStudents(Long groupId) {
         return mapper.convertListTo(groupService.findById(groupId).getStudents(), StudentResponse.class);
     }

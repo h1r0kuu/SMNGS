@@ -1,15 +1,17 @@
 import {Children, FC, ReactElement} from "react";
 import {Card, Col, Row, Table} from "react-bootstrap";
 import Pagination from "../Pagination/Pagination";
+import {PaginationProps} from "../../types/pagination";
 
 
 
 interface ListProps {
     children: ReactElement[] | ReactElement
-    isLoading?: boolean
+    isLoading?: boolean,
+    pagination?: PaginationProps
 }
 
-const List: FC<ListProps> = ({ children, isLoading }): ReactElement => {
+const List: FC<ListProps> = ({ children, isLoading, pagination }): ReactElement => {
 
     let tableBody: ReactElement = <></>, headers: ReactElement[] = [], trs: ReactElement[] = [];
 
@@ -70,7 +72,9 @@ const List: FC<ListProps> = ({ children, isLoading }): ReactElement => {
                                             </Table>
                                         </Col>
                                     </Row>
-                                    <Pagination/>
+                                    {pagination &&
+                                        <Pagination pagination={pagination} />
+                                    }
                                 </Col>
                             </Col>
                         </Card.Body>
@@ -88,7 +92,10 @@ interface ListHeader {
 export const ListHeader: FC<ListHeader> = ({ title }): ReactElement => {
     return <th className={"sorting"}>{title}</th>
 }
-export const TableBody = ({ children }): ReactElement => {
+interface TableBodyProps {
+    children: ReactElement[]
+}
+export const TableBody: FC<TableBodyProps> = ({ children }): ReactElement => {
     return <tbody>{children}</tbody>
 }
 export const ListBodyTr = ({ children}): ReactElement => {

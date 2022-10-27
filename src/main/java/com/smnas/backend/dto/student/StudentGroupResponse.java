@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 public class StudentGroupResponse {
     private Long id;
+    private String groupName;
     private Integer groupTerm;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

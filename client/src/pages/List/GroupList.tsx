@@ -16,8 +16,8 @@ const GroupList = (): ReactElement => {
 
     return (
         <Page title={"Groups"} breadcrumbs={breadCrumbs()}>
-            <List>
-            </List>
+            {/*<List>*/}
+            {/*</List>*/}
         </Page>
     )
 }

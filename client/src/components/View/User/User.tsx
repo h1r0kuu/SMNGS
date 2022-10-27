@@ -21,7 +21,7 @@ const User = (): ReactElement => {
                                         <ul>
                                             <li>
                                                 <span className="title-span">Full Name : </span>
-                                                <span className="info-span">`{user?.firstName} ${user?.lastName}`</span>
+                                                <span className="info-span">{user?.firstName} ${user?.lastName}</span>
                                             </li>
                                             <li>
                                                 <span className="title-span">Department : </span>
@@ -33,11 +33,11 @@ const User = (): ReactElement => {
                                             </li>
                                             <li>
                                                 <span className="title-span">Email : </span>
-                                                <span className="info-span">`${user?.email}`</span>
+                                                <span className="info-span">{user?.email}</span>
                                             </li>
                                             <li>
                                                 <span className="title-span">Gender : </span>
-                                                <span className="info-span">Male</span>
+                                                <span className="info-span">{user?.gender}</span>
                                             </li>
                                             <li>
                                                 <span className="title-span">DOB : </span>

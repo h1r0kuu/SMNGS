@@ -4,6 +4,8 @@ import com.smnas.backend.entity.Grade;
 import com.smnas.backend.repository.GradeRepository;
 import com.smnas.backend.service.GradeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,11 @@ public class GradeServiceImpl implements GradeService {
     @Override
     public List<Grade> findAll() {
         return gradeRepository.findAll();
+    }
+
+    @Override
+    public Page<Grade> findAll(Pageable pageable) {
+        return gradeRepository.findAll(pageable);
     }
 
     @Override

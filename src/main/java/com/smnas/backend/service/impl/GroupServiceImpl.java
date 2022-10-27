@@ -7,6 +7,8 @@ import com.smnas.backend.repository.GroupRepository;
 import com.smnas.backend.service.GroupService;
 import com.smnas.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,11 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<Group> findAll() {
         return groupRepository.findAll();
+    }
+
+    @Override
+    public Page<Group> findAll(Pageable pageable) {
+        return groupRepository.findAll(pageable);
     }
 
     @Override

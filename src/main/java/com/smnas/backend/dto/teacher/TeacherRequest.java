@@ -5,5 +5,6 @@ import lombok.Data;
 
 @Data
 public class TeacherRequest extends UserRequest {
+    private Long id;
     private String qualification;
 }

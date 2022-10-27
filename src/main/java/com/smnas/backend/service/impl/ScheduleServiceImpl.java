@@ -4,6 +4,8 @@ import com.smnas.backend.entity.Schedule;
 import com.smnas.backend.repository.ScheduleRepository;
 import com.smnas.backend.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> findAll() {
         return scheduleRepository.findAll();
+    }
+
+    @Override
+    public Page<Schedule> findAll(Pageable pageable) {
+        return scheduleRepository.findAll(pageable);
     }
 
     @Override

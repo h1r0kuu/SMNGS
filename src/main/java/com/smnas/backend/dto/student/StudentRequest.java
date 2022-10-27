@@ -1,5 +1,7 @@
 package com.smnas.backend.dto.student;
 
+import com.smnas.backend.dto.group.GroupRequest;
+import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.enums.StudentStatus;
 import lombok.Data;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 
 @Data
 public class StudentRequest extends UserRequest {
+    private Long id;
     private StudentStatus status;
     @Max(12)
     private Integer term;
@@ -37,4 +40,5 @@ public class StudentRequest extends UserRequest {
     private String presentAddress;
     @NotBlank
     private String permanentAddress;
+    private Long groupId;
 }

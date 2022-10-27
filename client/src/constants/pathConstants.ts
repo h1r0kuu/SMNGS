@@ -18,7 +18,7 @@ export const STUDENTS_EDIT = "/admin/students/:id/edit"
 export const TEACHERS_LIST = "/admin/teachers/list"
 export const TEACHERS_VIEW = "/admin/teachers/view"
 export const TEACHERS_ADD = "/admin/teachers/add"
-export const TEACHERS_EDIT = "/admin/teachers/edit"
+export const TEACHERS_EDIT = "/admin/teachers/:id/edit"
 
 export const GROUP_LIST = "/admin/groups/list"
 export const GROUP_VIEW = "/admin/groups/view"

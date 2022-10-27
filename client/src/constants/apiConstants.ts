@@ -15,6 +15,9 @@ export const API_SUBJECTS_ADD_TEACHER = (subjectId: number) => API_SUBJECTS + `/
 export const API_STUDENTS = API_URL + "students"
 export const API_STUDENTS_ONE = (id: number) => `${API_STUDENTS}/${id}`
 
+export const API_TEACHERS = API_URL + "teachers"
+export const API_TEACHERS_ONE = (id: number) => `${API_TEACHERS}/${id}`
+
 export const API_SCHEDULES = API_URL + "schedules"
 
 export const API_GROUPS = API_URL + "groups"

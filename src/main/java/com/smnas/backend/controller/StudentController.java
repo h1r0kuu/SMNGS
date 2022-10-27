@@ -1,11 +1,15 @@
 package com.smnas.backend.controller;
 
+import com.smnas.backend.dto.student.StudentGroupResponse;
 import com.smnas.backend.dto.student.StudentRequest;
 import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.dto.student.StudentUpdateRequest;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.StudentMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +27,8 @@ public class StudentController {
     private final StudentMapper studentMapper;
 
     @GetMapping
-    private ResponseEntity<List<StudentResponse>> getAll() {
-        List<StudentResponse> students = studentMapper.getAll();
+    private ResponseEntity<Page<StudentResponse>> getAll(@PageableDefault Pageable pageable) {
+        Page<StudentResponse> students = studentMapper.findAll(pageable);
         return ResponseEntity.ok(students);
     }
 
@@ -36,20 +40,19 @@ public class StudentController {
 
     @PutMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     private ResponseEntity<StudentResponse> update(@Valid @ModelAttribute StudentUpdateRequest studentRequest) throws UserAlreadyExistException, IOException {
-        System.out.println(studentRequest);
         StudentResponse student = studentMapper.update(studentRequest, studentRequest.getProfilePicture());
         return ResponseEntity.ok(student);
     }
 
     @GetMapping("/{id}")
     private ResponseEntity<StudentResponse> getOne(@PathVariable("id") Long id) {
-        StudentResponse student = studentMapper.getOne(id);
+        StudentResponse student = studentMapper.findById(id);
         return ResponseEntity.ok(student);
     }
 
     @DeleteMapping("/{id}")
     private ResponseEntity<String> deleteOne(@PathVariable("id") Long id) {
-        studentMapper.delete(id);
+        studentMapper.deleteById(id);
         return ResponseEntity.ok("deleted");
     }
 }

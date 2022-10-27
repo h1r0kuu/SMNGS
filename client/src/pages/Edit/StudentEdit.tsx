@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect} from "react";
+import React, {ReactElement, useEffect, useState} from "react";
 import Page from "../../components/Page/Page";
 import {
     BreadcrumbItem,
@@ -19,34 +19,47 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {StudentService} from "../../services/studentService"
 import {UserGender} from "../../enums/useGender";
 import {StudentStatus} from "../../enums/studentStatus";
+import {useFetchGroups} from "../../hooks/groups/useFetchGroups";
+import {GroupResponse} from "../../types/group";
 
 const StudentEdit = (): ReactElement => {
     const { id } = useParams<string>()
     const { student } = useFetchSingleStudent(Number(id))
 
+    const {groups} = useFetchGroups()
 
-    const {control, register, handleSubmit, setError, formState: {errors}, reset} = useForm<StudentEditRequest>({
-        defaultValues: student as StudentEditRequest
+    const {control, register, handleSubmit, setError, formState: {errors}, reset} = useForm<StudentEditRequest> ({
+        defaultValues: student
     })
 
     useEffect(() => {
         reset(student);
     }, [student]);
 
-
+    const onChange= (e ) => {
+        // console.log("New group selected")
+        // if (groups) {
+        //     setSelectedGroup(groups[e.target.value])
+        // }
+    }
     const onSubmit = (data: StudentEditRequest) => {
         data.id = Number(id)
         if(data.profilePicture !== undefined)
             data.profilePicture = data.profilePicture[0]
         console.log(data)
-        StudentService.update(data).then(a => {
-            console.log(a)
-        }).catch(e => {
-            const errorList = e.response.data.errors
-            for(let error of errorList) {
-                setError(error['fieldName'], {type: "server", message: error['messageError']})
-            }
-        })
+       StudentService.update(data).then(a => {
+           console.log(a)
+       }).catch(e => {
+           const errorList = e.response.data.errors
+           if(errorList !== undefined)
+               if(errorList.length > 0)
+                   for(let error of errorList) {
+                       setError(error['fieldName'], {type: "server", message: error['messageError']})
+                   }
+               else {
+                   setError(errorList['fieldName'], {type: "server", message: errorList['messageError']})
+               }
+       })
     }
 
     const breadCrumbs = () => {
@@ -101,6 +114,16 @@ const StudentEdit = (): ReactElement => {
                         <FormLabel>Status</FormLabel>
                         <Form.Select className="form-control" {...register("status")}>
                             <option value={StudentStatus.ACCEPTED}>Accepted</option>
+                        </Form.Select>
+                    </FormGroup>
+                </Col>
+                <Col xs={12} sm={6}>
+                    <FormGroup className="form-group">
+                        <FormLabel>Groups</FormLabel>
+                        <Form.Select className="form-control" {...register("groupId")} onChange={onChange}>
+                            {groups?.map((group, index) => (
+                                <option value={group.id}>{group.groupName}</option>
+                            ))}
                         </Form.Select>
                     </FormGroup>
                 </Col>

@@ -1,40 +1,54 @@
-import {FC, ReactElement} from "react";
+import {FC, Fragment, ReactElement} from "react";
 import {Col, Row} from "react-bootstrap";
+import {PaginationProps} from "../../types/pagination";
+import {Link} from "react-router-dom";
 
-interface PaginationProps {
-
+interface Props {
+    pagination: PaginationProps
 }
 
-const Pagination: FC<PaginationProps> = (): ReactElement => {
+const Pagination: FC<Props> = ({pagination}): ReactElement => {
+
+    const hasPrevious = () => {
+        return pagination.pageable.pageNumber !== 0
+    }
+    const currentPage = () => {
+        return pagination.pageable.pageNumber
+    }
+    const hasNext = () => {
+        return pagination.pageable.pageNumber + 1 < pagination.totalPages
+    }
+
     return (
         <Row style={{alignItems: "center", marginTop: "20px"}}>
             <Col sm={12} md={5}>
                 <div className="dataTables_info" id="DataTables_Table_0_info" role="status"
-                     aria-live="polite">Showing 1 to 10 of 11 entries
+                     aria-live="polite">Showing {pagination.size * ((pagination.pageable.pageNumber + 1) - 1)} to {(pagination.pageable.pageNumber + 1) * pagination.size} of {pagination.totalElements} entries
                 </div>
             </Col>
             <Col sm={12} md={7}>
                 <div className="dataTables_paginate paging_simple_numbers"
                      id="DataTables_Table_0_paginate">
                     <ul className="pagination">
-                        <li className="paginate_button page-item previous disabled"
+                        <Link to={'#'} className={"paginate_button page-item previous " + (!hasPrevious() && "disabled")}
                             id="DataTables_Table_0_previous">
                             <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0"
                                tabIndex={0} className="page-link">Previous</a>
-                        </li>
-                        <li className="paginate_button page-item active">
-                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1"
-                               tabIndex={0} className="page-link">1</a>
-                        </li>
-                        <li className="paginate_button page-item ">
-                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2"
-                               tabIndex={0} className="page-link">2</a>
-                        </li>
-                        <li className="paginate_button page-item next"
+                        </Link>
+                        {Array.from(Array(pagination.totalPages), (e, i) => (
+                            <Fragment key={i}>
+                                {(i > currentPage() - 2 && i < currentPage() + 2) &&
+                                    <Link to={"#"} className={"paginate_button page-item " + ((currentPage() === i) && "active")}>
+                                        <a href="#" aria-controls="DataTables_Table_0" className="page-link">{i + 1}</a>
+                                    </Link>
+                                }
+                            </Fragment>
+                        ))}
+                        <Link to={"#"} className={"paginate_button page-item next " + (!hasNext() && "disabled")}
                             id="DataTables_Table_0_next">
                             <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3"
                                tabIndex={0} className="page-link">Next</a>
-                        </li>
+                        </Link>
                     </ul>
                 </div>
             </Col>

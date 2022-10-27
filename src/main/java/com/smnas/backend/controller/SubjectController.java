@@ -6,6 +6,9 @@ import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.mapper.SubjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +23,8 @@ public class SubjectController {
     private final SubjectMapper subjectMapper;
 
     @GetMapping
-    private ResponseEntity<List<SubjectResponse>> getAll() {
-        List<SubjectResponse> subjects = subjectMapper.getAll();
+    private ResponseEntity<Page<SubjectResponse>> getAll(@PageableDefault Pageable pageable) {
+        Page<SubjectResponse> subjects = subjectMapper.findAll(pageable);
         return ResponseEntity.ok(subjects);
     }
 
@@ -33,7 +36,7 @@ public class SubjectController {
 
     @GetMapping("/{subjectId}")
     private ResponseEntity<SubjectResponse> getById(@PathVariable("subjectId") Long subjectId) {
-        SubjectResponse subject = subjectMapper.getById(subjectId);
+        SubjectResponse subject = subjectMapper.findById(subjectId);
         return ResponseEntity.ok(subject);
     }
 

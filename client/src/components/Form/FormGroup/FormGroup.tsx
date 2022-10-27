@@ -32,7 +32,6 @@ const FormGroupController: FC<FormGroupControllerProps> = ({type,
                     render={({field}) => (
                         <FormGroup className="form-group">
                             <FormLabel>{title}</FormLabel>
-                            <Error error={error}/>
                             {img &&
                                 <>
                                 <br/>
@@ -42,7 +41,8 @@ const FormGroupController: FC<FormGroupControllerProps> = ({type,
                                 </div>
                                 </>
                             }
-                            <Form.Control type={type} {...register(name)} placeholder={placeholder} defaultValue={defaultValue?.toString()}/>
+                            <Form.Control className={error ? "form-invalid" : ""} type={type} {...register(name)} placeholder={placeholder} defaultValue={defaultValue?.toString()}/>
+                            <Error error={error}/>
                         </FormGroup>
                     )}
         />
