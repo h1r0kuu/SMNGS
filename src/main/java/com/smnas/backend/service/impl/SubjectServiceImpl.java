@@ -62,14 +62,14 @@ public class SubjectServiceImpl implements SubjectService {
             throw new BadRoleException("Bad user role");
         }
         Subject subject = findById(subjectId);
-        subject.getTeachers().add(teacher);
+//        subject.getTeachers().add(teacher);
         return update(subject);
     }
 
     @Override
     public Subject removeTeacher(Long subjectId, Teacher teacher) {
         Subject subject = findById(subjectId);
-        subject.getTeachers().add(teacher);
+//        subject.getTeachers().add(teacher);
         return update(subject);
     }
 }

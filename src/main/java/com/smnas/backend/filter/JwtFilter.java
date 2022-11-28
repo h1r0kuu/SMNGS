@@ -29,10 +29,13 @@ public class JwtFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String token = httpRequest.getHeader("Authorization");
         try {
-            if(token != null && jwtProvider.validateToken(token)) {
-                User user = userService.findUserByUsername(jwtProvider.getUsername(token));
-                Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+            if(token != null && token.startsWith("Bearer ")) {
+                token = token.substring(7);
+                if (jwtProvider.validateToken(token)) {
+                    User user = userService.findUserByUsername(jwtProvider.getUsername(token));
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
         } catch (Exception e) {
 //            TODO: Exceptions

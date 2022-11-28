@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Pagination: FC<Props> = ({pagination}): ReactElement => {
-
+    console.log(pagination)
     const hasPrevious = () => {
         return pagination.pageable.pageNumber !== 0
     }

@@ -42,14 +42,16 @@ public class JwtProvider {
         return Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getBody().getSubject();
     }
 
-    public boolean validateToken(String token) throws Exception {
+    public boolean validateToken(String token) throws RuntimeException {
+        boolean valid = false;
         try {
             Jws<Claims> claimsJws = Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException exception) {
-//            TODO: exception
-            throw new Exception("dsa");
+//            throw new JwtException(exception.getMessage());
+            System.out.println(exception.getMessage());
         }
+        return false;
     }
 
 }

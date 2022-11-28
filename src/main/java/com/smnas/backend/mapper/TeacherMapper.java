@@ -1,5 +1,6 @@
 package com.smnas.backend.mapper;
 
+import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.student.StudentRequest;
 import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.dto.student.StudentUpdateRequest;
@@ -35,14 +36,14 @@ public class TeacherMapper implements MapperInterface<TeacherRequest, TeacherRes
     }
 
     public TeacherResponse create(TeacherRequest teacherRequest, MultipartFile profilePicture) throws UserAlreadyExistException, IOException {
-        PropertyMap<TeacherRequest, Teacher> clientPropertyMap = new PropertyMap<TeacherRequest, Teacher>() {
-            @Override
-            protected void configure() {
-                skip(destination.getProfilePicture());
-            }
-        };
+//        PropertyMap<TeacherRequest, Teacher> clientPropertyMap = new PropertyMap<TeacherRequest, Teacher>() {
+//            @Override
+//            protected void configure() {
+//                skip(destination.getProfilePicture());
+//            }
+//        };
 
-        Teacher teacher = mapper.convertTo(teacherRequest, Teacher.class, clientPropertyMap);
+        Teacher teacher = mapper.convertTo(teacherRequest, Teacher.class);
         return mapper.convertTo(teacherService.create(teacher, profilePicture), TeacherResponse.class);
     }
 
@@ -86,6 +87,10 @@ public class TeacherMapper implements MapperInterface<TeacherRequest, TeacherRes
         };
         Teacher teacher = mapper.convertTo(teacherRequest, Teacher.class, clientPropertyMap);
         return mapper.convertTo(teacherService.update(teacher, profilePicture), TeacherResponse.class);
+    }
+
+    public Page<GroupResponse> getGroups(Long id, Pageable pageable) {
+        return teacherService.findGroups(id, pageable).map(g -> mapper.convertTo(g, GroupResponse.class));
     }
 
 }

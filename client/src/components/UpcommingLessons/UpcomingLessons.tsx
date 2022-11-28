@@ -1,21 +1,23 @@
 import {ReactElement} from "react";
+import {Card, Col, Row} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 const UpcomingLessons = (): ReactElement => {
     return (
-        <div className="col-12 col-lg-8 col-xl-8 d-flex">
-            <div className="card flex-fill">
-                <div className="card-header">
-                    <div className="row align-items-center">
-                        <div className="col-6">
-                            <h5 className="card-title">Upcoming Lesson</h5>
-                        </div>
-                        <div className="col-6">
-          <span className="float-right view-link">
-            <a href="#">View All Courses</a>
-          </span>
-                        </div>
-                    </div>
-                </div>
+        <Col xs={12} lg={8} xl={8} className={"d-flex"}>\
+            <Card className={"flex-fill"}>
+                <CardHeader>
+                    <Row className={"align-items-center"}>
+                        <Col xs={6}>
+                            <Card.Title as={"h5"}>Upcoming Lesson</Card.Title>
+                        </Col>
+                        <Col xs={6}>
+                            <span className="float-right view-link">
+                                <a href="#">View All Courses</a>
+                            </span>
+                        </Col>
+                    </Row>
+                </CardHeader>
                 <div className="pt-3 pb-3">
                     <div className="table-responsive lesson">
                         <table className="table table-center">
@@ -84,8 +86,8 @@ const UpcomingLessons = (): ReactElement => {
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Card>
+        </Col>
     )
 }
 

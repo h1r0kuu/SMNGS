@@ -1,14 +1,18 @@
 import React, {ReactElement} from "react";
 import StudentActivityElem from "./StudentActivityElem/StudentActivityElem";
+import {Card, Col} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 const StudentActivity = (): ReactElement => {
     return (
-        <div className="col-md-6 d-flex">
-            <div className="card flex-fill">
-                <div className="card-header">
-                    <h5 className="card-title">Student Activity</h5>
-                </div>
-                <div className="card-body">
+        <Col md={6} className={"d-flex"}>
+            <Card className={"flex-fill"}>
+                <CardHeader>
+                    <Card.Title as={"h5"}>
+                        Student Activity
+                    </Card.Title>
+                </CardHeader>
+                <Card.Body>
                     <ul className="activity-feed">
                         <StudentActivityElem date={"Apr 13"}>
                             <>
@@ -39,9 +43,9 @@ const StudentActivity = (): ReactElement => {
                             </>
                         </StudentActivityElem>
                     </ul>
-                </div>
-            </div>
-        </div>
+                </Card.Body>
+            </Card>
+        </Col>
     )
 }
 

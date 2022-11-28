@@ -1,7 +1,19 @@
+import {TeacherSubjectResponse} from "./subject";
+
 export interface GroupRequest {
     groupTerm: number,
-    groupName: string
+    groupName: string,
+    teacherSubjects: TeacherSubjectResponse[]
     // private List<GroupStudentResponse> students;
+}
+
+export interface GroupSubjectRequest {
+    groupSubjectIds: number
+}
+
+export interface GroupSubjectResponse {
+    id: number,
+    teacherSubject: TeacherSubjectResponse
 }
 
 export interface GroupResponse {
@@ -9,6 +21,7 @@ export interface GroupResponse {
     groupTerm: number,
     groupName: string,
     // private List<GroupStudentResponse> students;
+    groupSubjects: GroupSubjectResponse[]
     createdAt: Date,
     updatedAt: Date,
 }

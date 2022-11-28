@@ -42,6 +42,11 @@ public class RestException extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(buildResponse(HttpStatus.CONFLICT, exception.getMessage()));
     }
 
+    @ExceptionHandler(TeacherSubjectAlreadyExistException.class)
+    public ResponseEntity<Map<String, Object>> teacherSubjectAlreadyExistException(TeacherSubjectAlreadyExistException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(buildResponse(HttpStatus.CONFLICT, exception.getMessage()));
+    }
+
     private ResponseEntity<Object> exceptionWithBinding(BindException ex,
                                                         HttpHeaders headers,
                                                         HttpStatus status, WebRequest request) {

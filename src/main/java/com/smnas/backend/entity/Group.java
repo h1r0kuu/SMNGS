@@ -33,6 +33,18 @@ public class Group {
     @ToString.Exclude
     private List<Student> students;
 
+    @OneToMany(mappedBy = "group")
+    @ToString.Exclude
+    private List<GroupSubject> groupSubjects;
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_teachers",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    @ToString.Exclude
+    private List<Teacher> teachers;
+
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;

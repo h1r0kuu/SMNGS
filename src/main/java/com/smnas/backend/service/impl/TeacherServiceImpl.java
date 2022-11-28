@@ -1,8 +1,11 @@
 package com.smnas.backend.service.impl;
 
+import com.smnas.backend.entity.Group;
 import com.smnas.backend.entity.Teacher;
+import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.TeacherRepository;
 import com.smnas.backend.service.TeacherService;
+import com.smnas.backend.service.UserService;
 import com.smnas.backend.utils.FileUpload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,10 +27,11 @@ public class TeacherServiceImpl implements TeacherService {
     @Value("${host}")
     private String host;
     private final TeacherRepository teacherRepository;
+    private final UserService userService;
 
     @Override
-    public Teacher create(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public Teacher create(Teacher teacher) throws UserAlreadyExistException {
+        return userService.create(teacher);
     }
 
     @Override
@@ -42,7 +46,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher findById(Long id) {
-        return teacherRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Cannot find grade with that id"));
+        return teacherRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Cannot find teacher with that id"));
     }
 
     @Override
@@ -61,7 +65,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Teacher create(Teacher teacher, MultipartFile profilePicture) throws IOException {
+    public Teacher create(Teacher teacher, MultipartFile profilePicture) throws IOException, UserAlreadyExistException {
         if(profilePicture != null) {
             FileUpload.upload(fileUploadPath, profilePicture.getOriginalFilename(), profilePicture);
             teacher.setProfilePicture(host + "img/" + profilePicture.getOriginalFilename());
@@ -70,7 +74,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Teacher update(Teacher teacher, MultipartFile profilePicture) throws IOException {
+    public Teacher update(Teacher teacher, MultipartFile profilePicture) throws IOException, UserAlreadyExistException {
         return create(teacher, profilePicture);
+    }
+
+    @Override
+    public Page<Group> findGroups(Long id, Pageable pageable) {
+        return teacherRepository.findGroup(id, pageable);
     }
 }

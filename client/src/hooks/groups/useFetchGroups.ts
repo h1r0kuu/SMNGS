@@ -1,11 +1,12 @@
 import {useCallback, useEffect, useState} from "react";
-import {StudentResponse} from "../../types/student";
 import {GroupResponse} from "../../types/group";
 
 import {GroupService} from "../../services/groupService"
+import {PaginationProps} from "../../types/pagination";
 
 export const useFetchGroups = () => {
-    const [groups, setGroups] = useState<GroupResponse[]>()
+    const [groups, setGroups] = useState<GroupResponse[]>([])
+    const [pagination, setPagination] = useState<PaginationProps>()
     const [isLoading, setLoading] = useState(false)
 
     const fetchGroups = useCallback(
@@ -13,7 +14,9 @@ export const useFetchGroups = () => {
             setLoading(true)
             try {
                 const {data} = await GroupService.findAll()
-                setGroups(data);
+                const { content, ...pagination } = data
+                setGroups(content);
+                setPagination(pagination)
             } catch (e) {
 
             }
@@ -25,5 +28,5 @@ export const useFetchGroups = () => {
         fetchGroups().catch()
     }, [fetchGroups])
 
-    return {groups, fetchGroups, isLoading}
+    return {groups, pagination, fetchGroups, isLoading}
 }

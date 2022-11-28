@@ -1,5 +1,6 @@
 package com.smnas.backend.controller;
 
+import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.student.StudentRequest;
 import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.dto.student.StudentUpdateRequest;
@@ -54,5 +55,12 @@ public class TeacherController {
     private ResponseEntity<String> deleteOne(@PathVariable("id") Long id) {
         teacherMapper.deleteById(id);
         return ResponseEntity.ok("deleted");
+    }
+
+    @GetMapping("/{id}/groups")
+    private ResponseEntity<Page<GroupResponse>> getGroups(@PathVariable("id") Long id,
+                                                          @PageableDefault Pageable pageable) {
+        Page<GroupResponse> groups = teacherMapper.getGroups(id, pageable);
+        return ResponseEntity.ok(groups);
     }
 }

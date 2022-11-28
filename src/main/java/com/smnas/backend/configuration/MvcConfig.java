@@ -32,7 +32,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/v1/**")
-                .allowedOrigins("*")
+                .allowedOrigins("http://localhost:3000")
                 .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
                 .exposedHeaders("page-total-count")
                 .allowedHeaders("*");

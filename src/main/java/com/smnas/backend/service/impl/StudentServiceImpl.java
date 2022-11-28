@@ -4,6 +4,7 @@ import com.smnas.backend.entity.Student;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.StudentRepository;
 import com.smnas.backend.service.StudentService;
+import com.smnas.backend.service.UserService;
 import com.smnas.backend.utils.FileUpload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ import java.util.NoSuchElementException;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final UserService userService;
 
     @Value("${user.image.upload.path}")
     private String fileUploadPath;
@@ -39,7 +41,7 @@ public class StudentServiceImpl implements StudentService {
             FileUpload.upload(fileUploadPath, profilePicture.getOriginalFilename(), profilePicture);
             student.setProfilePicture(host + "img/" + profilePicture.getOriginalFilename());
         }
-        return create(student);
+        return userService.create(student);
     }
 
     @Override

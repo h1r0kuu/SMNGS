@@ -28,7 +28,7 @@ public class Schedule {
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
-    private Subject subject;
+    private GroupSubject subject;
 
     @Column(name = "time_start")
     private LocalDateTime timeStart;

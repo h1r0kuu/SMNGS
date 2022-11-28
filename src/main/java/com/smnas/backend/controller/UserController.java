@@ -6,6 +6,7 @@ import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +38,8 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping
-    private ResponseEntity<UserResponse> create(@Valid @RequestBody UserRequest userRequest) throws UserAlreadyExistException {
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    private ResponseEntity<UserResponse> create(@Valid @ModelAttribute UserRequest userRequest) throws UserAlreadyExistException {
         UserResponse user = userMapper.create(userRequest);
         return ResponseEntity.ok(user);
     }

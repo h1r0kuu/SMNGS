@@ -1,14 +1,22 @@
 import React, {FC, ReactElement} from "react";
 import {NavLink} from "react-router-dom";
+import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 interface SubmenuElemProps {
     title: string,
-    href: string
+    href: string,
+    icon?: IconDefinition
+
 }
 
-const SubmenuElem: FC<SubmenuElemProps> = ({title, href}): ReactElement => {
+const SubmenuElem: FC<SubmenuElemProps> = ({title, href, icon}): ReactElement => {
     return (
-        <li><NavLink to={href} className={({ isActive }) => isActive ? "active" : ""}>&nbsp;{title}</NavLink></li>
+        <li>
+            <NavLink to={href} className={({ isActive }) => isActive ? "active" : ""}>
+                {icon && <FontAwesomeIcon icon={icon} />}&nbsp;{title}
+            </NavLink>
+        </li>
     )
 }
 

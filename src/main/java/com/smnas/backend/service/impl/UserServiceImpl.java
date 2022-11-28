@@ -1,8 +1,12 @@
 package com.smnas.backend.service.impl;
 
+import com.smnas.backend.entity.Student;
+import com.smnas.backend.entity.Teacher;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
+import com.smnas.backend.repository.StudentRepository;
+import com.smnas.backend.repository.TeacherRepository;
 import com.smnas.backend.repository.UserRepository;
 import com.smnas.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +16,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,9 +27,13 @@ import java.util.NoSuchElementException;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+    @PersistenceContext
+    private final EntityManager entityManager;
+
 
     @Override
-    public User create(User user) throws UserAlreadyExistException {
+    @Transactional
+    public <T extends User> T create(T user) throws UserAlreadyExistException {
         try {
             if (findUserByUsername(user.getUsername()) != null) {
                 throw new UserAlreadyExistException("User already exist");
@@ -31,7 +42,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
         }
-        return userRepository.save(user);
+
+        entityManager.persist(user);
+        return user;
     }
 
     @Override
@@ -41,11 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findUserByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        if(user == null) {
-            throw new NoSuchElementException("Cannot find user");
-        }
-        return user;
+        return userRepository.findByUsername(username);
     }
 
     @Override

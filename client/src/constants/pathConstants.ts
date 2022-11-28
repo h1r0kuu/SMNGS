@@ -4,7 +4,16 @@ export const FORGOT_PASSWORD = "/password-reset"
 
 export const MY_PROFILE = "/profile"
 
-export const HOME = "/"
+export const HOME = "/dashboard"
+export const SUBJECT = "/subject"
+export const PROFILE = "/profile"
+export const SCHEDULE = "/schedule"
+export const STUDENT = "/student"
+export const TEACHER = "/teacher"
+export const ROUTINE = "/routine"
+export const CONVERSATION = "/conversation"
+export const INVOICE = "/invoice"
+export const MEDIA = "/media"
 
 export const ADMIN_DASHBOARD = "/admin/dashboard"
 export const TEACHER_DASHBOARD = "/teacher/dashboard"
@@ -20,13 +29,22 @@ export const TEACHERS_VIEW = "/admin/teachers/view"
 export const TEACHERS_ADD = "/admin/teachers/add"
 export const TEACHERS_EDIT = "/admin/teachers/:id/edit"
 
+export const TEACHER_GROUPS = "/teacher/groups"
+
 export const GROUP_LIST = "/admin/groups/list"
+export const GROUP_EDIT = "/admin/groups/:id/edit"
 export const GROUP_VIEW = "/admin/groups/view"
 export const GROUP_ADD = "/admin/groups/add"
+
+export const GROUP_STUDENTS = "/groups/:id/students"
 
 export const SUBJECTS_LIST = "/admin/subjects/list"
 export const SUBJECTS_ADD = "/admin/subjects/add"
 export const SUBJECTS_EDIT = "/admin/subjects/edit"
+
+export const SCHEDULES_LIST = "/admin/schedules/list"
+export const SCHEDULES_ADD = "/admin/schedules/add"
+export const SCHEDULES_EDIT = "/admin/schedules/edit"
 
 export const FEES_COLLECTION = "/fees-collection"
 export const EXPENSES = "/expenses"

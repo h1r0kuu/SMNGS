@@ -1,32 +1,42 @@
-import {ReactElement} from "react";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import moment from 'moment'
+import {useCurrentUser} from "../../../context/UserContext";
+import {useEffect, useState} from "react";
+import {ScheduleResponse} from "../../../types/schedule";
+import {StudentService} from "../../../services/studentService"
+import {GroupService} from "../../../services/groupService"
 
+const Fullcalendar = (props) => {
+    const localizer = momentLocalizer(moment)
+    const [schedules, setSchedules] = useState<ScheduleResponse[]>()
+    const {currentUser} = useCurrentUser()
 
-const Fullcalendar = (): ReactElement => {
+    useEffect(() => {
+        StudentService.getOne(currentUser.id).then(({data}) => {
+            GroupService.getSchedule(data.group.id).then(({data}) => {
+                setSchedules(data)
+            })
+
+        })
+
+    }, [])
+
     return (
-        <FullCalendar
-            plugins={[ dayGridPlugin, interactionPlugin, timeGridPlugin ]}
-            initialView="dayGridMonth"
-            events={[
-                { title: 'Event Name 2', date: '2022-10-16', backgroundColor: "green", borderColor: "transparent"},
-                { title: 'Event Name 3', date: '2022-10-17',backgroundColor: "red", borderColor: "transparent" },
-                { title: 'Event Name 4', date: '2022-10-17' },
-            ]}
-            headerToolbar={{
-                left: 'prev next today',
-                center: 'title',
-                right: 'dayGridMonth timeGridWeek timeGridDay'
-            }}
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            dayMaxEvents={true}
-            weekends={true}
-            themeSystem="bootstrap5"
-        />
+        <div>
+            <Calendar
+                localizer={localizer}
+                events={schedules}
+                toolbar={true}
+                startAccessor="timeStart"
+                endAccessor="timeEnd"
+                views={{
+                    day: true,
+                    week: true,
+                    month: true
+                }}
+            />
+        </div>
     )
 }
 

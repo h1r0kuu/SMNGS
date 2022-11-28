@@ -3732,11 +3732,7 @@ table.table-inbox tbody tr.checked {
 }
 
 .dropdown-menu.show {
-    position: absolute;
-    transform: translate3d(-60px, 60px, 0px);
-    top: 0px;
-    left: 0px;
-    will-change: transform;
+    position: absolute; transform: translate3d(-125px, 60px, 0px); top: 0px; left: 0px; will-change: transform;
 }
 
 
@@ -3805,4 +3801,12 @@ th.fc-col-header-cell {
 
 .actions a:last-child {
     margin-right: 0;
+}
+
+.modal-tab {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 640px;
 }

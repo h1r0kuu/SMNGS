@@ -2,10 +2,8 @@ package com.smnas.backend.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
@@ -20,4 +18,11 @@ public class Teacher extends User {
     @Column(name = "qualification")
     private String qualification;
 
+    @ManyToMany(mappedBy = "teachers")
+    @ToString.Exclude
+    private List<Group> groups;
+
+    @OneToMany(mappedBy = "teacher")
+    @ToString.Exclude
+    private List<TeacherSubject> teacherSubjects;
 }

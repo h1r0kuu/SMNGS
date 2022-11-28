@@ -5,11 +5,10 @@ import com.smnas.backend.dto.subject.SubjectRequest;
 import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
-import com.smnas.backend.entity.Group;
-import com.smnas.backend.entity.Subject;
-import com.smnas.backend.entity.Teacher;
-import com.smnas.backend.entity.User;
+import com.smnas.backend.entity.*;
 import com.smnas.backend.service.SubjectService;
+import com.smnas.backend.service.TeacherService;
+import com.smnas.backend.service.TeacherSubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +21,25 @@ import java.util.List;
 public class SubjectMapper implements MapperInterface<SubjectRequest, SubjectResponse> {
 
     private final SubjectService subjectService;
+    private final TeacherSubjectService teacherSubjectService;
+    private final TeacherService teacherService;
     private final BasicMapper mapper;
 
     @Override
     public SubjectResponse create(SubjectRequest subjectRequest) {
         Subject subject = subjectService.create(mapper.convertTo(subjectRequest, Subject.class));
+        System.out.println(subjectRequest.getTeacherIds());
+        if(!subjectRequest.getTeacherIds().isEmpty()) {
+            for(Long teacherId : subjectRequest.getTeacherIds()) {
+                TeacherSubject teacherSubject = new TeacherSubject();
+                teacherSubject.setSubject(subject);
+                Teacher teacher = teacherService.findById(teacherId);
+                if(teacher != null) {
+                    teacherSubject.setTeacher(teacher);
+                    teacherSubjectService.create(teacherSubject);
+                }
+            }
+        }
         return mapper.convertTo(subject, SubjectResponse.class);
     }
 

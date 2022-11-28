@@ -1,7 +1,6 @@
 import {UserRequest, UserResponse} from "./user";
 import {StudentStatus} from "../enums/studentStatus";
-import {UserRole} from "../enums/userRole";
-import {GroupRequest, GroupResponse} from "./group";
+import {GroupResponse} from "./group";
 
 export interface StudentResponse extends UserResponse {
     status: StudentStatus,

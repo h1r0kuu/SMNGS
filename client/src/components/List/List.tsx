@@ -12,7 +12,6 @@ interface ListProps {
 }
 
 const List: FC<ListProps> = ({ children, isLoading, pagination }): ReactElement => {
-
     let tableBody: ReactElement = <></>, headers: ReactElement[] = [], trs: ReactElement[] = [];
 
     Children.forEach(children, child => {
@@ -93,10 +92,10 @@ export const ListHeader: FC<ListHeader> = ({ title }): ReactElement => {
     return <th className={"sorting"}>{title}</th>
 }
 interface TableBodyProps {
-    children: ReactElement[]
+    children: ReactElement[] | ReactElement
 }
 export const TableBody: FC<TableBodyProps> = ({ children }): ReactElement => {
-    return <tbody>{children}</tbody>
+    return <tbody>{Children.count(children) > 0 ? children : <>Empty</>}</tbody>
 }
 export const ListBodyTr = ({ children}): ReactElement => {
     return <tr>{children}</tr>

@@ -2,9 +2,13 @@ package com.smnas.backend.controller;
 
 import com.smnas.backend.dto.subject.SubjectRequest;
 import com.smnas.backend.dto.teacher.TeacherRequest;
+import com.smnas.backend.dto.teachersubject.TeacherSubjectRequest;
+import com.smnas.backend.dto.teachersubject.TeacherSubjectResponse;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
+import com.smnas.backend.entity.TeacherSubject;
 import com.smnas.backend.mapper.SubjectMapper;
+import com.smnas.backend.mapper.TeacherSubjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +25,7 @@ import java.util.List;
 public class SubjectController {
 
     private final SubjectMapper subjectMapper;
+    private final TeacherSubjectMapper teacherSubjectMapper;
 
     @GetMapping
     private ResponseEntity<Page<SubjectResponse>> getAll(@PageableDefault Pageable pageable) {
@@ -62,5 +67,16 @@ public class SubjectController {
     private ResponseEntity<SubjectResponse> removeTeacher(@PathVariable("subjectId") Long subjectId, @Valid @RequestBody TeacherRequest teacherRequest) {
         SubjectResponse subject = subjectMapper.removeTeacher(subjectId, teacherRequest);
         return ResponseEntity.ok(subject);
+    }
+
+    @GetMapping("/teacher-subject")
+    private ResponseEntity<Page<TeacherSubjectResponse>> getTeacherSubjects(@PageableDefault Pageable pageable) {
+        return ResponseEntity.ok(teacherSubjectMapper.findAll(pageable));
+    }
+
+    @PostMapping("/teacher-subject")
+    private ResponseEntity<TeacherSubjectResponse> createTeacherSubject(@Valid @RequestBody TeacherSubjectRequest teacherSubjectRequest) {
+        TeacherSubjectResponse teacherSubject = teacherSubjectMapper.create(teacherSubjectRequest);
+        return ResponseEntity.ok(teacherSubject);
     }
 }

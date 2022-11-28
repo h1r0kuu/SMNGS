@@ -27,13 +27,9 @@ public class Subject {
     @Column(name = "subject_name")
     private String subjectName;
 
-    @ManyToMany
-    @JoinTable(
-            name = "subject_teacher",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    @OneToMany(mappedBy = "subject")
     @ToString.Exclude
-    private List<Teacher> teachers;
+    private List<TeacherSubject> subjectTeachers;
 
     @Column(name = "created_at")
     @CreationTimestamp

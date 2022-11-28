@@ -1,5 +1,6 @@
 package com.smnas.backend.dto.group;
 
+import com.smnas.backend.dto.groupsubject.GroupSubjectResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class GroupResponse {
     private String groupName;
     private Integer groupTerm;
     private List<GroupStudentResponse> students;
+    private List<GroupSubjectResponse> groupSubjects;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

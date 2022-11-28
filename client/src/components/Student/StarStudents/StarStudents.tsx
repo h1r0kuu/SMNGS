@@ -1,13 +1,15 @@
 import React, {ReactElement} from "react";
+import {Card, Col} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 const StarStudents = (): ReactElement => {
     return (
-        <div className="col-md-6 d-flex">
-            <div className="card flex-fill">
-                <div className="card-header">
-                    <h5 className="card-title">Star Students</h5>
-                </div>
-                <div className="card-body">
+        <Col md={6} className={"d-flex"}>
+            <Card className={"flex-fill"}>
+                <CardHeader>
+                    <Card.Title as={"h5"}>Star Students</Card.Title>
+                </CardHeader>
+                <Card.Body>
                     <div className="table-responsive">
                         <table className="table table-hover table-center">
                             <thead className="thead-light">
@@ -78,9 +80,9 @@ const StarStudents = (): ReactElement => {
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-        </div>
+                </Card.Body>
+            </Card>
+        </Col>
     )
 }
 

@@ -1,5 +1,4 @@
 import {UserRequest, UserResponse} from "./user";
-import {StudentRequest} from "./student";
 
 export interface TeacherResponse extends UserResponse {
     qualification: string

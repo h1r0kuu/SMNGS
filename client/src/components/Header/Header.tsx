@@ -4,21 +4,28 @@ import {faAlignLeft, faBars, faBell, faSearch} from "@fortawesome/free-solid-svg
 import {Link} from "react-router-dom";
 import {MY_PROFILE} from "../../constants/pathConstants";
 import { Scrollbars } from 'react-custom-scrollbars';
+import {useCurrentUser} from "../../context/UserContext";
 
 interface HeaderProps {
     openMobileNav: () => void,
 }
 
 const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
+
+
+    const {onLogout, currentUser} = useCurrentUser()
+
     const [dropdownShow, setDropdownShow] = useState(false)
     const [notificationsShow, setNotificationsShow] = useState(false)
 
-    const toggleDropdown = () => {
+    const toggleDropdown = (e) => {
+        e.preventDefault()
         setDropdownShow(!dropdownShow)
         setNotificationsShow(false)
     }
 
-    const toggleNotification = () => {
+    const toggleNotification = (e) => {
+        e.preventDefault()
         setNotificationsShow(!notificationsShow)
         setDropdownShow(false)
     }
@@ -47,7 +54,7 @@ const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
             </a>
             <ul className="nav user-menu">
                 <li className="nav-item dropdown noti-dropdown">
-                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown"  onClick={() => toggleNotification()}>
+                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown"  onClick={toggleNotification}>
                         <FontAwesomeIcon icon={faBell} style={{fontSize: "25px", lineHeight: "60px", marginTop: "15px"}}/> <span className="badge badge-pill">3</span>
                     </a>
                     <div className={`dropdown-menu notifications ${notificationsShow ? 'show' : ""}`}>
@@ -131,24 +138,24 @@ const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
                         </div>
                     </div>
                 </li>
-                <li className="nav-item dropdown has-arrow" onClick={() => toggleDropdown()}>
+                <li className="nav-item dropdown has-arrow" onClick={toggleDropdown}>
                     <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                <span className="user-img"><img className="rounded-circle" src="assets/img/profiles/avatar-01.jpg"
-                                                width="31" alt="Ryan Taylor" /></span>
+                <span className="user-img"><img className="rounded-circle" src={currentUser.profilePicture}
+                                                width="31" alt={currentUser.username} /></span>
                     </a>
                     <div className={`dropdown-menu ${dropdownShow ? "show" : ""}`}>
                         <div className="user-header">
                             <div className="avatar avatar-sm">
-                                <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" className="avatar-img rounded-circle" />
+                                <img src={currentUser.profilePicture} alt="User Image" className="avatar-img rounded-circle" />
                             </div>
                             <div className="user-text">
-                                <h6>Ryan Taylor</h6>
-                                <p className="text-muted mb-0">Administrator</p>
+                                <h6>{currentUser.username}</h6>
+                                <p className="text-muted mb-0">{"Administrator"}</p>
                             </div>
                         </div>
                         <Link to={MY_PROFILE} className={"dropdown-item"}>My Profile</Link>
                         <a className="dropdown-item" href="inbox.html">Inbox</a>
-                        <a className="dropdown-item" href="login.html">Logout</a>
+                        <a className="dropdown-item" href="#" onClick={() => onLogout()}>Logout</a>
                     </div>
                 </li>
             </ul>

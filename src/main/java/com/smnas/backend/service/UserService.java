@@ -10,6 +10,6 @@ public interface UserService {
     User findUserByUsername(String username);
     List<User> findAll();
     List<User> findByRole(UserRole role);
-    User create(User user) throws UserAlreadyExistException;
+    <T extends User> T create(T user) throws UserAlreadyExistException;
 
 }

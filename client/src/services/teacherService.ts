@@ -3,7 +3,7 @@ import {UserResponse} from "../types/user";
 import {axios} from "../config/axios";
 import {
     API_STUDENTS,
-    API_STUDENTS_ONE,
+    API_STUDENTS_ONE, API_TEACHER_GROUPS,
     API_TEACHERS,
     API_TEACHERS_ONE,
     API_USER,
@@ -12,6 +12,7 @@ import {
 import {TeacherEditRequest, TeacherRequest, TeacherResponse} from "../types/teacher";
 import {StudentEditRequest, StudentResponse} from "../types/student";
 import {ResponseWithPagination} from "../types/pagination";
+import {GroupResponse} from "../types/group";
 
 export const TeacherService = {
     async create(data: TeacherRequest): Promise<AxiosResponse<TeacherResponse>> {
@@ -41,5 +42,9 @@ export const TeacherService = {
     async getOne(id: number): Promise<AxiosResponse<TeacherResponse>> {
         return await axios.get<TeacherResponse>(API_TEACHERS_ONE(id));
     },
+
+    async getGroups(id: number): Promise<AxiosResponse<ResponseWithPagination<GroupResponse>>> {
+        return await axios.get<ResponseWithPagination<GroupResponse>>(API_TEACHER_GROUPS(id))
+    }
 
 }

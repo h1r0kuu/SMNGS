@@ -1,11 +1,9 @@
 package com.smnas.backend.service.impl;
 
-import com.smnas.backend.entity.Group;
-import com.smnas.backend.entity.Student;
+import com.smnas.backend.entity.*;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.GroupRepository;
-import com.smnas.backend.service.GroupService;
-import com.smnas.backend.service.StudentService;
+import com.smnas.backend.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +18,8 @@ public class GroupServiceImpl implements GroupService {
 
     private final GroupRepository groupRepository;
     private final StudentService studentService;
+    private final TeacherService teacherService;
+    private final GroupSubjectService groupSubjectService;
 
     @Override
     public Group create(Group group) {
@@ -57,6 +57,16 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public List<Schedule> getSchedule(Long groupId) {
+        return groupRepository.findSchedule(groupId);
+    }
+
+    @Override
+    public Page<Student> getStudents(Long groupId, Pageable pageable) {
+        return groupRepository.findStudents(groupId, pageable);
+    }
+
+    @Override
     public Group addStudent(Long groupId, Long studentId) throws UserAlreadyExistException {
         Group group = findById(groupId);
         Student student = studentService.findById(studentId);
@@ -66,9 +76,42 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group removeStudent(Long groupId, Student student) {
+    public Group removeStudent(Long groupId, Long studentId) {
         Group group = findById(groupId);
+        Student student = studentService.findById(studentId);
         group.getStudents().remove(student);
-        return groupRepository.save(group);
+        return update(group);
+    }
+
+    @Override
+    public Group addTeacher(Long groupId, Long teacherId) throws UserAlreadyExistException {
+        Group group = findById(groupId);
+        Teacher teacher = teacherService.findById(teacherId);
+        group.getTeachers().add(teacher);
+        return update(group);
+    }
+
+    @Override
+    public Group removeTeacher(Long groupId, Long teacherId) {
+        Group group = findById(groupId);
+        Teacher teacher = teacherService.findById(teacherId);
+        group.getTeachers().remove(teacher);
+        return update(group);
+    }
+
+    @Override
+    public Group addSubject(Long groupId, Long subjectId) throws UserAlreadyExistException {
+        Group group = findById(groupId);
+        GroupSubject subject = groupSubjectService.findById(subjectId);
+        group.getGroupSubjects().add(subject);
+        return update(group);
+    }
+
+    @Override
+    public Group removeSubject(Long groupId, Long subjectId) {
+        Group group = findById(groupId);
+        GroupSubject subject = groupSubjectService.findById(subjectId);
+        group.getGroupSubjects().remove(subject);
+        return update(group);
     }
 }

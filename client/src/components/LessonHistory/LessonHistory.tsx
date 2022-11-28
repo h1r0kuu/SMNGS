@@ -1,5 +1,7 @@
 import {FC, ReactElement} from "react";
 import LessonHistoryElem from "./LessonHistoryElem/LessonHistoryElem";
+import {Card, Col} from "react-bootstrap";
+import CardHeader from "react-bootstrap/CardHeader";
 
 interface LessonHistoryProps {
     title: string
@@ -7,12 +9,12 @@ interface LessonHistoryProps {
 
 const LessonHistory: FC<LessonHistoryProps> = ({title}): ReactElement => {
     return (
-        <div className="col-12 col-lg-6 col-xl-4 d-flex">
-            <div className="card flex-fill">
-                <div className="card-header">
-                    <h5 className="card-title">{title}</h5>
-                </div>
-                <div className="card-body">
+        <Col xs={12} lg={6} xl={4} className={"d-flex"}>
+            <Card className={"flex-fill"}>
+                <CardHeader>
+                    <Card.Title as={"h5"}>{title}</Card.Title>
+                </CardHeader>
+                <Card.Body>
                     <div className="teaching-card">
                         <ul className="activity-feed">
                             <LessonHistoryElem date={"Sep 05, 9 am - 10 am"} duration={"60min"} title={"Lorem ipsum dolor"} status={"In Progress"} />
@@ -21,9 +23,9 @@ const LessonHistory: FC<LessonHistoryProps> = ({title}): ReactElement => {
                             <LessonHistoryElem date={"Aug 30, 10 am - 12 pm"} duration={"90min"} title={"Occaecat cupidatat"} status={"Completed"} />
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
+                </Card.Body>
+            </Card>
+        </Col>
     )
 }
 
