@@ -4,9 +4,7 @@ import com.smnas.backend.dto.group.*;
 import com.smnas.backend.dto.groupsubject.GroupSubjectRequest;
 import com.smnas.backend.dto.groupsubject.GroupSubjectResponse;
 import com.smnas.backend.dto.schedule.ScheduleResponse;
-import com.smnas.backend.dto.student.StudentRequest;
 import com.smnas.backend.dto.student.StudentResponse;
-import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.teachersubject.TeacherSubjectResponse;
 import com.smnas.backend.entity.*;
 import com.smnas.backend.exception.UserAlreadyExistException;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

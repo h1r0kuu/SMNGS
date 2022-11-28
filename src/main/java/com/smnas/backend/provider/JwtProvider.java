@@ -1,6 +1,5 @@
 package com.smnas.backend.provider;
 
-import com.smnas.backend.service.impl.UserServiceImpl;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

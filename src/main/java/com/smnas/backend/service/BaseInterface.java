@@ -1,6 +1,5 @@
 package com.smnas.backend.service;
 
-import com.smnas.backend.exception.UserAlreadyExistException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

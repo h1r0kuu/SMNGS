@@ -1,9 +1,7 @@
 package com.smnas.backend.service;
 
 import com.smnas.backend.entity.Group;
-import com.smnas.backend.entity.Student;
 import com.smnas.backend.entity.Teacher;
-import com.smnas.backend.exception.UserAlreadyExistException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;

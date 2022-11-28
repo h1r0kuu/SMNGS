@@ -1,12 +1,8 @@
 package com.smnas.backend.service.impl;
 
-import com.smnas.backend.entity.Student;
-import com.smnas.backend.entity.Teacher;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
-import com.smnas.backend.repository.StudentRepository;
-import com.smnas.backend.repository.TeacherRepository;
 import com.smnas.backend.repository.UserRepository;
 import com.smnas.backend.service.UserService;
 import lombok.RequiredArgsConstructor;

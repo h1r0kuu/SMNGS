@@ -1,7 +1,6 @@
 package com.smnas.backend.service.impl;
 
 import com.smnas.backend.dto.auth.RegistrationRequest;
-import com.smnas.backend.dto.user.UserResponse;
 import com.smnas.backend.entity.User;
 import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.UserAlreadyExistException;
@@ -12,7 +11,6 @@ import com.smnas.backend.repository.TeacherRepository;
 import com.smnas.backend.repository.UserRepository;
 import com.smnas.backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +20,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor

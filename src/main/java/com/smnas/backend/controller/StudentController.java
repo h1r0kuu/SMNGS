@@ -1,6 +1,5 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.student.StudentGroupResponse;
 import com.smnas.backend.dto.student.StudentRequest;
 import com.smnas.backend.dto.student.StudentResponse;
 import com.smnas.backend.dto.student.StudentUpdateRequest;
@@ -13,11 +12,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/students")

@@ -1,13 +1,9 @@
 package com.smnas.backend.controller;
 
 import com.smnas.backend.dto.group.GroupResponse;
-import com.smnas.backend.dto.student.StudentRequest;
-import com.smnas.backend.dto.student.StudentResponse;
-import com.smnas.backend.dto.student.StudentUpdateRequest;
 import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.teacher.TeacherResponse;
 import com.smnas.backend.exception.UserAlreadyExistException;
-import com.smnas.backend.mapper.StudentMapper;
 import com.smnas.backend.mapper.TeacherMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/teachers")

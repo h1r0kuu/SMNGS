@@ -2,9 +2,7 @@ package com.smnas.backend.mapper;
 
 import com.smnas.backend.dto.grade.GradeRequest;
 import com.smnas.backend.dto.grade.GradeResponse;
-import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.entity.Grade;
-import com.smnas.backend.entity.Student;
 import com.smnas.backend.service.GradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

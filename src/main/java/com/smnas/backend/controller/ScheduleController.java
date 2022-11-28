@@ -1,6 +1,5 @@
 package com.smnas.backend.controller;
 
-import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.schedule.ScheduleRequest;
 import com.smnas.backend.dto.schedule.ScheduleResponse;
 import com.smnas.backend.mapper.ScheduleMapper;

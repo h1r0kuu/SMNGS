@@ -1,6 +1,5 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.schedule.ScheduleRequest;
 import com.smnas.backend.dto.schedule.ScheduleResponse;
 import com.smnas.backend.entity.Group;
@@ -15,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

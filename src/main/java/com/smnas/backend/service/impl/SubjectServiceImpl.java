@@ -2,7 +2,6 @@ package com.smnas.backend.service.impl;
 
 import com.smnas.backend.entity.Subject;
 import com.smnas.backend.entity.Teacher;
-import com.smnas.backend.entity.User;
 import com.smnas.backend.enums.UserRole;
 import com.smnas.backend.exception.BadRoleException;
 import com.smnas.backend.repository.SubjectRepository;

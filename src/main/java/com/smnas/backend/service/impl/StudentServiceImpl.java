@@ -1,7 +1,6 @@
 package com.smnas.backend.service.impl;
 
 import com.smnas.backend.entity.Student;
-import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.repository.StudentRepository;
 import com.smnas.backend.service.StudentService;
 import com.smnas.backend.service.UserService;

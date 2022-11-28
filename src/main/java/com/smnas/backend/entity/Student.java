@@ -3,12 +3,9 @@ package com.smnas.backend.entity;
 import com.smnas.backend.enums.StudentStatus;
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity

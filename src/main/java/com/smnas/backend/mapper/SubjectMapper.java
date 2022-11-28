@@ -1,9 +1,7 @@
 package com.smnas.backend.mapper;
 
-import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.subject.SubjectRequest;
 import com.smnas.backend.dto.teacher.TeacherRequest;
-import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.entity.*;
 import com.smnas.backend.service.SubjectService;

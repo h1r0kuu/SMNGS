@@ -1,14 +1,8 @@
 package com.smnas.backend.mapper;
 
 import com.smnas.backend.dto.group.GroupResponse;
-import com.smnas.backend.dto.student.StudentRequest;
-import com.smnas.backend.dto.student.StudentResponse;
-import com.smnas.backend.dto.student.StudentUpdateRequest;
-import com.smnas.backend.dto.subject.SubjectResponse;
 import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.teacher.TeacherResponse;
-import com.smnas.backend.entity.Student;
-import com.smnas.backend.entity.Subject;
 import com.smnas.backend.entity.Teacher;
 import com.smnas.backend.exception.UserAlreadyExistException;
 import com.smnas.backend.service.TeacherService;

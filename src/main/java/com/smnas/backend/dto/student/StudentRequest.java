@@ -1,7 +1,5 @@
 package com.smnas.backend.dto.student;
 
-import com.smnas.backend.dto.group.GroupRequest;
-import com.smnas.backend.dto.group.GroupResponse;
 import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.enums.StudentStatus;
 import lombok.Data;

@@ -1,8 +1,6 @@
 package com.smnas.backend.exception;
 
 import com.smnas.backend.dto.error.ErrorModel;
-import com.smnas.backend.dto.error.ErrorResponse;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

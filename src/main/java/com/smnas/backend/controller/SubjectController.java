@@ -4,9 +4,7 @@ import com.smnas.backend.dto.subject.SubjectRequest;
 import com.smnas.backend.dto.teacher.TeacherRequest;
 import com.smnas.backend.dto.teachersubject.TeacherSubjectRequest;
 import com.smnas.backend.dto.teachersubject.TeacherSubjectResponse;
-import com.smnas.backend.dto.user.UserRequest;
 import com.smnas.backend.dto.subject.SubjectResponse;
-import com.smnas.backend.entity.TeacherSubject;
 import com.smnas.backend.mapper.SubjectMapper;
 import com.smnas.backend.mapper.TeacherSubjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/subjects")

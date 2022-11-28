@@ -1,6 +1,5 @@
 package com.smnas.backend.dto.group;
 
-import com.smnas.backend.dto.groupsubject.GroupSubjectResponse;
 import com.smnas.backend.dto.teachersubject.TeacherSubjectResponse;
 import lombok.Getter;
 import lombok.Setter;
