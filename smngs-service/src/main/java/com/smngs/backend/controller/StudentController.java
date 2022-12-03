@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/v1/students")
+@RequestMapping("/students")
 @RequiredArgsConstructor
 public class StudentController {
 

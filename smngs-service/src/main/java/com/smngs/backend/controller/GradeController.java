@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/grades")
+@RequestMapping("/grades")
 @RequiredArgsConstructor
 public class GradeController {
 
