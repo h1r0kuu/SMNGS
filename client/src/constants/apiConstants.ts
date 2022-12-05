@@ -1,7 +1,7 @@
 import {UserRole} from "../enums/userRole";
 
 export const HOST = "http://localhost:8080";
-export const API_URL = HOST + "/api/v1/";
+export const API_URL = HOST + "/api/v1/smngs/";
 
 export const API_USERS = API_URL + "users"
 export const API_USER = (username: string | undefined) => API_USERS + `/${username}`
