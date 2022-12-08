@@ -15,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,20 +29,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
-    private final TeacherRepository teacherRepository;
-    private final StudentRepository studentRepository;
-
-
-    @PersistenceContext
-    private final EntityManager entityManager;
-    private final BasicMapper mapper;
-
 
     @Override
     public Map<String, Object> login(String username, String password) {
         System.out.println(username + " " + password);
         User user = userRepository.findByUsername(username);
-
+        if(user == null) {
+            throw new NotFoundException("Error");
+        }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         String token = jwtProvider.createToken(user.getUsername(), user.getRole().name());
         return new HashMap<String, Object>(){{
@@ -59,6 +54,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setUsername(registrationRequest.getUsername());
         user.setPassword(new BCryptPasswordEncoder().encode(registrationRequest.getPassword()));
         user.setRole(UserRole.ADMIN);
-        return (User) userRepository.save(user);
+        return userRepository.save(user);
     }
 }
