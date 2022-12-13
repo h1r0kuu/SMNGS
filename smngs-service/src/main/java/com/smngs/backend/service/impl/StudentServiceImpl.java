@@ -1,5 +1,6 @@
 package com.smngs.backend.service.impl;
 
+import com.smngs.backend.dto.file.FileResponse;
 import com.smngs.backend.entity.Student;
 import com.smngs.backend.repository.StudentRepository;
 import com.smngs.backend.service.StudentService;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,6 +24,10 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     private final UserService userService;
+    private final WebClient.Builder webClientBuilder;
+
+    @Value("${file.service}")
+    private String fileServiceUrl;
 
     @Value("${user.image.upload.path}")
     private String fileUploadPath;
@@ -37,8 +43,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student create(Student student, MultipartFile profilePicture) throws IOException {
         if(profilePicture != null) {
-            FileUpload.upload(fileUploadPath, profilePicture.getOriginalFilename(), profilePicture);
-            student.setProfilePicture(host + "img/" + profilePicture.getOriginalFilename());
+            FileResponse response = FileUpload.UploadFile(profilePicture, fileServiceUrl + "/user",webClientBuilder);
+            student.setProfilePicture(response.getUrl());
         }
         return userService.create(student);
     }
