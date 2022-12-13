@@ -21,6 +21,7 @@
         <module>smngs-service</module>
         <module>discovery-server</module>
         <module>api-gateway</module>
+        <module>file-service</module>
     </modules>
 
     <properties>
