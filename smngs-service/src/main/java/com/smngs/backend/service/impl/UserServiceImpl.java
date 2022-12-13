@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @PersistenceContext
     private final EntityManager entityManager;
 
-
     @Override
     @Transactional
     public <T extends User> T create(T user) throws UserAlreadyExistException {
