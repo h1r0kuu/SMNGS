@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -15,16 +13,13 @@ target/
 .springBeans
 .sts4-cache
 
->>>>>>> d78cc2c6cbaf5c5478f0af11e6edbafd2138b002
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 
-<<<<<<< HEAD
 META-INF
-=======
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -39,5 +34,5 @@ build/
 .vscode/
 
 ### Images ###
-users/
->>>>>>> d78cc2c6cbaf5c5478f0af11e6edbafd2138b002
+users/**
+books/**
