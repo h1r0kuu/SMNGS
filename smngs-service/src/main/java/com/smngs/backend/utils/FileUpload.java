@@ -1,35 +1,25 @@
 package com.smngs.backend.utils;
 
-import lombok.extern.slf4j.Slf4j;
+import com.smngs.backend.dto.file.FileResponse;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-
-@Slf4j
 public class FileUpload {
 
-    public static String upload(String uploadDir,
-                                String fileName,
-                                MultipartFile image) throws IOException {
-        Path uploadPath = Paths.get(uploadDir);
-        Path filePath = null;
-
-        if(!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        try (InputStream inputStream = image.getInputStream()) {
-            filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch(IOException exception) {
-            log.error(exception.getMessage());
-        }
-        assert filePath != null;
-        return filePath.toString().replace("\\","/");
+    public static FileResponse UploadFile(MultipartFile file,
+                                          String uri,
+                                          WebClient.Builder webClientBuilder) {
+        MultipartBodyBuilder builder = new MultipartBodyBuilder();
+        builder.part("file", file.getResource());
+        return webClientBuilder.build().post()
+                .uri(uri)
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(BodyInserters.fromMultipartData(builder.build()))
+                .retrieve()
+                .bodyToMono(FileResponse.class)
+                .block();
     }
 }
