@@ -4,21 +4,17 @@ import com.smngs.backend.dto.auth.RegistrationRequest;
 import com.smngs.backend.entity.User;
 import com.smngs.backend.enums.UserRole;
 import com.smngs.backend.exception.UserAlreadyExistException;
-import com.smngs.backend.mapper.BasicMapper;
 import com.smngs.backend.provider.JwtProvider;
-import com.smngs.backend.repository.StudentRepository;
-import com.smngs.backend.repository.TeacherRepository;
 import com.smngs.backend.repository.UserRepository;
 import com.smngs.backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +25,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder;
 
     @Override
     public Map<String, Object> login(String username, String password) {
@@ -36,6 +33,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByUsername(username);
         if(user == null) {
             throw new NotFoundException("Error");
+        }
+        if(!encoder.matches(password, user.getPassword())) {
+            throw new BadCredentialsException("Incorrect password");
         }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         String token = jwtProvider.createToken(user.getUsername(), user.getRole().name());

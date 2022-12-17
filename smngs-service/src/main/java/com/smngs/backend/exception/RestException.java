@@ -4,6 +4,7 @@ import com.smngs.backend.dto.error.ErrorModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -43,6 +44,11 @@ public class RestException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(TeacherSubjectAlreadyExistException.class)
     public ResponseEntity<Map<String, Object>> teacherSubjectAlreadyExistException(TeacherSubjectAlreadyExistException exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(buildResponse(HttpStatus.CONFLICT, exception.getMessage()));
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Map<String, Object>> badCredentialsException(BadCredentialsException exception) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(buildResponse(HttpStatus.FORBIDDEN, exception.getMessage()));
     }
 
     private ResponseEntity<Object> exceptionWithBinding(BindException ex,
