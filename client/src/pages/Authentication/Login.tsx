@@ -13,7 +13,7 @@ import {axios} from "../../config/axios";
 
 const Login = (): ReactElement => {
     const user = useCurrentUser();
-    const {control, register, handleSubmit, formState: {errors}} = useForm<AuthLogin>()
+    const {control, register, handleSubmit, setError, formState: {errors}} = useForm<AuthLogin>()
 
     const onSubmit = async (formData: AuthLogin) => {
         try {
@@ -22,8 +22,9 @@ const Login = (): ReactElement => {
             axios.defaults.headers.common['Authorization'] = data.token;
             await user.fetchUser()
             window.location.href = "/dashboard"
-        } catch (e) {
-            console.log(e)
+        } catch (e: any) {
+            const error = e?.response.data.error
+            setError("password", {type: "server", message: error})
         }
     }
 
