@@ -12,9 +12,7 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
 
-
     const {onLogout, currentUser} = useCurrentUser()
-
     const [dropdownShow, setDropdownShow] = useState(false)
     const [notificationsShow, setNotificationsShow] = useState(false)
 
@@ -105,7 +103,7 @@ const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
                                             <div className="media">
                                         <span className="avatar avatar-sm">
                                         <img className="avatar-img rounded-circle" alt="User Image"
-                                             src="assets/img/profiles/avatar-17.jpg" />
+                                             src={currentUser.profilePicture} />
                                         </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">John Hendry</span> sent a
@@ -119,8 +117,7 @@ const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
                                         <a href="#">
                                             <div className="media">
                                         <span className="avatar avatar-sm">
-                                        <img className="avatar-img rounded-circle" alt="User Image"
-                                             src="assets/img/profiles/avatar-13.jpg" />
+                                        <img className="avatar-img rounded-circle" alt="User Image" src={currentUser.profilePicture} />
                                         </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Mercury Software Inc</span> added a
@@ -140,8 +137,7 @@ const Header: FC<HeaderProps> = ({openMobileNav}) : ReactElement => {
                 </li>
                 <li className="nav-item dropdown has-arrow" onClick={toggleDropdown}>
                     <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                <span className="user-img"><img className="rounded-circle" src={currentUser.profilePicture}
-                                                width="31" alt={currentUser.username} /></span>
+                <span className="user-img"><img className="rounded-circle" src={currentUser.profilePicture} width="31" alt={currentUser.username} /></span>
                     </a>
                     <div className={`dropdown-menu ${dropdownShow ? "show" : ""}`}>
                         <div className="user-header">
