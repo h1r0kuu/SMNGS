@@ -1,12 +1,12 @@
 import {useCallback, useEffect, useState} from "react";
 
 import {SubjectService} from "../../services/subjectService"
-import {PaginationProps} from "../../types/pagination";
+import {PaginationProps, PaginationPropsDefault} from "../../types/pagination";
 import {SubjectResponse} from "../../types/subject";
 
 export const useFetchSubjects = () => {
     const [subjects, setSubjects] = useState<SubjectResponse[]>([])
-    const [pagination, setPagination] = useState<PaginationProps>()
+    const [pagination, setPagination] = useState<PaginationProps>(PaginationPropsDefault)
     const [isLoading, setLoading] = useState(false)
 
     const fetchSubjects = useCallback(

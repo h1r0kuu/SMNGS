@@ -2,11 +2,11 @@ import {useCallback, useEffect, useState} from "react";
 import {GroupResponse} from "../../types/group";
 
 import {GroupService} from "../../services/groupService"
-import {PaginationProps} from "../../types/pagination";
+import {PaginationProps, PaginationPropsDefault} from "../../types/pagination";
 
 export const useFetchGroups = () => {
     const [groups, setGroups] = useState<GroupResponse[]>([])
-    const [pagination, setPagination] = useState<PaginationProps>()
+    const [pagination, setPagination] = useState<PaginationProps>(PaginationPropsDefault)
     const [isLoading, setLoading] = useState(false)
 
     const fetchGroups = useCallback(

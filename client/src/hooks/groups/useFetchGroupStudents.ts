@@ -2,11 +2,11 @@ import {useCallback, useEffect, useState} from "react";
 import {StudentResponse} from "../../types/student";
 
 import {GroupService} from "../../services/groupService"
-import {PaginationProps} from "../../types/pagination";
+import {PaginationProps, PaginationPropsDefault} from "../../types/pagination";
 
 export const useFetchGroupStudents = (groupId: number) => {
-    const [students, setStudents] = useState<StudentResponse[]>()
-    const [pagination, setPagination] = useState<PaginationProps>()
+    const [students, setStudents] = useState<StudentResponse[]>([])
+    const [pagination, setPagination] = useState<PaginationProps>(PaginationPropsDefault)
     const [isLoading, setLoading] = useState(false)
 
     const fetchGroupStudents = useCallback(

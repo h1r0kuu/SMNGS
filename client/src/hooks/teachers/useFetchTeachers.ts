@@ -2,11 +2,11 @@ import {useCallback, useEffect, useState} from "react";
 import {TeacherResponse} from "../../types/teacher";
 
 import {TeacherService} from "../../services/teacherService"
-import {PaginationProps} from "../../types/pagination";
+import {PaginationProps, PaginationPropsDefault} from "../../types/pagination";
 
 export const useFetchTeachers = () => {
     const [teachers, setTeachers] = useState<TeacherResponse[]>([])
-    const [pagination, setPagination] = useState<PaginationProps>()
+    const [pagination, setPagination] = useState<PaginationProps>(PaginationPropsDefault)
     const [isLoading, setLoading] = useState(false)
 
     const fetchAllTeachers = useCallback(
