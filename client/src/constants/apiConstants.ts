@@ -27,10 +27,11 @@ export const API_SCHEDULES_ONE = (scheduleId: number) => API_SCHEDULES + `/${sch
 
 export const API_GROUPS = API_URL + "groups"
 export const API_GROUPS_ONE = (groupId: number) => API_GROUPS + `/${groupId}`
-export const API_GROUPS_STUDENTS = (groupId: number) => API_GROUPS + `/${groupId}/students`
-export const API_GROUPS_SCHEDULE = (groupId: number) => API_GROUPS + `/${groupId}/schedule`
+export const API_GROUP_STUDENTS = (groupId: number) => API_GROUPS + `/${groupId}/students`
+export const API_GROUP_SUBJECTS = (groupId: number) => API_GROUPS + `/${groupId}/subjects`
+export const API_GROUP_TEACHERS = (groupId: number) => API_GROUPS + `/${groupId}/teachers`
+export const API_GROUP_SCHEDULES = (groupId: number) => API_GROUPS + `/${groupId}/schedule`
 
-export const API_GROUP_SUBJECTS = API_GROUPS + "/group-subject"
 
 
 export const API_GROUPS_ADD_STUDENT = (groupId: number) => API_GROUPS + `/${groupId}/add-student`
