@@ -5,14 +5,14 @@ import {
     API_GROUP_SUBJECTS,
     API_GROUPS, API_GROUPS_ADD_STUDENT, API_GROUPS_ADD_SUBJECT, API_GROUPS_ADD_TEACHER,
     API_GROUPS_ONE, API_GROUPS_REMOVE_STUDENT, API_GROUPS_REMOVE_SUBJECT, API_GROUPS_REMOVE_TEACHER,
-    API_GROUPS_SCHEDULE,
-    API_GROUPS_STUDENTS,
-    API_SUBJECTS
+    API_GROUP_SCHEDULES,
+    API_GROUP_STUDENTS, API_GROUP_TEACHERS,
 } from "../constants/apiConstants";
 import {GroupRequest, GroupResponse, GroupSubjectRequest} from "../types/group";
 import {ResponseWithPagination} from "../types/pagination";
 import {StudentResponse} from "../types/student";
 import {ScheduleResponse} from "../types/schedule";
+import {TeacherResponse} from "../types/teacher";
 
 export const GroupService = {
     async create(data: GroupRequest): Promise<AxiosResponse<GroupResponse>> {
@@ -32,11 +32,19 @@ export const GroupService = {
     },
 
     async getStudents(groupId: number): Promise<AxiosResponse<ResponseWithPagination<StudentResponse>>> {
-        return await axios.get<ResponseWithPagination<StudentResponse>>(API_GROUPS_STUDENTS(groupId))
+        return await axios.get<ResponseWithPagination<StudentResponse>>(API_GROUP_STUDENTS(groupId))
+    },
+
+    async getSubjects(groupId: number): Promise<AxiosResponse<ResponseWithPagination<SubjectResponse>>> {
+        return await axios.get<ResponseWithPagination<SubjectResponse>>(API_GROUP_SUBJECTS(groupId))
+    },
+
+    async getTeachers(groupId: number): Promise<AxiosResponse<ResponseWithPagination<TeacherResponse>>> {
+        return await axios.get<ResponseWithPagination<TeacherResponse>>(API_GROUP_TEACHERS(groupId))
     },
 
     async getSchedule(groupId: number): Promise<AxiosResponse<ScheduleResponse[]>> {
-        const res = await axios.get<ScheduleResponse[]>(API_GROUPS_SCHEDULE(groupId))
+        const res = await axios.get<ScheduleResponse[]>(API_GROUP_SCHEDULES(groupId))
         res.data.forEach(schedule => {
             schedule.timeStart = new Date(schedule.timeStart)
             schedule.timeEnd = new Date(schedule.timeEnd)
@@ -44,9 +52,11 @@ export const GroupService = {
         return res
     },
 
-    async createGroupSubject(data: GroupSubjectRequest): Promise<AxiosResponse<TeacherSubjectResponse>> {
-      return await axios.post<TeacherSubjectResponse>(API_GROUP_SUBJECTS, data)
+    async createGroupSubject(data: GroupSubjectRequest){
+      // return await axios.post<TeacherSubjectResponse>(API_GROUP_SUBJECTS, data)
+        return ''
     },
+
 
     async addStudent(groupId: number, studentId: number): Promise<AxiosResponse<GroupResponse>> {
         return await axios.patch<GroupResponse>(API_GROUPS_ADD_STUDENT(groupId), {studentId: studentId})
