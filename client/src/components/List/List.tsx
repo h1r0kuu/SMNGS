@@ -1,4 +1,4 @@
-import {Children, FC, ReactElement} from "react";
+import {Children, FC, ReactElement, RefObject} from "react";
 import {Card, Col, Row, Table} from "react-bootstrap";
 import Pagination from "../Pagination/Pagination";
 import {PaginationProps} from "../../types/pagination";
@@ -8,11 +8,12 @@ import {PaginationProps} from "../../types/pagination";
 interface ListProps {
     children: ReactElement[] | ReactElement
     isLoading?: boolean,
-    pagination?: PaginationProps
+    pagination?: PaginationProps,
+    reference?: any
 }
 
-const List: FC<ListProps> = ({ children, isLoading, pagination }): ReactElement => {
-    let tableBody: ReactElement = <></>, headers: ReactElement[] = [], trs: ReactElement[] = [];
+const List: FC<ListProps> = ({ children, isLoading, pagination , reference}): ReactElement => {
+    let tableBody: ReactElement = <></>, headers: ReactElement[] = [], trs: ReactElement[] = [], bodyElems: ReactElement[] = [];
 
     Children.forEach(children, child => {
         if(child !== null) {
@@ -26,10 +27,10 @@ const List: FC<ListProps> = ({ children, isLoading, pagination }): ReactElement 
 
             if(child.type === TableBody) {
                 return tableBody = child
-
             }
         }
     })
+
     return (
         <>
         {isLoading
@@ -59,7 +60,7 @@ const List: FC<ListProps> = ({ children, isLoading, pagination }): ReactElement 
                                     </Row>
                                     <Row>
                                         <Col sm={12}>
-                                            <Table hover responsive className="table-center mb-0 datatable dataTable no-footer">
+                                            <Table hover responsive className="table-center mb-0 datatable dataTable no-footer" ref={reference}>
                                                 <thead>
                                                     <tr role={"row"}>
                                                         {headers.map(header => (
@@ -71,7 +72,7 @@ const List: FC<ListProps> = ({ children, isLoading, pagination }): ReactElement 
                                             </Table>
                                         </Col>
                                     </Row>
-                                    {pagination &&
+                                    {(pagination && pagination.totalElements >= 1) &&
                                         <Pagination pagination={pagination} />
                                     }
                                 </Col>
@@ -95,7 +96,7 @@ interface TableBodyProps {
     children: ReactElement[] | ReactElement
 }
 export const TableBody: FC<TableBodyProps> = ({ children }): ReactElement => {
-    return <tbody>{Children.count(children) > 0 ? children : <>Empty</>}</tbody>
+    return <tbody>{children}</tbody>
 }
 export const ListBodyTr = ({ children}): ReactElement => {
     return <tr>{children}</tr>

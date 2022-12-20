@@ -9,9 +9,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SubmenuElem from "./SubmenuElem/SubmenuElem";
 import {
-    CONVERSATION,
+    CONVERSATION, GROUPS,
     HOME, LIBRARY, MEDIA, ROUTINE,
-    STUDENT,TEACHER,
+    STUDENT, TEACHER,
 } from "../../constants/pathConstants";
 import SingleElem from "./SingleElem/SingleElem";
 import React, {useState} from "react";
@@ -22,8 +22,8 @@ const TeacherSidebar = () => {
         <SidebarMenu>
             <SidebarMenuTitle title={"Main Menu"}/>
             <SingleElem title={"Dashboard"} href={HOME} icon={faLaptop}/>
-            <SingleElem title={"Student"} href={STUDENT} icon={faUserGraduate}/>
-            <SingleElem title={"Teacher"} href={TEACHER} icon={faChalkboardTeacher}/>
+            {/*<SingleElem title={"Student"} href={STUDENT} icon={faUserGraduate}/>*/}
+            <SingleElem title={"Groups"} href={GROUPS} icon={faChalkboardTeacher}/>
 
             <Submenu title={"Academic"}
                      icon={faSchool}
