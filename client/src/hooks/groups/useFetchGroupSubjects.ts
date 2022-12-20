@@ -1,17 +1,22 @@
 import {useCallback, useEffect, useState} from "react";
 import {GroupService} from "../../services/groupService"
 import {GroupSubjectResponse} from "../../types/group";
+import {PaginationProps, PaginationPropsDefault} from "../../types/pagination";
+import {SubjectResponse} from "../../types/subject";
 
 export const useFetchGroupSubjects = (groupId: number) => {
-    const [subjects, setSubjects] = useState<GroupSubjectResponse[]>([])
+    const [subjects, setSubjects] = useState<SubjectResponse[]>([])
+    const [pagination, setPagination] = useState<PaginationProps>(PaginationPropsDefault)
     const [isLoading, setLoading] = useState(false)
 
     const fetchGroupSubjects = useCallback(
         async () => {
             setLoading(true)
             try {
-                const {data} = await GroupService.findOne(groupId)
-                setSubjects(data.groupSubjects);
+                const {data} = await GroupService.getSubjects(groupId)
+                const { content, ...pagination } = data
+                setSubjects(content);
+                setPagination(pagination)
             } catch (e) {
 
             }
@@ -23,5 +28,5 @@ export const useFetchGroupSubjects = (groupId: number) => {
         fetchGroupSubjects().catch()
     }, [fetchGroupSubjects])
 
-    return {subjects, fetchGroupSubjects, isLoading}
+    return {subjects, fetchGroupSubjects, pagination, isLoading}
 }
