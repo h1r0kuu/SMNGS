@@ -1,14 +1,11 @@
 import {Route, Routes} from "react-router-dom";
 import {
-    ADD_EXPENSE,
-    ADD_FEES, ADD_SALARY,
     ADMIN_DASHBOARD, CALENDAR,
-    EVENTS, EXAM_LIST, EXPENSES, FEES, FEES_COLLECTION,
-    FORGOT_PASSWORD, GROUP_ADD, GROUP_EDIT, GROUP_LIST, GROUP_VIEW, HOLIDAY,
-    HOME, HOSTEL, LIBRARY,
+    FORGOT_PASSWORD, GROUPS_ADD, GROUP_EDIT, GROUP_LIST, GROUP_VIEW, HOLIDAY,
+    HOME,
     LOGIN,
     MY_PROFILE,
-    REGISTRATION, SALARY, SCHEDULES_ADD, SCHEDULES_EDIT, SCHEDULES_LIST, SPORT,
+    REGISTRATION, SCHEDULES_ADD, SCHEDULES_EDIT, SCHEDULES_LIST, SPORT,
     STUDENT_DASHBOARD,
     STUDENTS_ADD,
     STUDENTS_EDIT,
@@ -20,7 +17,7 @@ import {
     TEACHERS_ADD,
     TEACHERS_EDIT,
     TEACHERS_LIST,
-    TEACHERS_VIEW, TIME_TABLE, TRANSPORT
+    TEACHERS_VIEW, BOOKS_LIST, BOOKS_ADD
 } from "../../constants/pathConstants";
 import StudentDashboard from "../../pages/Student/StudentDashboard/StudentDashboard";
 import Login from "../../pages/Authentication/Login";
@@ -29,7 +26,7 @@ import ForgotPassword from "../../pages/Authentication/ForgotPassword";
 import ProfilePage from "../../pages/Global/ProfilePage/ProfilePage";
 import AdminDashboard from "../../pages/Admin/AdminDashboard/AdminDashboard";
 import TeacherDashboard from "../../pages/Teacher/TeacherDashboard/TeacherDashboard";
-import StudentList from "../../pages/Student/StudentList/StudentList";
+import AdminStudentList from "../../pages/Admin/List/AdminStudentList/AdminStudentList";
 import UserView from "../../pages/Global/UserView";
 import Calendar from "../../pages/Global/Calendar/Calendar";
 import React from "react";
@@ -40,12 +37,14 @@ import EditTeacher from "../../pages/Teacher/EditTeacher/EditTeacher";
 import AddTeacher from "../../pages/Teacher/AddTeacher/AddTeacher";
 import AddStudent from "../../pages/Student/AddStudent/AddStudent";
 import AddGroup from "../../pages/Group/AddGroup/AddGroup";
-import TeacherList from "../../pages/Teacher/TeacherList/TeacherList";
 import TeacherView from "../../pages/Teacher/TeacherView/TeacherView";
-import GroupList from "../../pages/Admin/List/GroupList";
 import GroupView from "../../pages/Group/GroupView/GroupView";
 import EditGroup from "../../pages/Group/EditGroup/EditGroup";
 import AddSchedule from "../../pages/Schedule/AddSchedule/AddSchedule";
+import AdminSubjectList from "../../pages/Admin/List/AdminSubjectList/AdminSubjectList";
+import AdminGroupList from "../../pages/Admin/List/AdminGroupList/AdminGroupList";
+import AdminTeacherList from "../../pages/Admin/List/AdminTeacherList/AdminTeacherList";
+import NotFound from "../../components/NotFound/NotFound";
 
 const AdminView = () => {
     return (
@@ -62,47 +61,36 @@ const AdminView = () => {
             <Route path={TEACHER_DASHBOARD} element={<TeacherDashboard />} />
             <Route path={STUDENT_DASHBOARD} element={<StudentDashboard />} />
 
-            <Route path={STUDENTS_LIST} element={<StudentList />} />
+            <Route path={STUDENTS_LIST} element={<AdminStudentList />} />
             <Route path={STUDENTS_VIEW} element={<UserView />} />
             <Route path={STUDENTS_ADD} element={<AddStudent />} />
             <Route path={STUDENTS_EDIT} element={<EditStudent />} />
 
-            <Route path={TEACHERS_LIST} element={<TeacherList />} />
+            <Route path={TEACHERS_LIST} element={<AdminTeacherList />} />
             <Route path={TEACHERS_VIEW} element={<TeacherView />} />
             <Route path={TEACHERS_ADD} element={<AddTeacher />} />
             <Route path={TEACHERS_EDIT} element={<EditTeacher />} />
 
-            <Route path={GROUP_LIST} element={<GroupList />} />
+            <Route path={GROUP_LIST} element={<AdminGroupList />} />
             <Route path={GROUP_VIEW} element={<GroupView />} />
             <Route path={GROUP_EDIT} element={<EditGroup />} />
-            <Route path={GROUP_ADD} element={<AddGroup />} />
+            <Route path={GROUPS_ADD} element={<AddGroup />} />
 
-            <Route path={SUBJECTS_LIST} element={<StudentList />} />
+            <Route path={SUBJECTS_LIST} element={<AdminSubjectList />} />
             <Route path={SUBJECTS_ADD} element={<AddSubject />} />
             <Route path={SUBJECTS_EDIT} element={<EditSubject />} />
 
-            <Route path={SCHEDULES_LIST} element={<StudentList />} />
+            <Route path={SCHEDULES_LIST} element={<AdminStudentList />} />
             <Route path={SCHEDULES_ADD} element={<AddSchedule />} />
             <Route path={SCHEDULES_EDIT} element={<EditSubject />} />
 
-            <Route path={FEES_COLLECTION} element={<StudentList />} />
-            <Route path={EXPENSES} element={<StudentList />} />
-            <Route path={SALARY} element={<StudentList />} />
-            <Route path={ADD_FEES} element={<StudentList />} />
-            <Route path={ADD_EXPENSE} element={<StudentList />} />
-            <Route path={ADD_SALARY} element={<StudentList />} />
+            <Route path={BOOKS_LIST} element={<AdminStudentList />} />
+            <Route path={BOOKS_ADD} element={<AddSchedule />} />
 
-            <Route path={HOLIDAY} element={<StudentList />} />
-            <Route path={FEES} element={<StudentList />} />
-            <Route path={EXAM_LIST} element={<StudentList />} />
-            <Route path={EVENTS} element={<Calendar />} />
-            <Route path={TIME_TABLE} element={<Calendar />} />
-            <Route path={LIBRARY} element={<StudentList />} />
-            <Route path={SPORT} element={<StudentList />} />
-            <Route path={HOSTEL} element={<StudentList />} />
-            <Route path={TRANSPORT} element={<StudentList />} />
 
             <Route path={CALENDAR} element={<Calendar />} />
+
+            <Route path={"*"} element={<NotFound />} />
         </Routes>
     )
 }

@@ -3,6 +3,7 @@ import {HOME, LOGIN, REGISTRATION} from "../../constants/pathConstants";
 import React from "react";
 import Login from "../../pages/Authentication/Login";
 import Register from "../../pages/Authentication/Register";
+import NotFound from "../../components/NotFound/NotFound";
 
 const UnauthorizedView = () => {
     return (
@@ -11,6 +12,8 @@ const UnauthorizedView = () => {
             <Route path={"/"} element={<Login />} />
             <Route path={LOGIN} element={<Login />} />
             <Route path={REGISTRATION} element={<Register />} />
+
+            <Route path={"*"} element={<NotFound />} />
         </Routes>
     )
 }
