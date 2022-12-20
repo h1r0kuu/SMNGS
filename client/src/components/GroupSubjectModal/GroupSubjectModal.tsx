@@ -3,7 +3,7 @@ import {Autocomplete, Box, Modal, TextField} from "@mui/material";
 import {Button, Col, FormGroup, FormLabel} from "react-bootstrap";
 import AddOrEdit from "../AddOrEdit/AddOrEdit";
 import {useFetchSubjects} from "../../hooks/subjects/useFetchSubjects";
-import {useFetchTeachers} from "../../hooks/users/useFetchTeachers";
+import {useFetchTeachers} from "../../hooks/teachers/useFetchTeachers";
 import {useForm} from "react-hook-form";
 
 import {SubjectService} from "../../services/subjectService"

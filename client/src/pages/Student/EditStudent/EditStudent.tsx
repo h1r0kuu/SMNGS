@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import AddOrEdit from "../../../components/AddOrEdit/AddOrEdit";
 import {useParams} from "react-router-dom";
-import {useFetchSingleStudent} from "../../../hooks/users/useFetchSingleStudent";
+import {useFetchSingleStudent} from "../../../hooks/students/useFetchSingleStudent";
 import FormGroupController from "../../../components/Form/FormGroup/FormGroupController";
 import {useForm} from "react-hook-form";
 import {StudentEditRequest} from "../../../types/student";

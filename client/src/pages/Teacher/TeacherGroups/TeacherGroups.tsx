@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {MakeUrl} from "../../../utils/makeUrl";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons/faTrash";
-import {useFetchTeacherGroups} from "../../../hooks/users/useFetchTeacherGroups";
+import {useFetchTeacherGroups} from "../../../hooks/teachers/useFetchTeacherGroups";
 
 const TeacherGroups = () => {
 
@@ -39,9 +39,6 @@ const TeacherGroups = () => {
                             <BodyElem>{group.groupTerm}</BodyElem>
                             <BodyElem className={"text-right"}>
                                 <div className="actions">
-                                    {/*<Link to={MakeUrl.editStudent(student.id)} className="btn btn-sm bg-success-light mr-2">*/}
-                                    {/*    <FontAwesomeIcon icon={faPen}/>*/}
-                                    {/*</Link>*/}
                                     <Link to={"#"} className="btn btn-sm bg-danger-light"
                                           >
                                         <FontAwesomeIcon icon={faTrash}/>

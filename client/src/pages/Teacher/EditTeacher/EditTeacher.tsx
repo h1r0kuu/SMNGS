@@ -7,7 +7,7 @@ import {useForm} from "react-hook-form";
 import {TeacherEditRequest} from "../../../types/teacher";
 
 import {TeacherService} from "../../../services/teacherService"
-import {useFetchSingleTeacher} from "../../../hooks/users/useFetchSingleTeacher";
+import {useFetchSingleTeacher} from "../../../hooks/teachers/useFetchSingleTeacher";
 import FormGroupController from "../../../components/Form/FormGroup/FormGroupController";
 import {UserGender} from "../../../enums/useGender";
 

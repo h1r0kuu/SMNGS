@@ -7,7 +7,7 @@ import {Controller, useForm} from "react-hook-form";
 
 import { SubjectService } from "../../../services/subjectService"
 import FormGroupController from "../../../components/Form/FormGroup/FormGroupController";
-import {useFetchTeachers} from "../../../hooks/users/useFetchTeachers";
+import {useFetchTeachers} from "../../../hooks/teachers/useFetchTeachers";
 import {Autocomplete, TextField} from "@mui/material";
 
 const AddSubject = (): ReactElement => {
