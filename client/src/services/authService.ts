@@ -2,7 +2,6 @@ import {AxiosResponse} from "axios";
 import {axios} from "../config/axios";
 import {AuthLogin, AuthResponse} from "../types/auth";
 import {API_AUTH_CHECK_TOKEN, API_AUTH_LOGIN} from "../constants/apiConstants";
-import {UserResponse} from "../types/user";
 
 export const AuthService = {
 
