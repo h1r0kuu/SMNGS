@@ -51,3 +51,9 @@ export const API_AUTH = API_URL + "auth"
 export const API_AUTH_REGISTRATION = API_AUTH + "/registration"
 export const API_AUTH_LOGIN = API_AUTH + "/login"
 export const API_AUTH_CHECK_TOKEN = (token: string | null) => API_AUTH + `/refresh?token=${token}`
+
+export const API_LIBRARY = HOST + "/api/v1/library"
+
+export const API_LIBRARY_BOOKS = API_LIBRARY + "/books"
+export const API_LIBRARY_CATEGORIES = API_LIBRARY + "/categories"
+export const API_LIBRARY_AUTHORS = API_LIBRARY + "/authors"
