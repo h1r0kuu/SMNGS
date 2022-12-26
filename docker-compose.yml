@@ -72,4 +72,7 @@ services:
       - ./library-service:/data/postgres
     ports:
       - "5431:5431"
+    command: -p 5431
+    expose:
+      - "5431"
     restart: always
