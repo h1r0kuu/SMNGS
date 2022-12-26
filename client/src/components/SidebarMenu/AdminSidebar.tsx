@@ -19,10 +19,11 @@ import {
     SUBJECTS_LIST,
     TEACHER_DASHBOARD,
     TEACHERS_ADD,
-    TEACHERS_LIST,
+    TEACHERS_LIST, BOOKS_LIST, BOOKS_ADD, CATEGORY_LIST, CATEGORY_ADD, AUTHORS_LIST, AUTHORS_ADD,
 } from "../../constants/pathConstants";
 import React, {useState} from "react";
 import {faClock} from "@fortawesome/free-solid-svg-icons/faClock";
+import {faBookOpen} from "@fortawesome/free-solid-svg-icons/faBookOpen";
 
 const AdminSidebar = () => {
     const [selectedDropdown, setSelectedDropdown] = useState(0)
@@ -78,6 +79,31 @@ const AdminSidebar = () => {
                      id={6}>
                 <SubmenuElem title={"Schedules List"} href={SCHEDULES_LIST} />
                 <SubmenuElem title={"Schedule Add"} href={SCHEDULES_ADD} />
+            </Submenu>
+            <SidebarMenuTitle title={"Library"}/>
+            <Submenu title={"Books"}
+                     icon={faBookOpen}
+                     setSelectedDropdown={setSelectedDropdown}
+                     selectedDropdown={selectedDropdown}
+                     id={7}>
+                <SubmenuElem title={"Book List"} href={BOOKS_LIST} />
+                <SubmenuElem title={"Book Add"} href={BOOKS_ADD} />
+            </Submenu>
+            <Submenu title={"Book categories"}
+                     icon={faBookOpen}
+                     setSelectedDropdown={setSelectedDropdown}
+                     selectedDropdown={selectedDropdown}
+                     id={8}>
+                <SubmenuElem title={"Category List"} href={CATEGORY_LIST} />
+                <SubmenuElem title={"Category Add"} href={CATEGORY_ADD} />
+            </Submenu>
+            <Submenu title={"Book authors"}
+                     icon={faBookOpen}
+                     setSelectedDropdown={setSelectedDropdown}
+                     selectedDropdown={selectedDropdown}
+                     id={9}>
+                <SubmenuElem title={"Author List"} href={AUTHORS_LIST} />
+                <SubmenuElem title={"Author Add"} href={AUTHORS_ADD} />
             </Submenu>
         </SidebarMenu>
     )

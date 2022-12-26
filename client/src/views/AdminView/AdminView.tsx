@@ -1,23 +1,40 @@
 import {Route, Routes} from "react-router-dom";
 import {
-    ADMIN_DASHBOARD, CALENDAR,
-    FORGOT_PASSWORD, GROUPS_ADD, GROUP_EDIT, GROUP_LIST, GROUP_VIEW, HOLIDAY,
-    HOME,
+    ADMIN_DASHBOARD,
+    CALENDAR,
+    FORGOT_PASSWORD,
+    GROUPS_ADD,
+    GROUP_EDIT,
+    GROUP_LIST,
+    GROUP_VIEW,
+    DASHBOARD,
     LOGIN,
     MY_PROFILE,
-    REGISTRATION, SCHEDULES_ADD, SCHEDULES_EDIT, SCHEDULES_LIST, SPORT,
+    REGISTRATION,
+    SCHEDULES_ADD,
+    SCHEDULES_EDIT,
+    SCHEDULES_LIST,
     STUDENT_DASHBOARD,
     STUDENTS_ADD,
     STUDENTS_EDIT,
     STUDENTS_LIST,
     STUDENTS_VIEW,
-    SUBJECTS_ADD, SUBJECTS_EDIT,
+    SUBJECTS_ADD,
+    SUBJECTS_EDIT,
     SUBJECTS_LIST,
     TEACHER_DASHBOARD,
     TEACHERS_ADD,
     TEACHERS_EDIT,
     TEACHERS_LIST,
-    TEACHERS_VIEW, BOOKS_LIST, BOOKS_ADD
+    TEACHERS_VIEW,
+    BOOKS_LIST,
+    BOOKS_ADD,
+    CATEGORY_LIST,
+    CATEGORY_ADD,
+    AUTHORS_LIST,
+    AUTHORS_ADD,
+    PUBLISHERS_LIST,
+    PUBLISHERS_ADD, HOME
 } from "../../constants/pathConstants";
 import StudentDashboard from "../../pages/Student/StudentDashboard/StudentDashboard";
 import Login from "../../pages/Authentication/Login";
@@ -45,10 +62,19 @@ import AdminSubjectList from "../../pages/Admin/List/AdminSubjectList/AdminSubje
 import AdminGroupList from "../../pages/Admin/List/AdminGroupList/AdminGroupList";
 import AdminTeacherList from "../../pages/Admin/List/AdminTeacherList/AdminTeacherList";
 import NotFound from "../../components/NotFound/NotFound";
+import AdminBookList from "../../pages/Admin/List/AdminLibraryLists/AdminBookList/AdminBookList";
+import AddBook from "../../pages/Library/Book/AddBook/AddBook";
+import AdminCategoryList from "../../pages/Admin/List/AdminLibraryLists/AdminCategoryList/AdminCategoryList";
+import AddCategory from "../../pages/Library/Category/AddCategory/AddCategory";
+import AdminAuthorList from "../../pages/Admin/List/AdminLibraryLists/AdminAuthorsList/AdminAuthorList";
+import AddAuthor from "../../pages/Library/Author/AddAuthor/AddAuthor";
+import AdminPublisherList from "../../pages/Admin/List/AdminLibraryLists/AdminPublisherList/AdminPublisherList";
+import AddPublisher from "../../pages/Library/Publisher/AddPublisher/AddPublisher";
 
 const AdminView = () => {
     return (
         <Routes>
+            <Route path={DASHBOARD} element={<AdminDashboard />} />
             <Route path={HOME} element={<AdminDashboard />} />
 
             <Route path={LOGIN} element={<Login />} />
@@ -84,9 +110,19 @@ const AdminView = () => {
             <Route path={SCHEDULES_ADD} element={<AddSchedule />} />
             <Route path={SCHEDULES_EDIT} element={<EditSubject />} />
 
-            <Route path={BOOKS_LIST} element={<AdminStudentList />} />
-            <Route path={BOOKS_ADD} element={<AddSchedule />} />
+            {/*Library*/}
 
+            <Route path={BOOKS_LIST} element={<AdminBookList />} />
+            <Route path={BOOKS_ADD} element={<AddBook />} />
+
+            <Route path={CATEGORY_LIST} element={<AdminCategoryList />} />
+            <Route path={CATEGORY_ADD} element={<AddCategory />} />
+
+            <Route path={AUTHORS_LIST} element={<AdminAuthorList />} />
+            <Route path={AUTHORS_ADD} element={<AddAuthor />} />
+
+            <Route path={PUBLISHERS_LIST} element={<AdminPublisherList />} />
+            <Route path={PUBLISHERS_ADD} element={<AddPublisher />} />
 
             <Route path={CALENDAR} element={<Calendar />} />
 
