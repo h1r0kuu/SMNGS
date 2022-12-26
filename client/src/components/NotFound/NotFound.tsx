@@ -1,5 +1,5 @@
 import {Button} from "react-bootstrap";
-import {HOME} from "../../constants/pathConstants";
+import {DASHBOARD} from "../../constants/pathConstants";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationTriangle} from "@fortawesome/free-solid-svg-icons/faExclamationTriangle";
 
@@ -13,7 +13,7 @@ const NotFound = () => {
                         <FontAwesomeIcon icon={faExclamationTriangle} /> Oops! Page not found!
                     </h3>
                     <p className="h4 font-weight-normal">The page you requested was not found.</p>
-                    <Button as={"a"} href={HOME}>Back to Home</Button>
+                    <Button as={"a"} href={DASHBOARD}>Back to Home</Button>
                 </div>
             </div>
         </div>

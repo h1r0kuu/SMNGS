@@ -1,10 +1,9 @@
 import {Route, Routes} from "react-router-dom";
 import {
-    CONVERSATION, GROUPS,
-    HOME,
+    GROUPS,
+    DASHBOARD,
     MEDIA, PROFILE,
-    STUDENT,
-    TEACHER,
+    STUDENT,HOME,
 } from "../../constants/pathConstants";
 import React from "react";
 import TeacherDashboard from "../../pages/Teacher/TeacherDashboard/TeacherDashboard";
@@ -17,7 +16,9 @@ import NotFound from "../../components/NotFound/NotFound";
 const TeacherView = () => {
     return (
         <Routes>
+            <Route path={DASHBOARD} element={<TeacherDashboard />} />
             <Route path={HOME} element={<TeacherDashboard />} />
+
             <Route path={PROFILE} element={<ProfilePage />} />
             <Route path={STUDENT} element={<TeacherStudentList />} />
             <Route path={GROUPS} element={<TeacherGroupList />} />

@@ -1,8 +1,8 @@
 import {Route, Routes} from "react-router-dom";
 import {
     FORGOT_PASSWORD,
-    HOME, INVOICE, LOGIN, MY_PROFILE,
-    REGISTRATION, SCHEDULE, SUBJECT, TEACHER,
+    DASHBOARD, INVOICE, LOGIN, MY_PROFILE,
+    REGISTRATION, SCHEDULE, SUBJECT, TEACHER, HOME,
 } from "../../constants/pathConstants";
 import StudentDashboard from "../../pages/Student/StudentDashboard/StudentDashboard";
 import Login from "../../pages/Authentication/Login";
@@ -19,6 +19,7 @@ import NotFound from "../../components/NotFound/NotFound";
 const StudentView = () => {
     return (
         <Routes>
+            <Route path={DASHBOARD} element={<StudentDashboard />} />
             <Route path={HOME} element={<StudentDashboard />} />
 
             <Route path={TEACHER} element={<StudentTeacherList />} />

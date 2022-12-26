@@ -3,7 +3,7 @@ import {useFetchCurrentUser} from "../hooks/users/useFetchCurrentUser";
 
 import {AuthService} from "../services/authService"
 import {axios} from "../config/axios";
-import {HOME} from "../constants/pathConstants";
+import {DASHBOARD} from "../constants/pathConstants";
 
 export const Context = createContext<any>(undefined)
 
@@ -23,7 +23,7 @@ const UserContext: FC<UserContextProps> = ({ children }): ReactElement => {
         localStorage.removeItem('token')
         user.setCurrentUser(undefined)
         delete axios.defaults.headers.common['Authorization']
-        window.location.href = HOME
+        window.location.href = DASHBOARD
     }
 
     return (

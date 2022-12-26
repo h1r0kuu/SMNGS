@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SubmenuElem from "./SubmenuElem/SubmenuElem";
 import {
-    HOME, LIBRARY, SCHEDULE,
+    DASHBOARD, LIBRARY, SCHEDULE,
     STUDENTS_LIST,SUBJECT, TEACHER,
 } from "../../constants/pathConstants";
 import SingleElem from "./SingleElem/SingleElem";
@@ -22,7 +22,7 @@ const StudentSidebar = () => {
     return (
         <SidebarMenu>
             <SidebarMenuTitle title={"Main Menu"}/>
-            <SingleElem title={"Dashboard"} href={HOME} icon={faLaptop}/>
+            <SingleElem title={"Dashboard"} href={DASHBOARD} icon={faLaptop}/>
             <SingleElem title={"Teacher"} href={TEACHER} icon={faChalkboardTeacher}/>
             <Submenu title={"Academic"}
                      icon={faSchool}

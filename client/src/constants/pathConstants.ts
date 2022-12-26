@@ -4,7 +4,8 @@ export const FORGOT_PASSWORD = "/password-reset"
 
 export const MY_PROFILE = "/profile"
 
-export const HOME = "/dashboard"
+export const HOME = "/"
+export const DASHBOARD = "/dashboard"
 export const SUBJECT = "/subject"
 export const PROFILE = "/profile"
 export const SCHEDULE = "/schedule"
@@ -47,8 +48,6 @@ export const SCHEDULES_LIST = "/admin/schedules/list"
 export const SCHEDULES_ADD = "/admin/schedules/add"
 export const SCHEDULES_EDIT = "/admin/schedules/edit"
 
-export const BOOKS_LIST = "/admin/books/list"
-export const BOOKS_ADD = "/admin/books/list"
 
 export const FEES_COLLECTION = "/fees-collection"
 export const EXPENSES = "/expenses"
@@ -62,9 +61,23 @@ export const FEES = "/fees"
 export const EXAM_LIST = "/exam/list"
 export const EVENTS = "/events"
 export const TIME_TABLE = "/time-table"
-export const LIBRARY = "/library"
 export const SPORT = "/sport"
 export const HOSTEL = "/hostel"
 export const TRANSPORT = "/transport"
 
 export const CALENDAR = "/calendar"
+
+//LIBRARY
+export const LIBRARY = "/library"
+
+export const BOOKS_LIST = "/admin/books/list"
+export const BOOKS_ADD = "/admin/books/add"
+
+export const CATEGORY_LIST = "/admin/books/categories/list"
+export const CATEGORY_ADD = "/admin/books/categories/add"
+
+export const AUTHORS_LIST = "/admin/books/authors/list"
+export const AUTHORS_ADD = "/admin/books/authors/add"
+
+export const PUBLISHERS_LIST = "/admin/books/publishers/list"
+export const PUBLISHERS_ADD = "/admin/books/publishers/add"
