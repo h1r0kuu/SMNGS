@@ -23,6 +23,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "front_picture")
+    private String frontPicture;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

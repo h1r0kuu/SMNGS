@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,9 @@ public class BookController {
 
     private final BookMapper bookMapper;
 
-    @PostMapping
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     private ResponseEntity<BookResponse> create(@Valid @RequestBody BookRequest bookRequest) {
-        BookResponse book = bookMapper.create(bookRequest);
+        BookResponse book = bookMapper.create(bookRequest, bookRequest.getFrontPicture());
         return ResponseEntity.ok(book);
     }
 

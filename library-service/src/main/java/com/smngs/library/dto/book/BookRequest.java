@@ -4,6 +4,7 @@ import com.smngs.library.entity.Author;
 import com.smngs.library.entity.Category;
 import com.smngs.library.entity.Publisher;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public class BookRequest {
     private Category category;
     private Publisher publisher;
     private List<Author> authors;
+    private MultipartFile frontPicture;
+
 }

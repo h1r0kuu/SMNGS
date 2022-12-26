@@ -10,6 +10,7 @@ import java.util.List;
 public class BookResponse {
     private Long id;
     private String title;
+    private String frontPicture;
     private CategoryWithoutBooksResponse category;
     private PublisherWithoutBooksResponse publisher;
     private List<AuthorWithoutBooksResponse> authors;
