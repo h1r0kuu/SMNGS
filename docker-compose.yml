@@ -22,12 +22,14 @@ services:
     image: h1r0ku/smngs-smngs-service
     depends_on:
       - api-gateway
+      - postgres-smngs
 
   library-service:
     container_name: library-service
     image: h1r0ku/smngs-library-service
     depends_on:
       - smngs-service
+      - postgres-library
 
   file-service:
     container_name: file-service
