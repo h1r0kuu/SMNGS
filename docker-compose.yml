@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    container_name: api-gateway
+    image: h1r0ku/smngs-api-gateway
+    ports:
+      - "8181:8080"
+    expose:
+      - "8181"
+    depends_on:
+      - discovery-server
+
+  discovery-server:
+    container_name: discovery-server
+    image: h1r0ku/smngs-discovery-server
+    ports:
+      - "8761:8761"
+
+  smngs-service:
+    container_name: smngs-service
+    image: h1r0ku/smngs-smngs-service
+    depends_on:
+      - api-gateway
+
+  library-service:
+    container_name: library-service
+    image: h1r0ku/smngs-library-service
+    depends_on:
+      - smngs-service
+
+  file-service:
+    container_name: file-service
+    image: h1r0ku/smngs-file-service
+    depends_on:
+      - smngs-service
+      - library-service
+
+  client:
+    container_name: client
+    image: h1r0ku/smngs-client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - smngs-service
+      - library-service
+      - file-service
+
+  postgres-smngs:
+    container_name: postgres-smngs
+    image: postgres
+    environment:
+      POSTGRES_DB: smngs-service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /data/postgres
+    volumes:
+      - ./smngs-service:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: always
+
+  postgres-library:
+    container_name: postgres-library
+    image: postgres
+    environment:
+      POSTGRES_DB: library-service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /data/postgres
+    volumes:
+      - ./library-service:/data/postgres
+    ports:
+      - "5431:5431"
+    restart: always
