@@ -3,61 +3,101 @@ version: '3.8'
 services:
   api-gateway:
     container_name: api-gateway
-    image: h1r0ku/smngs-api-gateway
+    # image: h1r0ku/smngs-api-gateway
+    build: 
+      context: ./api-gateway
+      dockerfile: Dockerfile
     ports:
       - "8181:8080"
     expose:
-      - "8181"
+      - "8080"
     depends_on:
       - discovery-server
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
 
   discovery-server:
     container_name: discovery-server
-    image: h1r0ku/smngs-discovery-server
+    # image: h1r0ku/smngs-discovery-server
+    build: 
+      context: ./discovery-server
+      dockerfile: Dockerfile
     ports:
       - "8761:8761"
 
   smngs-service:
     container_name: smngs-service
-    image: h1r0ku/smngs-smngs-service
+    # image: h1r0ku/smngs-smngs-service
+    build:
+      context: ./smngs-service
+      dockerfile: Dockerfile
     depends_on:
-      - api-gateway
       - postgres-smngs
+      - discovery-server
+      - api-gateway
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-smngs:5432/smngs
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
 
   library-service:
     container_name: library-service
-    image: h1r0ku/smngs-library-service
+    # image: h1r0ku/smngs-library-service
+    build:
+      context: ./library-service
+      dockerfile: Dockerfile
     depends_on:
-      - smngs-service
       - postgres-library
+      - discovery-server
+      - api-gateway
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-library:5431/smngs_library
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
 
   file-service:
     container_name: file-service
-    image: h1r0ku/smngs-file-service
+    # image: h1r0ku/smngs-file-service
+    build:
+      context: ./file-service
+      dockerfile: Dockerfile
     depends_on:
+      - discovery-server
+      - api-gateway
       - smngs-service
       - library-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
 
   client:
     container_name: client
-    image: h1r0ku/smngs-client
+    # image: h1r0ku/smngs-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - smngs-service
       - library-service
       - file-service
+      - discovery-server
+      - api-gateway
 
   postgres-smngs:
     container_name: postgres-smngs
     image: postgres
     environment:
-      POSTGRES_DB: smngs-service
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-      PGDATA: /data/postgres
+      - POSTGRES_DB=smngs
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - PGDATA=/data/postgres
     volumes:
-      - ./smngs-service:/data/postgres
+      - postgres-smngs:/data/postgres
     ports:
       - "5432:5432"
     restart: always
@@ -66,15 +106,20 @@ services:
     container_name: postgres-library
     image: postgres
     environment:
-      POSTGRES_DB: library-service
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-      PGDATA: /data/postgres
+      - POSTGRES_DB=smngs_library
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - PGDATA=/data/postgres
     volumes:
-      - ./library-service:/data/postgres
+      - postgres-library:/data/postgres
     ports:
       - "5431:5431"
     command: -p 5431
     expose:
       - "5431"
     restart: always
+
+
+volumes:
+  postgres-library:
+  postgres-smngs:
