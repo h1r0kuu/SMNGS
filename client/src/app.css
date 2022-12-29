@@ -29,6 +29,7 @@ Version      : 1.0
 20. Teacher Dashboard
 21. Student Dashboard
 22. Responsive
+23. Library
 
 ========================================*/
 
@@ -3809,4 +3810,54 @@ th.fc-col-header-cell {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 640px;
+}
+
+/*-----------------
+	23. Library
+-----------------------*/
+
+.book-body {
+    padding: 0;
+}
+
+.book-body > .card-text {
+    margin: 5px 0 0 5px;
+}
+
+.book-filter {
+    margin-bottom: 20px;
+}
+
+.btn-group {
+    margin-right: 20px;
+}
+
+
+.btn-group:last-child {
+    margin-right: 0;
+}
+
+.card-tools__list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 0 0 0;
+}
+
+.card-tools__list > li > a {
+    text-decoration: none;
+    font-size: 10px;
+    color: #000;
+    padding: 5px;
+    border: 1px solid #a6a6a6;
+    border-bottom: none;
+}
+
+.card-tools__list > li:first-child > a {
+    border-left: none;
+}
+
+.card-tools__list > li:last-child > a {
+    border-right: none;
 }

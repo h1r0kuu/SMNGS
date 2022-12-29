@@ -34,7 +34,7 @@ import {
     AUTHORS_LIST,
     AUTHORS_ADD,
     PUBLISHERS_LIST,
-    PUBLISHERS_ADD, HOME
+    PUBLISHERS_ADD, HOME, LIBRARY
 } from "../../constants/pathConstants";
 import StudentDashboard from "../../pages/Student/StudentDashboard/StudentDashboard";
 import Login from "../../pages/Authentication/Login";
@@ -70,6 +70,7 @@ import AdminAuthorList from "../../pages/Admin/List/AdminLibraryLists/AdminAutho
 import AddAuthor from "../../pages/Library/Author/AddAuthor/AddAuthor";
 import AdminPublisherList from "../../pages/Admin/List/AdminLibraryLists/AdminPublisherList/AdminPublisherList";
 import AddPublisher from "../../pages/Library/Publisher/AddPublisher/AddPublisher";
+import Library from "../../pages/Library/Library";
 
 const AdminView = () => {
     return (
@@ -112,6 +113,8 @@ const AdminView = () => {
 
             {/*Library*/}
 
+            <Route path={LIBRARY} element={<Library />} />
+
             <Route path={BOOKS_LIST} element={<AdminBookList />} />
             <Route path={BOOKS_ADD} element={<AddBook />} />
 
@@ -125,6 +128,7 @@ const AdminView = () => {
             <Route path={PUBLISHERS_ADD} element={<AddPublisher />} />
 
             <Route path={CALENDAR} element={<Calendar />} />
+
 
             <Route path={"*"} element={<NotFound />} />
         </Routes>
