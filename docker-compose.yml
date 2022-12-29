@@ -3,10 +3,7 @@ version: '3.8'
 services:
   api-gateway:
     container_name: api-gateway
-    # image: h1r0ku/smngs-api-gateway
-    build: 
-      context: ./api-gateway
-      dockerfile: Dockerfile
+    image: h1r0ku/api-gateway:latest
     ports:
       - "8181:8080"
     expose:
@@ -14,71 +11,50 @@ services:
     depends_on:
       - discovery-server
     environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
+      - spring_profiles_active=docker
 
   discovery-server:
     container_name: discovery-server
-    # image: h1r0ku/smngs-discovery-server
-    build: 
-      context: ./discovery-server
-      dockerfile: Dockerfile
+    image: h1r0ku/discovery-server:latest
     ports:
-      - "8761:8761"
+      - "8762:8761"
+    environment:
+      - spring_profiles_active=docker
 
   smngs-service:
     container_name: smngs-service
-    # image: h1r0ku/smngs-smngs-service
-    build:
-      context: ./smngs-service
-      dockerfile: Dockerfile
+    image: h1r0ku/smngs-service:latest
     depends_on:
       - postgres-smngs
       - discovery-server
       - api-gateway
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-smngs:5432/smngs
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=1234
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
+      - spring_profiles_active=docker
 
   library-service:
     container_name: library-service
-    # image: h1r0ku/smngs-library-service
-    build:
-      context: ./library-service
-      dockerfile: Dockerfile
+    image: h1r0ku/library-service:latest
     depends_on:
       - postgres-library
       - discovery-server
       - api-gateway
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-library:5431/smngs_library
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=1234
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
+      - spring_profiles_active=docker
 
   file-service:
     container_name: file-service
-    # image: h1r0ku/smngs-file-service
-    build:
-      context: ./file-service
-      dockerfile: Dockerfile
+    image: h1r0ku/file-service:latest
     depends_on:
       - discovery-server
       - api-gateway
       - smngs-service
       - library-service
     environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka:password@discovery-server:8761/eureka
+      - spring_profiles_active=docker
 
   client:
     container_name: client
-    # image: h1r0ku/smngs-client
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    image: h1r0ku/smngs-client
     ports:
       - "3000:3000"
     depends_on:
@@ -118,6 +94,34 @@ services:
     expose:
       - "5431"
     restart: always
+
+  ## Prometheus
+  prometheus:
+    image: prom/prometheus:v2.41.0
+    container_name: prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - library-service
+      - smngs-service
+      - file-service
+
+  grafana:
+    image: grafana/grafana-oss:9.3.2
+    container_name: grafana
+    restart: always
+    ports:
+      - "8082:8082"
+    links:
+      - prometheus:prometheus
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=password
 
 
 volumes:
