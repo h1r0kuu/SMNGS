@@ -36,3 +36,4 @@ build/
 ### Images ###
 users/**
 books/**
+grafana/**
