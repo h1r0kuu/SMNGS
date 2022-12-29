@@ -1,0 +1,23 @@
+global:
+  scrape_interval:     10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'smngs_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['smngs-service:8080']
+        labels:
+          application: 'Smngs Service Application'
+  - job_name: 'library_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'library-service:8080' ]
+        labels:
+          application: 'Library Service Application'
+  - job_name: 'file_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['file-service:8080']
+        labels:
+          application: 'File Service Application'

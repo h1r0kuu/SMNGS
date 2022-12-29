@@ -83,6 +83,17 @@
                     </processTypes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:19.0.1_10-jre</image>
+                    </from>
+                    <to><image>registry.hub.docker.com/h1r0ku/${artifactId}</image></to>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
