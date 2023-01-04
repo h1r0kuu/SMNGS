@@ -1,10 +1,10 @@
 import {useCallback, useEffect, useState} from "react";
-import {BookCategoryResponse} from "../../types/bookCategory";
+import {BookGenreResponse} from "../../types/bookCategory";
 import {PaginationProps, PaginationPropsDefault} from "../../types/pagination";
 import {CategoryService} from "../../services/categoryService";
 
 export const useFetchCategories = () => {
-    const [categories, setCategories] = useState<BookCategoryResponse[]>([])
+    const [categories, setCategories] = useState<BookGenreResponse[]>([])
     const [pagination, setPagination] = useState<PaginationProps>(PaginationPropsDefault)
     const [isLoading, setLoading] = useState(false)
 

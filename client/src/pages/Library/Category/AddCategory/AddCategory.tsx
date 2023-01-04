@@ -4,14 +4,14 @@ import FormGroupController from "../../../../components/Form/FormGroup/FormGroup
 import {useForm} from "react-hook-form";
 import Page from "../../../../components/Page/Page";
 import React, {useState} from "react";
-import {BookCategoryRequest} from "../../../../types/bookCategory";
+import {BookGenreRequest} from "../../../../types/bookCategory";
 import {CategoryService} from "../../../../services/categoryService";
 
 const AddCategory = () => {
 
-    const {control, register, handleSubmit, formState: {errors}} = useForm<BookCategoryRequest>()
+    const {control, register, handleSubmit, formState: {errors}} = useForm<BookGenreRequest>()
 
-    const onSubmit = (data: BookCategoryRequest) => {
+    const onSubmit = (data: BookGenreRequest) => {
         CategoryService.create(data).then(res => {
             console.log(res)
         })
