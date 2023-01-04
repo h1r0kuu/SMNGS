@@ -1,6 +1,6 @@
 import {AxiosResponse} from "axios";
 import {axios} from "../config/axios";
-import {API_LIBRARY_AUTHORS, API_LIBRARY_CATEGORIES} from "../constants/apiConstants";
+import {API_LIBRARY_AUTHORS} from "../constants/apiConstants";
 import {BookAuthorRequest, BookAuthorResponse} from "../types/bookAuthor";
 import {ResponseWithPagination} from "../types/pagination";
 

@@ -1,5 +1,5 @@
 import {BreadcrumbItem, Button, Col, Row} from "react-bootstrap";
-import List, {ListHeader, TableBody} from "../../../../../components/List/List";
+import List, {BodyElem, ListHeader, TableBody} from "../../../../../components/List/List";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload, faPlus} from "@fortawesome/free-solid-svg-icons";
 import React, {useRef} from "react";
@@ -7,16 +7,17 @@ import {GROUPS_ADD} from "../../../../../constants/pathConstants";
 import {useFetchGroups} from "../../../../../hooks/groups/useFetchGroups";
 import {tableToPdf} from "../../../../../utils/exportData";
 import Page from "../../../../../components/Page/Page";
+import {useFetchPublishers} from "../../../../../hooks/publishers/useFetchPublishers";
 
 const AdminPublisherList = () => {
 
-    const {groups, pagination, isLoading} = useFetchGroups()
+    const {publishers, pagination, isLoading} = useFetchPublishers()
 
     const breadCrumbs = () => {
         return (
             <>
                 <BreadcrumbItem>Dashboard</BreadcrumbItem>
-                <BreadcrumbItem active>Books</BreadcrumbItem>
+                <BreadcrumbItem active>Publishers</BreadcrumbItem>
             </>
         )
     }
@@ -44,11 +45,14 @@ const AdminPublisherList = () => {
                 <Col sm={12}>
                     <List isLoading={isLoading} pagination={pagination} reference={tableRef}>
                         <ListHeader title={"ID"}/>
-                        <ListHeader title={"Group Name"}/>
-                        <ListHeader title={"Group Term"}/>
-                        <ListHeader title={"Action"}/>
+                        <ListHeader title={"Title"}/>
                         <TableBody>
-
+                            {publishers?.map(publisher => (
+                                <>
+                                <BodyElem>{publisher.id}</BodyElem>
+                                <BodyElem>{publisher.title}</BodyElem>
+                                </>
+                            ))}
                         </TableBody>
                     </List>
                 </Col>

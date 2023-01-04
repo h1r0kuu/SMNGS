@@ -29,8 +29,8 @@ import {
     TEACHERS_VIEW,
     BOOKS_LIST,
     BOOKS_ADD,
-    CATEGORY_LIST,
-    CATEGORY_ADD,
+    GENRE_LIST,
+    GENRE_ADD,
     AUTHORS_LIST,
     AUTHORS_ADD,
     PUBLISHERS_LIST,
@@ -118,8 +118,8 @@ const AdminView = () => {
             <Route path={BOOKS_LIST} element={<AdminBookList />} />
             <Route path={BOOKS_ADD} element={<AddBook />} />
 
-            <Route path={CATEGORY_LIST} element={<AdminCategoryList />} />
-            <Route path={CATEGORY_ADD} element={<AddCategory />} />
+            <Route path={GENRE_LIST} element={<AdminCategoryList />} />
+            <Route path={GENRE_ADD} element={<AddCategory />} />
 
             <Route path={AUTHORS_LIST} element={<AdminAuthorList />} />
             <Route path={AUTHORS_ADD} element={<AddAuthor />} />

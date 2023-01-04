@@ -1,22 +1,30 @@
 import {Controller, useForm} from "react-hook-form";
-import {BreadcrumbItem, Col, FormGroup, FormLabel} from "react-bootstrap";
+import {BreadcrumbItem, Button, Col, Form, FormGroup, FormLabel} from "react-bootstrap";
 import React from "react";
 import Page from "../../../../components/Page/Page";
 import AddOrEdit from "../../../../components/AddOrEdit/AddOrEdit";
 import FormGroupController from "../../../../components/Form/FormGroup/FormGroupController";
-import {BookResponse} from "../../../../types/book";
+import {BookRequest, BookResponse} from "../../../../types/book";
 import {useFetchAuthors} from "../../../../hooks/library/authors/useFetchAuthors";
 import {useFetchCategories} from "../../../../hooks/categories/useFetchCategories";
 import {Autocomplete, TextField} from "@mui/material";
+import {BookService} from "../../../../services/bookService";
+import {useFetchPublishers} from "../../../../hooks/publishers/useFetchPublishers";
 
 const AddBook = () => {
     const {authors} = useFetchAuthors()
     const {categories} = useFetchCategories()
+    const {publishers} = useFetchPublishers()
 
-    const {control, register, handleSubmit, formState: {errors}} = useForm<BookResponse>()
+    const {control, register, handleSubmit, formState: {errors}} = useForm<BookRequest>()
 
-    const onSubmit = (data: BookResponse) => {
-        console.log(data)
+    const onSubmit = (data: BookRequest) => {
+        if(data.frontPicture !== undefined)
+            data.frontPicture = data.frontPicture[0]
+
+        BookService.create(data).then(res => {
+            console.log(res)
+        })
     }
 
     const breadCrumbs = () => {
@@ -36,12 +44,22 @@ const AddBook = () => {
                 </Col>
                 <Col xs={12} sm={6}>
                     <FormGroupController
-                        type={"file"}
+                        type={"text"}
                         register={register}
                         control={control}
                         error={errors.title}
                         name={"title"}
                         title={"Book title"}
+                    />
+                </Col>
+                <Col xs={12} sm={6}>
+                    <FormGroupController
+                        type={"file"}
+                        register={register}
+                        control={control}
+                        error={errors.frontPicture}
+                        name={"frontPicture"}
+                        title={"Book picture"}
                     />
                 </Col>
                 <Col xs={12} sm={6}>
@@ -55,7 +73,7 @@ const AddBook = () => {
                                     multiple
                                     id="tags-outlined"
                                     options={authors}
-                                    getOptionLabel={(author) => `${author?.firstName} - ${author.lastName}`}
+                                    getOptionLabel={(author) => `${author?.firstName} ${author.lastName}`}
                                     filterSelectedOptions
                                     renderInput={(params) => (
                                         <TextField
@@ -64,7 +82,11 @@ const AddBook = () => {
                                             placeholder="Author"
                                         />
                                     )}
-                                    onChange={(event, values, reason) => onChange(values)}
+                                    isOptionEqualToValue={(opt, value) => opt.id === value.id}
+                                    onChange={(event, values, reason) => {
+                                        const authorIds = values.map(author => author.id);
+                                        onChange(authorIds);
+                                    }}
                                 />
                             )}
                         />
@@ -75,7 +97,7 @@ const AddBook = () => {
                         <FormLabel>Category</FormLabel>
                         <Controller
                             control={control}
-                            name={"category"}
+                            name={"genres"}
                             render={({ field: { onChange, value } }) => (
                                 <Autocomplete
                                     multiple
@@ -90,11 +112,28 @@ const AddBook = () => {
                                             placeholder="Category"
                                         />
                                     )}
-                                    onChange={(event, values, reason) => onChange(values)}
+                                    isOptionEqualToValue={(opt, value) => opt.id === value.id}
+                                    onChange={(event, values, reason) => {
+                                        const categoriesId = values.map(genre => genre.id);
+                                        onChange(categoriesId);
+                                    }}
                                 />
                             )}
                         />
                     </FormGroup>
+                </Col>
+                <Col xs={12} sm={6}>
+                    <FormGroup className="form-group">
+                        <FormLabel>Publisher</FormLabel>
+                        <Form.Select className="form-control" {...register("publisher")}>
+                            {publishers.map(publisher => (
+                                <option value={publisher.id}>{publisher.title}</option>
+                            ))}
+                        </Form.Select>
+                    </FormGroup>
+                </Col>
+                <Col xs={12}>
+                    <Button type="submit">Submit</Button>
                 </Col>
             </AddOrEdit>
         </Page>

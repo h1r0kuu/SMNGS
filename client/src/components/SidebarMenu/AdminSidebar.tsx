@@ -4,14 +4,16 @@ import Submenu from "./Submenu/Submenu";
 import {
     faBookReader,
     faBuilding,
-    faChalkboardTeacher,
+    faChalkboardTeacher, faIndustry, faTags, faUser,
     faUserGraduate
 } from "@fortawesome/free-solid-svg-icons";
 import SubmenuElem from "./SubmenuElem/SubmenuElem";
 import {
     ADMIN_DASHBOARD,
     GROUPS_ADD,
-    GROUP_LIST, SCHEDULES_ADD, SCHEDULES_LIST,
+    GROUP_LIST,
+    SCHEDULES_ADD,
+    SCHEDULES_LIST,
     STUDENT_DASHBOARD,
     STUDENTS_ADD,
     STUDENTS_LIST,
@@ -19,7 +21,15 @@ import {
     SUBJECTS_LIST,
     TEACHER_DASHBOARD,
     TEACHERS_ADD,
-    TEACHERS_LIST, BOOKS_LIST, BOOKS_ADD, CATEGORY_LIST, CATEGORY_ADD, AUTHORS_LIST, AUTHORS_ADD,
+    TEACHERS_LIST,
+    BOOKS_LIST,
+    BOOKS_ADD,
+    GENRE_LIST,
+    GENRE_ADD,
+    AUTHORS_LIST,
+    AUTHORS_ADD,
+    PUBLISHERS_LIST,
+    PUBLISHERS_ADD,
 } from "../../constants/pathConstants";
 import React, {useState} from "react";
 import {faClock} from "@fortawesome/free-solid-svg-icons/faClock";
@@ -89,21 +99,29 @@ const AdminSidebar = () => {
                 <SubmenuElem title={"Book List"} href={BOOKS_LIST} />
                 <SubmenuElem title={"Book Add"} href={BOOKS_ADD} />
             </Submenu>
-            <Submenu title={"Book categories"}
-                     icon={faBookOpen}
+            <Submenu title={"Categories"}
+                     icon={faTags}
                      setSelectedDropdown={setSelectedDropdown}
                      selectedDropdown={selectedDropdown}
                      id={8}>
-                <SubmenuElem title={"Category List"} href={CATEGORY_LIST} />
-                <SubmenuElem title={"Category Add"} href={CATEGORY_ADD} />
+                <SubmenuElem title={"Category List"} href={GENRE_LIST} />
+                <SubmenuElem title={"Category Add"} href={GENRE_ADD} />
             </Submenu>
-            <Submenu title={"Book authors"}
-                     icon={faBookOpen}
+            <Submenu title={"Authors"}
+                     icon={faUser}
                      setSelectedDropdown={setSelectedDropdown}
                      selectedDropdown={selectedDropdown}
                      id={9}>
                 <SubmenuElem title={"Author List"} href={AUTHORS_LIST} />
                 <SubmenuElem title={"Author Add"} href={AUTHORS_ADD} />
+            </Submenu>
+            <Submenu title={"Publishers"}
+                     icon={faIndustry}
+                     setSelectedDropdown={setSelectedDropdown}
+                     selectedDropdown={selectedDropdown}
+                     id={10}>
+                <SubmenuElem title={"Publisher List"} href={PUBLISHERS_LIST} />
+                <SubmenuElem title={"Publisher Add"} href={PUBLISHERS_ADD} />
             </Submenu>
         </SidebarMenu>
     )

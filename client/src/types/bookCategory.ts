@@ -1,10 +1,10 @@
 import {BookResponse} from "./book";
 
-export interface BookCategoryRequest {
+export interface BookGenreRequest {
     title: string
 }
 
-export interface BookCategoryResponse {
+export interface BookGenreResponse {
     id: number,
     title: string,
     books: BookResponse[],
@@ -12,7 +12,7 @@ export interface BookCategoryResponse {
     updatedAt: Date
 }
 
-export interface BookCategoryWithoutBooksResponse {
+export interface BookGenreWithoutBooksResponse {
     id: number,
     title: string,
     createdAt: Date,

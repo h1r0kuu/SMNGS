@@ -55,5 +55,6 @@ export const API_AUTH_CHECK_TOKEN = (token: string | null) => API_AUTH + `/refre
 export const API_LIBRARY = HOST + "/api/v1/library"
 
 export const API_LIBRARY_BOOKS = API_LIBRARY + "/books"
-export const API_LIBRARY_CATEGORIES = API_LIBRARY + "/categories"
+export const API_LIBRARY_GENRES = API_LIBRARY + "/genres"
 export const API_LIBRARY_AUTHORS = API_LIBRARY + "/authors"
+export const API_LIBRARY_PUBLISHERS = API_LIBRARY + "/publishers"
