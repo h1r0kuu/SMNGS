@@ -1,9 +1,9 @@
 package com.smngs.library.repository;
 
-import com.smngs.library.entity.Category;
+import com.smngs.library.entity.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface GenreRepository extends JpaRepository<Genre, Long> {
 }

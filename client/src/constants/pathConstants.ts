@@ -73,8 +73,8 @@ export const LIBRARY = "/library"
 export const BOOKS_LIST = "/admin/books/list"
 export const BOOKS_ADD = "/admin/books/add"
 
-export const CATEGORY_LIST = "/admin/books/categories/list"
-export const CATEGORY_ADD = "/admin/books/categories/add"
+export const GENRE_LIST = "/admin/books/genres/list"
+export const GENRE_ADD = "/admin/books/genres/add"
 
 export const AUTHORS_LIST = "/admin/books/authors/list"
 export const AUTHORS_ADD = "/admin/books/authors/add"
