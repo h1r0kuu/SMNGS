@@ -21,7 +21,7 @@ public class BookController {
     private final BookMapper bookMapper;
 
     @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    private ResponseEntity<BookResponse> create(@Valid @RequestBody BookRequest bookRequest) {
+    private ResponseEntity<BookResponse> create(@Valid @ModelAttribute BookRequest bookRequest) {
         BookResponse book = bookMapper.create(bookRequest, bookRequest.getFrontPicture());
         return ResponseEntity.ok(book);
     }
