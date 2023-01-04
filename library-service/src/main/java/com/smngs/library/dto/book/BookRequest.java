@@ -1,19 +1,15 @@
 package com.smngs.library.dto.book;
 
-import com.smngs.library.entity.Author;
-import com.smngs.library.entity.Category;
 import com.smngs.library.entity.Publisher;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-
 @Data
 public class BookRequest {
     private String title;
-    private Category category;
+    private Long[] genres;
     private Publisher publisher;
-    private List<Author> authors;
+    private Long[] authors;
     private MultipartFile frontPicture;
 
 }
