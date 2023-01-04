@@ -32,7 +32,6 @@ public class GroupMapper implements MapperInterface<GroupRequest, GroupResponse>
 
     @Override
     public GroupResponse create(GroupRequest groupRequest) {
-        System.out.println(groupRequest);
         Group group = groupService.create(mapper.convertTo(groupRequest, Group.class));
         for(TeacherSubjectResponse t : groupRequest.getTeacherSubjects()) {
             GroupSubject groupSubject = new GroupSubject();
