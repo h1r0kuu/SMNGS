@@ -1,48 +1,40 @@
-import {Card, Col} from "react-bootstrap";
-import CardHeader from "react-bootstrap/CardHeader";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, {FC} from "react";
 import {Link} from "react-router-dom";
-import {faBook, faHeart, faBookOpenReader} from "@fortawesome/free-solid-svg-icons";
+import {Col} from "react-bootstrap";
+import {BookResponse} from "../../../../types/book";
 
-const Book = () => {
+interface BookProps {
+    book: BookResponse
+}
+
+const Book: FC<BookProps> = ({ book }) => {
     return (
         <Col md={3}>
-            <Card>
-                <img className={"card-img-top"} src={"https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/udHvbKwV-IMG-Dubai-UAE-1.jpg"}/>
-                <CardHeader>
-                    <h5 className={"card-title mb-0"}>Card with image and button</h5>
-                </CardHeader>
-                <Card.Body className={"book-body"}>
-                    <div className={"card-text"}>
-                        Dima
+            <div className='book-item-img'>
+                <img src ={book.frontPicture} alt = "cover" />
+            </div>
+            <div className='book-item-info text-left'>
+                <Link to = {"#"}>
+                    <div className='book-item-info-item title fw-7 fs-18'>
+                        <span>{book.title}</span>
                     </div>
-                    <div className="card-tools">
-                        <ul className={"card-tools__list"}>
-                            <li>
-                                <Link to={"#"}>
-                                    <FontAwesomeIcon icon={faHeart}/>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to={"#"}>
-                                    <FontAwesomeIcon icon={faBookOpenReader}/>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to={"#"}>
-                                    <FontAwesomeIcon icon={faBookOpenReader}/>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to={"#"}>
-                                    <FontAwesomeIcon icon={faBook}/>
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </Card.Body>
-            </Card>
+                </Link>
+
+                <div className='book-item-info-item author fs-15'>
+                    <span className='text-capitalize fw-7'>Author: </span>
+                    <span>{book.authors.join(", ")}</span>
+                </div>
+
+                <div className='book-item-info-item edition-count fs-15'>
+                    <span className='text-capitalize fw-7'>Total Editions: </span>
+                    <span>Edition count</span>
+                </div>
+
+                <div className='book-item-info-item publish-year fs-15'>
+                    <span className='text-capitalize fw-7'>First Publish Year: </span>
+                    <span>First publish year</span>
+                </div>
+            </div>
         </Col>
     )
 }
