@@ -26,9 +26,13 @@ public class Book {
     @Column(name = "front_picture")
     private String frontPicture;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @ToString.Exclude
+    private List<Genre> genres;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id")
